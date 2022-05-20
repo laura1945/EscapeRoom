@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Attic.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Ballroom.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom1.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom2.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/DiningHall.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Kitchen.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lab.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Library.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lobby.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/MusicRoom.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/BackArrow.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Cheese.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/FloorboardPryer.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InstrButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Key.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/LoreButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Note.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Parchment.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Pentacle.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/PlayButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Polaroid.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Potion.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/QuakerOats.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/SettingsButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
