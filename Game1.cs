@@ -103,6 +103,10 @@ namespace EscapeRoom
             instrBttRec = new Rectangle(playBttRec.X, playBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
             settingsBttRec = new Rectangle(playBttRec.X, instrBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
             loreBttRec = new Rectangle(playBttRec.X, settingsBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
+
+            Room lobby = new Room("Lobby");
+            Room ballroom = new Room("Ballroom");
+            Room diningHall = new Room("DiningHall");
         }
 
         /// <summary>
