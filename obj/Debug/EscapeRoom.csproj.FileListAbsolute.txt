@@ -31,3 +31,4 @@ A:\School\ICS4\Assignments\EscapeRoom\EscapeRoom\obj\Debug\EscapeRoom.csproj.Cop
 A:\School\ICS4\Assignments\EscapeRoom\EscapeRoom\obj\Debug\EscapeRoom.exe
 A:\School\ICS4\Assignments\EscapeRoom\EscapeRoom\obj\Debug\EscapeRoom.pdb
 A:\School\ICS4\Assignments\EscapeRoom\EscapeRoom\bin\Debug\Helper.dll
+D:\ICS4\Assignments\EscapeRoom\EscapeRoom\bin\Debug\Helper.dll

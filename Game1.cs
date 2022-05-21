@@ -27,7 +27,10 @@ namespace EscapeRoom
         const int INSTRUCTIONS = 2;
         const int SETTINGS = 3;
         const int LORE = 4;
-        int gameState = MENU;
+        public static int gameState = MENU;
+
+        const int LOBBY = 0;
+        int room = LOBBY;
 
         int screenWidth = 1183;
         int screenHeight = 666;
@@ -50,8 +53,12 @@ namespace EscapeRoom
 
         SpriteFont statFont;
 
-        MouseState prevMouse;
-        MouseState mouse;
+        Lobby lobby;
+
+        public static MouseState prevMouse;
+        public static MouseState mouse;
+
+        public static int test = 2; //testing global variable (in Room)
 
         public Game1()
         {
@@ -104,9 +111,7 @@ namespace EscapeRoom
             settingsBttRec = new Rectangle(playBttRec.X, instrBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
             loreBttRec = new Rectangle(playBttRec.X, settingsBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
 
-            Room lobby = new Room("Lobby");
-            Room ballroom = new Room("Ballroom");
-            Room diningHall = new Room("DiningHall");
+            lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
         }
 
         /// <summary>
@@ -132,6 +137,8 @@ namespace EscapeRoom
             prevMouse = mouse;
             mouse = Mouse.GetState();
 
+            //new_click = CheckClick(ButtonState state, ButtonState prevState, Rectangle rec)
+            //gameState.Update()
             switch (gameState)
             {
                 case MENU:
@@ -181,10 +188,18 @@ namespace EscapeRoom
 
         private void UpdateGame()
         {
-            if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+            //if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+            //{
+            //    gameState = MENU;
+            //}
+
+            switch (room)
             {
-                gameState = MENU;
+                case LOBBY:
+                    lobby.UpdateLobby();
+                    break;
             }
+
         }
 
         private void UpdateInstr()
@@ -270,8 +285,15 @@ namespace EscapeRoom
 
         private void DrawGame()
         {
-            spriteBatch.DrawString(statFont, "INGAME", testLoc, Color.White);
-            spriteBatch.Draw(backBttImg, backBttRec, Color.White);
+            switch (room)
+            {
+                case LOBBY:
+                    lobby.DrawRoom();
+                    break;
+            }
+
+            //spriteBatch.DrawString(statFont, "INGAME", testLoc, Color.White);
+            //spriteBatch.Draw(backBttImg, backBttRec, Color.White);
         }
 
         private void DrawInstr()

@@ -12,12 +12,12 @@ namespace EscapeRoom
 
         public ItemStack()
         {
-            
+            items = new List<Item>();
         }
 
         public void Push(Item newItem)
         {
-            items.Add(new Item());
+            items.Add(newItem);
         }
 
         public Item Pop()
