@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Collectable.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="InGame.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemStack.cs" />

@@ -20,20 +20,22 @@ namespace EscapeRoom
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
+        public static SpriteBatch spriteBatch;
 
-        const int MENU = 0;
-        const int INGAME = 1;
+        static Menu menu;
+        public static InGame inGame;
         const int INSTRUCTIONS = 2;
         const int SETTINGS = 3;
         const int LORE = 4;
-        public static int gameState = MENU;
+        public static GameState gameState;
 
         const int LOBBY = 0;
         int room = LOBBY;
 
-        int screenWidth = 1183;
-        int screenHeight = 666;
+        public static int screenWidth = 1183;
+        public static int screenHeight = 666;
+
+        bool newClick;
 
         Texture2D backBttImg;
         Texture2D playBttImg;
@@ -76,6 +78,11 @@ namespace EscapeRoom
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+
+            menu = new Menu(Content);
+            inGame = new InGame(Content);
+
+            gameState = menu;
 
             base.Initialize();
         }
@@ -137,60 +144,19 @@ namespace EscapeRoom
             prevMouse = mouse;
             mouse = Mouse.GetState();
 
-            //new_click = CheckClick(ButtonState state, ButtonState prevState, Rectangle rec)
-            //gameState.Update()
-            switch (gameState)
-            {
-                case MENU:
-                    UpdateMenu();
-                    break;
-
-                case INGAME:
-                    UpdateGame();
-                    break;
-
-                case INSTRUCTIONS:
-                    UpdateInstr();
-                    break;
-
-                case SETTINGS:
-                    UpdateSettings();
-                    break;
-
-                case LORE:
-                    UpdateLore();
-                    break;
-            }
+            newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
+            gameState.Update(newClick);
             
 
             base.Update(gameTime);
         }
-
-        private void UpdateMenu()
-        {
-            if (CheckClick(mouse.LeftButton, prevMouse.LeftButton, playBttRec))
-            {
-                gameState = INGAME;
-            }
-            else if (CheckClick(mouse.LeftButton, prevMouse.LeftButton, instrBttRec))
-            {
-                gameState = INSTRUCTIONS;
-            }
-            else if (CheckClick(mouse.LeftButton, prevMouse.LeftButton, settingsBttRec))
-            {
-                gameState = SETTINGS;
-            }
-            else if (CheckClick(mouse.LeftButton, prevMouse.LeftButton, loreBttRec))
-            {
-                gameState = LORE;
-            }
-        }
+        
 
         private void UpdateGame()
         {
             //if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
             //{
-            //    gameState = MENU;
+            //    gameState = menu;
             //}
 
             switch (room)
@@ -202,33 +168,43 @@ namespace EscapeRoom
 
         }
 
-        private void UpdateInstr()
+        //private void UpdateInstr()
+        //{
+        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+        //    {
+        //        gameState = menu;
+        //    }
+        //}
+
+        //private void UpdateSettings()
+        //{
+        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+        //    {
+        //        gameState = menu;
+        //    }
+        //}
+
+        //private void UpdateLore()
+        //{
+        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+        //    {
+        //        gameState = menu;
+        //    }
+        //}
+
+        public bool CheckClick(ButtonState state, ButtonState prevState)
         {
-            if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
+            if (state == ButtonState.Pressed && prevState != ButtonState.Pressed)
             {
-                gameState = MENU;
+                return true;
             }
+
+            return false;
         }
 
-        private void UpdateSettings()
+        public static bool CheckHit(Rectangle hitbox)
         {
-            if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-            {
-                gameState = MENU;
-            }
-        }
-
-        private void UpdateLore()
-        {
-            if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-            {
-                gameState = MENU;
-            }
-        }
-
-        private bool CheckClick(ButtonState state, ButtonState prevState, Rectangle rec)
-        {
-            if (state == ButtonState.Pressed && prevState != ButtonState.Pressed && rec.Contains(mouse.Position))
+            if (hitbox.Contains(mouse.Position))
             {
                 return true;
             }
@@ -247,35 +223,37 @@ namespace EscapeRoom
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            switch (gameState)
-            {
-                case MENU:
-                    DrawMenu();
-                    break;
+            gameState.Draw();
 
-                case INGAME:
-                    DrawGame();
-                    break;
+            //switch (gameState)
+            //{
+            //    case menu:
+            //        Drawmenu();
+            //        break;
 
-                case INSTRUCTIONS:
-                    DrawInstr();
-                    break;
+            //    case INGAME:
+            //        DrawGame();
+            //        break;
 
-                case SETTINGS:
-                    DrawSettings();
-                    break;
+            //    case INSTRUCTIONS:
+            //        DrawInstr();
+            //        break;
 
-                case LORE:
-                    DrawLore();
-                    break;
-            }
+            //    case SETTINGS:
+            //        DrawSettings();
+            //        break;
+
+            //    case LORE:
+            //        DrawLore();
+            //        break;
+            //}
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        private void DrawMenu()
+        private void Drawmenu()
         {
             spriteBatch.Draw(playBttImg, playBttRec, Color.White);
             spriteBatch.Draw(instrBttImg, instrBttRec, Color.White);
