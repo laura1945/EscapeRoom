@@ -34,15 +34,15 @@ namespace EscapeRoom
             backBttRec = new Rectangle(10, screenHeight - backBttImg.Height/4, backBttImg.Width/4, backBttImg.Height/4);
         }
 
-        public override void Update(bool newClick)
+        public override void Update()
         {
-            if (newClick)
+            base.Update();
+            
+            if (Game1.CheckHit(backBttRec))
             {
-                if (Game1.CheckHit(backBttRec))
-                {
-                    Game1.gameState = Game1.menu;
-                }
+                Game1.gameState = Game1.menu;
             }
+            
         }
 
         public override void Draw()

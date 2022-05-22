@@ -41,9 +41,9 @@ namespace EscapeRoom
             lobby.LoadContent();
         }
 
-        public override void Update(bool newClick)
+        public override void Update()
         {
-            base.Update(newClick);
+            base.Update();
 
             room.UpdateRoom();
         }

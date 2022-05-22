@@ -54,28 +54,24 @@ namespace EscapeRoom
             loreBttRec = new Rectangle(playBttRec.X, settingsBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
         }
 
-        public override void Update(bool newClick)
+        public override void Update()
         {
-            if (newClick)
+            if (Game1.CheckHit(playBttRec))
             {
-                if (Game1.CheckHit(playBttRec))
-                {
-                    Game1.gameState = Game1.inGame;
-                }
-                else if (Game1.CheckHit(instrBttRec))
-                {
-                    Game1.gameState = Game1.instructions;
-                }
-                else if (Game1.CheckHit(settingsBttRec))
-                {
-                    Game1.gameState = Game1.settings;
-                }
-                else if (Game1.CheckHit(loreBttRec))
-                {
-                    Game1.gameState = Game1.lore;
-                }
+                Game1.gameState = Game1.inGame;
             }
-
+            else if (Game1.CheckHit(instrBttRec))
+            {
+                Game1.gameState = Game1.instructions;
+            }
+            else if (Game1.CheckHit(settingsBttRec))
+            {
+                Game1.gameState = Game1.settings;
+            }
+            else if (Game1.CheckHit(loreBttRec))
+            {
+                Game1.gameState = Game1.lore;
+            }
         }
 
         public override void Draw()

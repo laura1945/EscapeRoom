@@ -11,43 +11,43 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Animation2D;
 using Helper;
-
 using Microsoft.Xna.Framework.Content;
+
 namespace EscapeRoom
 {
-    class RecStack
+    class CoverStack
     {
-        private List<Rectangle> recs;
+        private List<ItemCover> covers;
 
-        public RecStack()
+        public CoverStack()
         {
-            recs = new List<Rectangle>();
+            covers = new List<ItemCover>();
         }
 
-        public void Push(Rectangle newRec)
+        public void Push(ItemCover newRec)
         {
-            recs.Add(newRec);
+            covers.Add(newRec);
         }
 
         public void Pop()
         {
             if (!IsEmpty())
             {
-                recs.RemoveAt(Size() - 1);
+                covers.RemoveAt(Size() - 1);
             }
         }
 
-        //public Rectangle Top()
-        //{
-        //    Rectangle result = null;
+        public ItemCover Top()
+        {
+            ItemCover result = null;
 
-        //    if (!IsEmpty())
-        //    {
-        //        result = recs[Size() - 1];
-        //    }
+            if (!IsEmpty())
+            {
+                result = covers[Size() - 1];
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
 
         public bool IsEmpty()
         {
@@ -56,7 +56,7 @@ namespace EscapeRoom
 
         public int Size()
         {
-            return recs.Count();
+            return covers.Count();
         }
     }
 }

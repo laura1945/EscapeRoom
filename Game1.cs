@@ -29,15 +29,21 @@ namespace EscapeRoom
         public static Settings settings;
         public static Lore lore;
 
+        public static Inventory inventory;
+
         public static int screenWidth = 1183;
         public static int screenHeight = 666;
 
         bool newClick;
+        bool newKey;
 
         Lobby lobby;
 
         public static MouseState prevMouse;
         public static MouseState mouse;
+
+        KeyboardState prevKb;
+        KeyboardState kb;
 
         public static int test = 2; //testing global variable (in Room)
 
@@ -76,6 +82,7 @@ namespace EscapeRoom
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
 
+            inventory = new Inventory();
 
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
@@ -116,10 +123,20 @@ namespace EscapeRoom
             // TODO: Add your update logic here
             prevMouse = mouse;
             mouse = Mouse.GetState();
+            prevKb = kb;
+            kb = Keyboard.GetState();
 
             newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
-            gameState.Update(newClick);
-            
+            newKey = CheckKey(Keys.Space);
+
+            if (newClick || newKey)
+            {
+                gameState.Update();
+            }
+            else if (gameState == inGame) //? should I do this for updating ingame timer? (timer updates even if user doesn't click)
+            {
+                //gameState.UpdateTimer(); 
+            }
 
             base.Update(gameTime);
         }
@@ -132,7 +149,7 @@ namespace EscapeRoom
         //    }
         //}
 
-        public bool CheckClick(ButtonState state, ButtonState prevState)
+        public static bool CheckClick(ButtonState state, ButtonState prevState)
         {
             if (state == ButtonState.Pressed && prevState != ButtonState.Pressed)
             {
@@ -145,6 +162,16 @@ namespace EscapeRoom
         public static bool CheckHit(Rectangle hitbox)
         {
             if (hitbox.Contains(mouse.Position))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool CheckKey(Keys key)
+        {
+            if (kb.IsKeyDown(key) && !prevKb.IsKeyDown(key))
             {
                 return true;
             }

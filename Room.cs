@@ -31,7 +31,7 @@ namespace EscapeRoom
         protected Room left;
 
         protected ItemStack itemStack;
-        protected RecStack itemCovers;
+        protected CoverStack itemCovers;
 
         protected Texture2D roomImg;
 
@@ -83,16 +83,6 @@ namespace EscapeRoom
         public virtual void UpdateRoom()
         {
 
-        }
-
-        protected bool CheckClick(ButtonState state, ButtonState prevState, Rectangle rec)
-        {
-            if (state == ButtonState.Pressed && prevState != ButtonState.Pressed && rec.Contains(Game1.mouse.Position))
-            {
-                return true;
-            }
-
-            return false;
         }
     }
 }

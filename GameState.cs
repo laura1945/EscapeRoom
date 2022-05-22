@@ -41,7 +41,7 @@ namespace EscapeRoom
 
         }
 
-        public virtual void Update(bool newClick)
+        public virtual void Update()
         {
 
         }

@@ -164,7 +164,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Cheese.png
 
-#begin Images/Sprites/FloorboardPryer.png
+#begin Images/Sprites/FloorboardPry.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -174,7 +174,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Sprites/FloorboardPryer.png
+/build:Images/Sprites/FloorboardPry.png
 
 #begin Images/Sprites/hitbox.png
 /importer:TextureImporter
@@ -199,6 +199,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/InstrButton.png
+
+#begin Images/Sprites/InventoryLayout.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/InventoryLayout.png
 
 #begin Images/Sprites/Key.png
 /importer:TextureImporter
@@ -295,6 +307,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Potion.png
+
+#begin Images/Sprites/PryBarDesc.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/PryBarDesc.png
 
 #begin Images/Sprites/QuakerOats.png
 /importer:TextureImporter
