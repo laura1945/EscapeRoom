@@ -20,15 +20,11 @@ namespace EscapeRoom
     {
         protected ContentManager Content;
         protected SpriteBatch spriteBatch;
+        protected int screenWidth;
+        protected int screenHeight;
 
         protected string name;
 
-        protected int screenWidth;
-        protected int screenHeight;
-        //protected MouseState prevMouse;
-        //protected MouseState mouse;
-
-        //private List<Room> connections;
         protected Room back;
         protected Room front;
         protected Room right;
@@ -81,10 +77,10 @@ namespace EscapeRoom
 
         public virtual void DrawRoom()
         {
-            spriteBatch.Draw(roomImg, roomRec, Color.White);
+            
         }
 
-        public virtual void LoadItems()
+        public virtual void UpdateRoom()
         {
 
         }

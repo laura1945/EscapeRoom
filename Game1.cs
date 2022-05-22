@@ -22,38 +22,17 @@ namespace EscapeRoom
         private GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
 
-        static Menu menu;
-        public static InGame inGame;
-        const int INSTRUCTIONS = 2;
-        const int SETTINGS = 3;
-        const int LORE = 4;
         public static GameState gameState;
-
-        const int LOBBY = 0;
-        int room = LOBBY;
+        public static Menu menu;
+        public static InGame inGame;
+        public static Instructions instructions;
+        public static Settings settings;
+        public static Lore lore;
 
         public static int screenWidth = 1183;
         public static int screenHeight = 666;
 
         bool newClick;
-
-        Texture2D backBttImg;
-        Texture2D playBttImg;
-        Texture2D instrBttImg;
-        Texture2D settingsBttImg;
-        Texture2D loreBttImg;
-
-        Rectangle playBttRec;
-        Rectangle instrBttRec;
-        Rectangle settingsBttRec;
-        Rectangle loreBttRec;
-        Rectangle backBttRec;
-        int buttonGap = 65;
-        int[] buttonDimen = new int[2];
-
-        Vector2 testLoc = new Vector2(100, 100);
-
-        SpriteFont statFont;
 
         Lobby lobby;
 
@@ -79,10 +58,6 @@ namespace EscapeRoom
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
 
-            menu = new Menu(Content);
-            inGame = new InGame(Content);
-
-            gameState = menu;
 
             base.Initialize();
         }
@@ -101,24 +76,22 @@ namespace EscapeRoom
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
 
-            statFont = Content.Load<SpriteFont>("Fonts/StatFont");
 
-            backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
-            playBttImg = Content.Load<Texture2D>("Images/Sprites/PlayButton");
-            instrBttImg = Content.Load<Texture2D>("Images/Sprites/InstrButton");
-            settingsBttImg = Content.Load<Texture2D>("Images/Sprites/SettingsButton");
-            loreBttImg = Content.Load<Texture2D>("Images/Sprites/LoreButton");
-
-            buttonDimen[0] = playBttImg.Width; 
-            buttonDimen[1] = playBttImg.Height;
-
-            backBttRec = new Rectangle(0, screenHeight - backBttImg.Height/3, backBttImg.Width/3, backBttImg.Height/3);
-            playBttRec = new Rectangle((screenWidth-buttonDimen[0]) / 2, (int)(screenHeight / 2.5 * 1.5), buttonDimen[0], buttonDimen[1]);
-            instrBttRec = new Rectangle(playBttRec.X, playBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
-            settingsBttRec = new Rectangle(playBttRec.X, instrBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
-            loreBttRec = new Rectangle(playBttRec.X, settingsBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
+            menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
+            inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
+            instructions = new Instructions(Content, spriteBatch, screenWidth, screenHeight);
+            settings = new Settings(Content, spriteBatch, screenWidth, screenHeight);
+            lore = new Lore(Content, spriteBatch, screenWidth, screenHeight);
 
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
+
+            menu.LoadContent();
+            inGame.LoadContent();
+            instructions.LoadContent();
+            settings.LoadContent();
+            lore.LoadContent();
+
+            gameState = menu;
         }
 
         /// <summary>
@@ -150,41 +123,8 @@ namespace EscapeRoom
 
             base.Update(gameTime);
         }
-        
-
-        private void UpdateGame()
-        {
-            //if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-            //{
-            //    gameState = menu;
-            //}
-
-            switch (room)
-            {
-                case LOBBY:
-                    lobby.UpdateLobby();
-                    break;
-            }
-
-        }
 
         //private void UpdateInstr()
-        //{
-        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-        //    {
-        //        gameState = menu;
-        //    }
-        //}
-
-        //private void UpdateSettings()
-        //{
-        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-        //    {
-        //        gameState = menu;
-        //    }
-        //}
-
-        //private void UpdateLore()
         //{
         //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
         //    {
@@ -225,71 +165,15 @@ namespace EscapeRoom
 
             gameState.Draw();
 
-            //switch (gameState)
-            //{
-            //    case menu:
-            //        Drawmenu();
-            //        break;
-
-            //    case INGAME:
-            //        DrawGame();
-            //        break;
-
-            //    case INSTRUCTIONS:
-            //        DrawInstr();
-            //        break;
-
-            //    case SETTINGS:
-            //        DrawSettings();
-            //        break;
-
-            //    case LORE:
-            //        DrawLore();
-            //        break;
-            //}
-
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        private void Drawmenu()
-        {
-            spriteBatch.Draw(playBttImg, playBttRec, Color.White);
-            spriteBatch.Draw(instrBttImg, instrBttRec, Color.White);
-            spriteBatch.Draw(settingsBttImg, settingsBttRec, Color.White);
-            spriteBatch.Draw(loreBttImg, loreBttRec, Color.White);
-        }
-
-        private void DrawGame()
-        {
-            switch (room)
-            {
-                case LOBBY:
-                    lobby.DrawRoom();
-                    break;
-            }
-
-            //spriteBatch.DrawString(statFont, "INGAME", testLoc, Color.White);
-            //spriteBatch.Draw(backBttImg, backBttRec, Color.White);
-        }
-
-        private void DrawInstr()
-        {
-            spriteBatch.DrawString(statFont, "INSTRUCTIONS", testLoc, Color.White);
-            spriteBatch.Draw(backBttImg, backBttRec, Color.White);
-        }
-
-        private void DrawSettings()
-        {
-            spriteBatch.DrawString(statFont, "SETTINGS", testLoc, Color.White);
-            spriteBatch.Draw(backBttImg, backBttRec, Color.White);
-        }
-
-        private void DrawLore()
-        {
-            spriteBatch.DrawString(statFont, "LORE", testLoc, Color.White);
-            spriteBatch.Draw(backBttImg, backBttRec, Color.White);
-        }
+        //private void DrawInstr()
+        //{
+        //    spriteBatch.DrawString(statFont, "INSTRUCTIONS", testLoc, Color.White);
+        //    spriteBatch.Draw(backBttImg, backBttRec, Color.White);
+        //}
     }
 }

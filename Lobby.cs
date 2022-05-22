@@ -26,30 +26,13 @@ namespace EscapeRoom
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
-            LoadContent();
-            LoadItems();
+
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
-            
-        }
-
-        public override void DrawRoom()
-        { 
-            spriteBatch.Draw(roomImg, roomRec, Color.White);
-
-            if (showHB)
-            {
-                spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
-            }
-        }
-
-        public override void LoadItems()
-        {
-            base.LoadItems();
 
             tableClothHB = new Rectangle(500, 410, 120, 90);
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
@@ -62,8 +45,20 @@ namespace EscapeRoom
             itemStack.Push(new Item(Content, spriteBatch, "pryer", screenWidth, screenHeight));
         }
 
-        public void UpdateLobby()
+        public override void DrawRoom()
+        { 
+            spriteBatch.Draw(roomImg, roomRec, Color.White);
+
+            if (showHB)
+            {
+                spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
+            }
+        }
+
+        public override void UpdateRoom()
         {
+            base.UpdateRoom();
+
             if (CheckClick(Game1.mouse.LeftButton, Game1.prevMouse.LeftButton, tableClothHB))
             {
                 showHB = false;

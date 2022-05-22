@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Menu : GameState
+    public class Menu : GameState
     {
         private Rectangle playBttRec;
         private Rectangle instrBttRec;
@@ -31,13 +31,15 @@ namespace EscapeRoom
         int[] buttonDimen = new int[2];
         int buttonGap = 65;
 
-        public Menu(ContentManager Content) : base(Content)
+        public Menu(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            LoadContent();
+
         }
 
-        public void LoadContent()
+        public override void LoadContent()
         {
+            base.LoadContent();
+
             playBttImg = Content.Load<Texture2D>("Images/Sprites/PlayButton");
             instrBttImg = Content.Load<Texture2D>("Images/Sprites/InstrButton");
             settingsBttImg = Content.Load<Texture2D>("Images/Sprites/SettingsButton");
@@ -59,20 +61,19 @@ namespace EscapeRoom
                 if (Game1.CheckHit(playBttRec))
                 {
                     Game1.gameState = Game1.inGame;
-                    //Console.WriteLine("INGAME");
                 }
-                //else if (Game1.CheckHit(instrBttRec))
-                //{
-                //    Game1.gameState = INSTRUCTIONS;
-                //}
-                //else if (Game1.CheckHit(settingsBttRec))
-                //{
-                //    Game1.gameState = SETTINGS;
-                //}
-                //else if (Game1.CheckHit(loreBttRec))
-                //{
-                //    Game1.gameState = LORE;
-                //}
+                else if (Game1.CheckHit(instrBttRec))
+                {
+                    Game1.gameState = Game1.instructions;
+                }
+                else if (Game1.CheckHit(settingsBttRec))
+                {
+                    Game1.gameState = Game1.settings;
+                }
+                else if (Game1.CheckHit(loreBttRec))
+                {
+                    Game1.gameState = Game1.lore;
+                }
             }
 
         }
