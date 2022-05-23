@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Animation2D;
 using Helper;
-
 using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom

@@ -21,6 +21,7 @@
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/hitbox.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InstrButton.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InventoryLayout.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ItemPage.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Key.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/LoreButton.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Note.png</File>
@@ -35,6 +36,7 @@
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
