@@ -22,58 +22,78 @@ namespace EscapeRoom
         private Texture2D pryDescImg;
 
         private Rectangle tableClothHB;
-        private Rectangle pryRec;
+
+        private Item pryBar;
+
+        private string pryDetails;
+
+        private bool justAdded;
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
-
+            justAdded = false;
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
 
+            //Images
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
             pryDescImg = Content.Load<Texture2D>("Images/Sprites/PrybarDesc");
 
+            //Rectangles
             tableClothHB = new Rectangle(500, 410, 120, 90);
-            //pryRec = new Rectangle()
 
+            //Details
+            pryDetails = "A floorboard pry bar was found beneath the table cloth.";
+
+            //Items
+            pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Pry Bar", pryImg, pryDetails);
+
+            //Stacks
             itemCovers = new CoverStack();
             itemStack = new ItemStack();
 
             itemCovers.Push(new ItemCover(tableClothHB));
 
-            itemStack.Push(new Item(Content, spriteBatch, screenWidth, screenHeight, "pry bar", pryImg, pryDescImg, pryRec));
-        }
-
-        public override void DrawRoom()
-        { 
-            spriteBatch.Draw(roomImg, roomRec, Color.White);
-
-            if (!itemCovers.IsEmpty())
-            {
-                spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
-            }
+            itemStack.Push(pryBar);
         }
 
         public override void UpdateRoom()
         {
             base.UpdateRoom();
 
-            Item newItem;
+            Item itemAdded;
 
             if (!itemStack.IsEmpty())
             {
                 if (Game1.CheckHit(itemCovers.Top().GetRec()))
                 {
-                    newItem = itemStack.Pop();
-                    Game1.inventory.AddItem(newItem);
+                    itemAdded = itemStack.Pop();
+                    Game1.inventory.AddItem(itemAdded);
 
                     itemCovers.Pop();
+
+                    justAdded = true;
                 }
+            }
+        }
+
+        public override void DrawRoom()
+        {
+            spriteBatch.Draw(roomImg, roomRec, Color.White);
+
+            if (!itemCovers.IsEmpty())
+            {
+                spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
+            }
+
+            if (justAdded)
+            {
+                pryBar.GetDescBox().DrawDesc();
             }
             
         }
