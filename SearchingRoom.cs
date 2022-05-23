@@ -15,18 +15,21 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    public class ItemCover
+    public class SearchingRoom : InGame
     {
-        private Rectangle hitbox;
-
-        public ItemCover(Rectangle hitbox)
+        public SearchingRoom(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            this.hitbox = hitbox;
+
         }
 
-        public Rectangle GetRec()
+        public override void Update()
         {
-            return hitbox;
+            room.UpdateRoom();
+
+            if (room.JustAdded())
+            {
+                gameState = itemDesc;
+            }
         }
     }
 }

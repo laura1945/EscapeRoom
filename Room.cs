@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Room
+    public class Room
     {
         protected ContentManager Content;
         protected SpriteBatch spriteBatch;
@@ -36,6 +36,10 @@ namespace EscapeRoom
 
         protected Rectangle roomRec;
 
+        
+
+        protected bool justAdded;
+
         public Room(string name, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
         {
             Game1.test = 3; //testing
@@ -45,6 +49,10 @@ namespace EscapeRoom
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.spriteBatch = spriteBatch;
+
+            
+
+            justAdded = false;
         }
         
         public void SetConnection(Room connectedRoom, string direction)
@@ -74,14 +82,44 @@ namespace EscapeRoom
             roomRec = new Rectangle(0, 0, screenWidth, screenHeight);
         }
 
-        public virtual void DrawRoom()
+        public Item GetRecentItem()
         {
-            
+            return itemStack.Top();
         }
 
+        public bool JustAdded()
+        {
+            return justAdded;
+        }
+        
         public virtual void UpdateRoom()
         {
+            Item itemAdded;
 
+            if (!itemStack.IsEmpty())
+            {
+                if (Game1.CheckHit(itemCovers.Top().GetRec()))
+                {
+                    itemAdded = itemStack.Pop();
+                    Game1.inventory.AddItem(itemAdded);
+
+                    itemCovers.Pop();
+
+                    justAdded = true;
+                    
+                }
+            }
         }
+
+        public virtual void DrawRoom()
+        {
+            spriteBatch.Draw(roomImg, roomRec, Color.White);
+
+            if (justAdded)
+            {
+                Game1.inventory.GetLastAdded().GetDescBox().DrawDesc();
+            }
+        }
+
     }
 }

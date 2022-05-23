@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class CoverStack
+    public class CoverStack
     {
         private List<ItemCover> covers;
 

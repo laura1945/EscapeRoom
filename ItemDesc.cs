@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    public class ItemDesc : GameState
+    public class ItemDesc : InGame
     {
         private Texture2D itemImg;
         private string name;
@@ -52,17 +52,21 @@ namespace EscapeRoom
             okButton.SetImg(okButtonImg);
         }
 
+        public override void Update()
+        {
+            if (Game1.CheckHit(okButton.GetHitbox()))
+            {
+                gameState = searchRoomState;
+            }
+        }
+
         public void DrawDesc()
         {
-            //spriteBatch.Begin();
-
             spriteBatch.Draw(bgImg, bgRec, Color.White);
             spriteBatch.DrawString(statFont, name, nameLoc, Color.White);
             spriteBatch.DrawString(statFont, details, detailsLoc, Color.White);
             spriteBatch.Draw(itemImg, itemImgRec, Color.White);
             spriteBatch.Draw(okButton.GetImg(), okButton.GetHitbox(), Color.White);
-
-            //spriteBatch.End();
         }
     }
 }

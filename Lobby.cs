@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Lobby : Room
+    public class Lobby : Room
     {
         private Texture2D clothHBImg;
         private Texture2D pryImg;
@@ -27,7 +27,7 @@ namespace EscapeRoom
 
         private string pryDetails;
 
-        private bool justAdded;
+        
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -62,40 +62,19 @@ namespace EscapeRoom
             itemStack.Push(pryBar);
         }
 
-        public override void UpdateRoom()
-        {
-            base.UpdateRoom();
-
-            Item itemAdded;
-
-            if (!itemStack.IsEmpty())
-            {
-                if (Game1.CheckHit(itemCovers.Top().GetRec()))
-                {
-                    itemAdded = itemStack.Pop();
-                    Game1.inventory.AddItem(itemAdded);
-
-                    itemCovers.Pop();
-
-                    justAdded = true;
-                }
-            }
-        }
+        //public override void UpdateRoom()
+        //{
+        //    base.UpdateRoom();
+        //}
 
         public override void DrawRoom()
         {
-            spriteBatch.Draw(roomImg, roomRec, Color.White);
+            base.DrawRoom();
 
             if (!itemCovers.IsEmpty())
             {
                 spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
             }
-
-            if (justAdded)
-            {
-                pryBar.GetDescBox().DrawDesc();
-            }
-            
         }
     }
 }
