@@ -30,15 +30,15 @@ namespace EscapeRoom
             keys = new List<Item>();
         }
 
+        public void LoadContent()
+        {
+
+        }
+
         public void AddItem(Item newItem)
         {
             items.Add(newItem);
             Console.WriteLine(newItem.GetName() + " added.");
-        }
-
-        public Item GetLastAdded()
-        {
-            return items[items.Count() - 1];
         }
 
         public void DrawInventory()

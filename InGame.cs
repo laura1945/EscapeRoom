@@ -25,20 +25,13 @@ namespace EscapeRoom
 {
     public class InGame : GameState
     {
-        protected Room room;
-        protected Lobby lobby;
-
-        protected GameState gameState;
-        protected SearchingRoom searchRoomState;
-        protected ItemDesc itemDesc;
+        private Room room;
+        private Lobby lobby;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             room = lobby;
-
-            searchRoomState = new SearchingRoom(Content, spriteBatch, screenWidth, screenHeight);
-            gameState = searchRoomState;
         }
 
         public override void LoadContent()
@@ -50,7 +43,9 @@ namespace EscapeRoom
 
         public override void Update()
         {
-            gameState.Update();
+            base.Update();
+
+            room.UpdateRoom();
         }
 
         public override void Draw()

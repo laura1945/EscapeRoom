@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    public class ItemCover
+    class ItemCover
     {
         private Rectangle hitbox;
 

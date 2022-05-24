@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EscapeRoom
 {
-    public class ItemStack
+    class ItemStack
     {
         private List<Item> items;
 
