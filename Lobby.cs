@@ -27,7 +27,7 @@ namespace EscapeRoom
 
         private string pryDetails;
 
-        private Clickable pryCover;
+        private Clickable pryClickable;
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -54,8 +54,9 @@ namespace EscapeRoom
             pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Pry Bar", pryImg, pryDetails);
 
             //covers
-            pryCover = new Clickable(500, 410, 120, 90);
-            pryBar.SetCover(pryCover);
+            pryClickable = new Clickable(500, 410, 120, 90);
+            pryClickable.SetText("My Pry");
+            pryBar.SetClickable(pryClickable);
 
             //Stacks
             itemCovers = new CoverStack();

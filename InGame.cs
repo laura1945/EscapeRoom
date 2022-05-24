@@ -40,6 +40,8 @@ namespace EscapeRoom
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             room = lobby;
             inGameState = NORMAL;
+
+            clickables = new List<Clickable>();
         }
 
         public override void LoadContent()
@@ -47,16 +49,20 @@ namespace EscapeRoom
             base.LoadContent();
 
             lobby.LoadContent();
+            clickables.Add(room.GetClickable());
         }
 
         public override void Update()
         {
+
+            Console.WriteLine("inGame update");
             clickables.Clear();
             switch (inGameState)
             {
                 case NORMAL:
                     //room.UpdateRoom();
                     clickables.Add(room.GetClickable());
+                    //loop through clickables, if matches hitbox, change state to POPUP
                     break;
 
                 case POPUP:
@@ -73,6 +79,12 @@ namespace EscapeRoom
             {
                 case NORMAL:
                     room.DrawRoom();
+                    for (int i = 0; i < clickables.Count(); i++)
+                    {
+                        Clickable curr = clickables[i];
+
+                        spriteBatch.DrawString(curr.GetFont(), curr.GetText(), curr.GetLoc(), Color.White);
+                    }
                     break;
 
                 case POPUP:

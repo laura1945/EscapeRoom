@@ -29,6 +29,8 @@ namespace EscapeRoom
         public static Settings settings;
         public static Lore lore;
 
+        public static SpriteFont font;
+
         public static Inventory inventory;
 
         public static int screenWidth = 1183;
@@ -81,6 +83,8 @@ namespace EscapeRoom
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
+
+            font = Content.Load<SpriteFont>("Fonts/StatFont");
 
             inventory = new Inventory();
 

@@ -108,7 +108,7 @@ namespace EscapeRoom
 
         public virtual Clickable GetClickable()
         {
-            return itemStack.Top().GetCover();
+            return itemStack.Top().GetClickable();
         }
 
     }

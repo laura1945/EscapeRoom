@@ -33,7 +33,7 @@ namespace EscapeRoom
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
 
-            statFont = statFont = Content.Load<SpriteFont>("Fonts/StatFont");
+            statFont = Content.Load<SpriteFont>("Fonts/StatFont");
         }
 
         public virtual void LoadContent()

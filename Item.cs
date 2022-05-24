@@ -33,7 +33,7 @@ namespace EscapeRoom
         private Texture2D itemImg;
         private Texture2D itemDescImg;
 
-        private Clickable cover;
+        private Clickable clickable;
         private PopUp descBox;
 
         public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
@@ -53,9 +53,9 @@ namespace EscapeRoom
             collectable = true;
         }
 
-        public void SetCover(Clickable cover)
+        public void SetClickable(Clickable clickable)
         {
-            this.cover = cover;
+            this.clickable = clickable;
         }
 
         public void SetProgress() //item that directly progresses room state (part of stack of items)
@@ -78,9 +78,9 @@ namespace EscapeRoom
             return descBox;
         }
 
-        public Clickable GetCover()
+        public Clickable GetClickable()
         {
-            return cover;
+            return clickable;
         }
     }
 }

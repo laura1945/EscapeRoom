@@ -39,10 +39,15 @@ namespace EscapeRoom
             this.img = img;
         }
 
-        public void SetText(string text, SpriteFont font)
+        public void SetText(string text, SpriteFont font = null)
         {
             this.text = text;
-            this.font = font;
+            this.font = Game1.font;
+
+            if (font != null)
+            {
+                this.font = font;
+            }
         }
         
         //Accessors
