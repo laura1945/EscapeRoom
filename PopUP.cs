@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    public class ItemDesc : GameState
+    public class PopUp : InGame
     {
         private Texture2D itemImg;
         private string name;
@@ -33,7 +33,7 @@ namespace EscapeRoom
 
         private Clickable okButton;
 
-        public ItemDesc(string name, Texture2D itemImg, string details, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
+        public PopUp(string name, Texture2D itemImg, string details, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             this.name = name;
             this.itemImg = itemImg;
@@ -52,17 +52,26 @@ namespace EscapeRoom
             okButton.SetImg(okButtonImg);
         }
 
-        public void DrawDesc()
+        public override void Update()
         {
-            //spriteBatch.Begin();
+            Console.WriteLine("update PopUp");
 
+            if (Game1.CheckHit(okButton.GetHitbox()))
+            {
+                inGameState = NORMAL;
+                Console.WriteLine("NORMAL");
+            }
+
+            
+        }
+
+        public override void Draw()
+        {
             spriteBatch.Draw(bgImg, bgRec, Color.White);
             spriteBatch.DrawString(statFont, name, nameLoc, Color.White);
             spriteBatch.DrawString(statFont, details, detailsLoc, Color.White);
             spriteBatch.Draw(itemImg, itemImgRec, Color.White);
             spriteBatch.Draw(okButton.GetImg(), okButton.GetHitbox(), Color.White);
-
-            //spriteBatch.End();
         }
     }
 }

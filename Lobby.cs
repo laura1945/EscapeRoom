@@ -27,11 +27,11 @@ namespace EscapeRoom
 
         private string pryDetails;
 
-        private bool justAdded;
+        private Clickable pryCover;
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
-            justAdded = false;
+
         }
 
         public override void LoadContent()
@@ -53,6 +53,10 @@ namespace EscapeRoom
             //Items
             pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Pry Bar", pryImg, pryDetails);
 
+            //covers
+            pryCover = new Clickable(500, 410, 120, 90);
+            pryBar.SetCover(pryCover);
+
             //Stacks
             itemCovers = new CoverStack();
             itemStack = new ItemStack();
@@ -65,37 +69,16 @@ namespace EscapeRoom
         public override void UpdateRoom()
         {
             base.UpdateRoom();
-
-            Item itemAdded;
-
-            if (!itemStack.IsEmpty())
-            {
-                if (Game1.CheckHit(itemCovers.Top().GetRec()))
-                {
-                    itemAdded = itemStack.Pop();
-                    Game1.inventory.AddItem(itemAdded);
-
-                    itemCovers.Pop();
-
-                    justAdded = true;
-                }
-            }
         }
 
         public override void DrawRoom()
         {
-            spriteBatch.Draw(roomImg, roomRec, Color.White);
+            base.DrawRoom();
 
             if (!itemCovers.IsEmpty())
             {
                 spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
             }
-
-            if (justAdded)
-            {
-                pryBar.GetDescBox().DrawDesc();
-            }
-            
         }
     }
 }

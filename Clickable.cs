@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Clickable
+    public class Clickable
     {
         //mandatory
         protected Vector2 location;

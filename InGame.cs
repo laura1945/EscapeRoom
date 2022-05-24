@@ -28,10 +28,18 @@ namespace EscapeRoom
         private Room room;
         private Lobby lobby;
 
+        public const int NORMAL = 0;
+        public const int INVENTORY = 1;
+        public const int POPUP = 2;
+        public int inGameState;
+
+        private List<Clickable> clickables;
+
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             room = lobby;
+            inGameState = NORMAL;
         }
 
         public override void LoadContent()
@@ -43,16 +51,34 @@ namespace EscapeRoom
 
         public override void Update()
         {
-            base.Update();
+            clickables.Clear();
+            switch (inGameState)
+            {
+                case NORMAL:
+                    //room.UpdateRoom();
+                    clickables.Add(room.GetClickable());
+                    break;
 
-            room.UpdateRoom();
+                case POPUP:
+                    Game1.inventory.GetLastAdded().GetDescBox().Update();
+                    break;
+            }
         }
 
         public override void Draw()
         {
             base.Draw();
 
-            room.DrawRoom();
+            switch (inGameState)
+            {
+                case NORMAL:
+                    room.DrawRoom();
+                    break;
+
+                case POPUP:
+                    Game1.inventory.GetLastAdded().GetDescBox().Draw();
+                    break;
+            }
         }
     }
 }

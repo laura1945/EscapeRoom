@@ -35,6 +35,11 @@ namespace EscapeRoom
 
         }
 
+        public Item GetLastAdded()
+        {
+            return items[items.Count() - 1];
+        }
+
         public void AddItem(Item newItem)
         {
             items.Add(newItem);
