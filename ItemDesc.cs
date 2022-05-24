@@ -15,26 +15,17 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
+<<<<<<< HEAD
     public class ItemDesc : InGame
+=======
+    class ItemDesc
+>>>>>>> parent of 00320fe (started ItemDesc class)
     {
-        private Texture2D itemImg;
-        private string name;
-        private string details;
+        private Texture2D itemDescImg;
 
-        //fixed
-        private Texture2D okButtonImg;
-        private Texture2D bgImg;
-
-        private Rectangle bgRec;
-        private Rectangle itemImgRec;
-
-        private Vector2 nameLoc;
-        private Vector2 detailsLoc;
-
-        private Clickable okButton;
-
-        public ItemDesc(string name, Texture2D itemImg, string details, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
+        public ItemDesc(Texture2D itemDescImg)
         {
+<<<<<<< HEAD
             this.name = name;
             this.itemImg = itemImg;
             this.details = details;
@@ -67,6 +58,9 @@ namespace EscapeRoom
             spriteBatch.DrawString(statFont, details, detailsLoc, Color.White);
             spriteBatch.Draw(itemImg, itemImgRec, Color.White);
             spriteBatch.Draw(okButton.GetImg(), okButton.GetHitbox(), Color.White);
+=======
+            this.itemDescImg = itemDescImg;
+>>>>>>> parent of 00320fe (started ItemDesc class)
         }
     }
 }

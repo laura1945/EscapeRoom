@@ -28,15 +28,14 @@ namespace EscapeRoom
         private bool condition;
 
         private string name;
-        private string details;
 
         private Texture2D itemImg;
         private Texture2D itemDescImg;
 
-        private Clickable cover;
-        private ItemDesc descBox;
+        private Rectangle itemRec; //for drawing item in room
+        private Rectangle itemDescRec;
 
-        public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
+        public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, Texture2D itemDescImg, Rectangle itemRec)
         {
             this.Content = Content;
             this.spriteBatch = spriteBatch;
@@ -44,8 +43,8 @@ namespace EscapeRoom
             this.screenHeight = screenHeight;
             this.name = name;
             this.itemImg = itemImg;
-
-            descBox = new ItemDesc(name, itemImg, details, Content, spriteBatch, screenWidth, screenHeight);
+            this.itemRec = itemRec;
+            this.itemDescImg = itemDescImg;
         }
 
         public void SetCollectable() //item not part of stack
@@ -67,10 +66,20 @@ namespace EscapeRoom
         {
             return name;
         }
-
-        public ItemDesc GetDescBox()
+        
+        public void LoadContent()
         {
-            return descBox;
+            itemDescRec = new Rectangle(0, 0, itemDescImg.Width, itemDescImg.Height);
+        }
+
+        public void DrawItemDesc()
+        {
+            spriteBatch.Draw(itemDescImg, itemDescRec, Color.White);
+        }
+
+        public void DrawItemInRoom()
+        {
+
         }
     }
 }

@@ -140,18 +140,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/Backgrounds/MusicRoom.jpg
 
-#begin Images/Backgrounds/WoodBackground.jpeg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Backgrounds/WoodBackground.jpeg
-
 #begin Images/Sprites/BackArrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -271,18 +259,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Note.png
-
-#begin Images/Sprites/OkButton.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Sprites/OkButton.png
 
 #begin Images/Sprites/Parchment.png
 /importer:TextureImporter
