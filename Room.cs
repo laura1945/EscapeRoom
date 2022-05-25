@@ -78,22 +78,27 @@ namespace EscapeRoom
             roomRec = new Rectangle(0, 0, screenWidth, screenHeight);
         }
 
+        public ItemStack GetItemStack()
+        {
+            return itemStack;
+        }
+
         public virtual void UpdateRoom()
         {
-            Item itemAdded;
+            //Item itemAdded;
 
-            if (!itemStack.IsEmpty())
-            {
-                if (Game1.CheckHit(itemCovers.Top().GetRec()))
-                {
-                    itemAdded = itemStack.Pop();
-                    Game1.inventory.AddItem(itemAdded);
+            //if (!itemStack.IsEmpty())
+            //{
+            //    if (Game1.CheckHit(itemCovers.Top().GetRec()))
+            //    {
+            //        itemAdded = itemStack.Pop();
+            //        Game1.inventory.AddItem(itemAdded);
 
-                    itemCovers.Pop();
+            //        itemCovers.Pop();
 
-                    Console.WriteLine("just added " + itemAdded.GetName());
-                }
-            }
+            //        Console.WriteLine("just added " + itemAdded.GetName());
+            //    }
+            //}
         }
 
         public virtual void DrawRoom()
@@ -108,7 +113,12 @@ namespace EscapeRoom
 
         public virtual Clickable GetClickable()
         {
-            return itemStack.Top().GetClickable();
+            if (!itemStack.IsEmpty())
+            {
+                return itemStack.Top().GetClickable();
+            }
+
+            return null;
         }
 
     }

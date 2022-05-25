@@ -52,17 +52,16 @@ namespace EscapeRoom
             okButton.SetImg(okButtonImg);
         }
 
-        public override void Update()
+        public new bool Update()
         {
             Console.WriteLine("update PopUp");
 
             if (Game1.CheckHit(okButton.GetHitbox()))
             {
-                inGameState = NORMAL;
-                Console.WriteLine("NORMAL");
+                return true;
             }
 
-            
+            return false;
         }
 
         public override void Draw()

@@ -32,6 +32,7 @@ namespace EscapeRoom
         public const int INVENTORY = 1;
         public const int POPUP = 2;
         public int inGameState;
+        
 
         private List<Clickable> clickables;
 
@@ -54,19 +55,49 @@ namespace EscapeRoom
 
         public override void Update()
         {
-
-            Console.WriteLine("inGame update");
             clickables.Clear();
+
+            Console.WriteLine("inGameState: " + inGameState);
+
             switch (inGameState)
             {
                 case NORMAL:
-                    //room.UpdateRoom();
+                    
                     clickables.Add(room.GetClickable());
+                    //Console.WriteLine("clickables count: " + clickables.Count());
                     //loop through clickables, if matches hitbox, change state to POPUP
+                    if (room.GetClickable() != null)
+                    {
+                        for (int i = 0; i < clickables.Count(); i++)
+                        {
+                            if (Game1.CheckHit(clickables[i].GetHitbox()))
+                            {
+                                Game1.inventory.AddItem(room.GetItemStack().Pop());
+                                inGameState = POPUP;
+                            }
+                        }
+                    }
+
+                    if (Game1.newKey)
+                    {
+                        inGameState = INVENTORY;
+                    }
+
                     break;
 
                 case POPUP:
-                    Game1.inventory.GetLastAdded().GetDescBox().Update();
+                    
+                    bool clickedOK = Game1.inventory.GetLastAdded().GetDescBox().Update();
+
+                    if (clickedOK)
+                    {
+                        inGameState = NORMAL;
+                    }
+
+                    break;
+
+                case INVENTORY:
+                    Console.WriteLine("INVENTORY");
                     break;
             }
         }
@@ -75,15 +106,19 @@ namespace EscapeRoom
         {
             base.Draw();
 
+            room.DrawRoom();
+
             switch (inGameState)
             {
                 case NORMAL:
-                    room.DrawRoom();
-                    for (int i = 0; i < clickables.Count(); i++)
+                    if (room.GetClickable() != null)
                     {
-                        Clickable curr = clickables[i];
+                        for (int i = 0; i < clickables.Count(); i++)
+                        {
+                            Clickable curr = clickables[i];
 
-                        spriteBatch.DrawString(curr.GetFont(), curr.GetText(), curr.GetLoc(), Color.White);
+                            spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+                        }
                     }
                     break;
 

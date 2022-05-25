@@ -37,6 +37,7 @@ namespace EscapeRoom
 
         public Item GetLastAdded()
         {
+            //Console.WriteLine("items count: " + items.Count());
             return items[items.Count() - 1];
         }
 

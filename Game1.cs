@@ -37,7 +37,7 @@ namespace EscapeRoom
         public static int screenHeight = 666;
 
         bool newClick;
-        bool newKey;
+        public static bool newKey;
 
         Lobby lobby;
 
@@ -133,14 +133,14 @@ namespace EscapeRoom
             newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
             newKey = CheckKey(Keys.Space);
 
-            if (newClick || newKey)
-            {
+            //if (newClick || newKey)
+            //{
                 gameState.Update();
-            }
-            else if (gameState == inGame) //? should I do this for updating ingame timer? (timer updates even if user doesn't click)
-            {
-                //gameState.UpdateTimer(); 
-            }
+            //}
+            //else if (gameState == inGame) //? should I do this for updating ingame timer? (timer updates even if user doesn't click)
+            //{
+            //    //gameState.UpdateTimer(); 
+            //}
 
             base.Update(gameTime);
         }
@@ -165,7 +165,7 @@ namespace EscapeRoom
 
         public static bool CheckHit(Rectangle hitbox)
         {
-            if (hitbox.Contains(mouse.Position))
+            if (hitbox.Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed && prevMouse.LeftButton!= ButtonState.Pressed)
             {
                 return true;
             }

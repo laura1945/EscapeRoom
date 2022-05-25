@@ -55,7 +55,7 @@ namespace EscapeRoom
 
             //covers
             pryClickable = new Clickable(500, 410, 120, 90);
-            pryClickable.SetText("My Pry");
+            pryClickable.SetImg(clothHBImg);
             pryBar.SetClickable(pryClickable);
 
             //Stacks
@@ -75,11 +75,6 @@ namespace EscapeRoom
         public override void DrawRoom()
         {
             base.DrawRoom();
-
-            if (!itemCovers.IsEmpty())
-            {
-                spriteBatch.Draw(clothHBImg, tableClothHB, Color.White);
-            }
         }
     }
 }
