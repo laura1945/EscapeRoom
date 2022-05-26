@@ -86,7 +86,7 @@ namespace EscapeRoom
 
             font = Content.Load<SpriteFont>("Fonts/StatFont");
 
-            inventory = new Inventory();
+            inventory = new Inventory(Content, spriteBatch, screenWidth, screenHeight);
 
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
@@ -194,7 +194,15 @@ namespace EscapeRoom
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            gameState.Draw();
+            gameState.Draw(); //migrate legacy code over to displayables/clickables
+
+            List<Clickable> show = gameState.displayables;
+
+            for (int i = 0; i < show.Count(); i++)
+            {
+                Clickable curr = show[i];
+                spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+            }
 
             spriteBatch.End();
 

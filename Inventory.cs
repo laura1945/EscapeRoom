@@ -15,24 +15,28 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    public class Inventory
+    public class Inventory : InGame
     {
-        private Texture2D invLayoutImg;
+        private Texture2D invLayImg;
+
+        private Clickable invLayout;
 
         private List<Item> items;
         private List<Item> collectables;
         private List<Item> keys;
 
-        public Inventory()
+        public Inventory(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             items = new List<Item>();
             collectables = new List<Item>();
             keys = new List<Item>();
-        }
+            
+            //Images
+            invLayImg = Content.Load<Texture2D>("Images/Sprites/InventoryLayout");
 
-        public void LoadContent()
-        {
-
+            //Displayed
+            invLayout = new Clickable(screenWidth - invLayImg.Width, 0, invLayImg.Width, invLayImg.Height);
+            invLayout.SetImg(invLayImg);
         }
 
         public Item GetLastAdded()
@@ -47,9 +51,14 @@ namespace EscapeRoom
             Console.WriteLine(newItem.GetName() + " added.");
         }
 
-        public void DrawInventory()
+        public new void Update()
         {
 
+        }
+
+        public void DrawInventory()
+        {
+            spriteBatch.Draw(invLayImg, invLayout.GetHitbox(), Color.White);
         }
     }
 }

@@ -22,6 +22,9 @@ namespace EscapeRoom
         protected int screenWidth;
         protected int screenHeight;
 
+        public List<Clickable> displayables;
+        protected List<Clickable> clickables;
+
         protected SpriteFont statFont;
 
         protected Vector2 testLoc = new Vector2(100, 100);
@@ -32,6 +35,9 @@ namespace EscapeRoom
             this.spriteBatch = spriteBatch;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
+
+            clickables = new List<Clickable>();
+            displayables = new List<Clickable>();
 
             statFont = Content.Load<SpriteFont>("Fonts/StatFont");
         }

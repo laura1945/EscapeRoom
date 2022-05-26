@@ -36,6 +36,8 @@ namespace EscapeRoom
 
         protected Rectangle roomRec;
 
+        protected Clickable bg;
+
         private bool justAdded;
 
         public Room(string name, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
@@ -47,6 +49,8 @@ namespace EscapeRoom
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.spriteBatch = spriteBatch;
+
+            itemStack = new ItemStack();
 
             justAdded = false;
         }
@@ -76,6 +80,8 @@ namespace EscapeRoom
         public virtual void LoadContent()
         {
             roomRec = new Rectangle(0, 0, screenWidth, screenHeight);
+            bg = new Clickable(0, 0, screenWidth, screenHeight);
+            bg.SetImg(roomImg);
         }
 
         public ItemStack GetItemStack()
@@ -104,11 +110,11 @@ namespace EscapeRoom
         public virtual void DrawRoom()
         {
             spriteBatch.Draw(roomImg, roomRec, Color.White);
+        }
 
-            //if (justAdded)
-            //{
-            //    Game1.inventory.GetLastAdded().GetDescBox().Draw();
-            //}
+        public virtual Clickable GetBG()
+        {
+            return bg;
         }
 
         public virtual Clickable GetClickable()

@@ -32,9 +32,6 @@ namespace EscapeRoom
         public const int INVENTORY = 1;
         public const int POPUP = 2;
         public int inGameState;
-        
-
-        private List<Clickable> clickables;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -42,14 +39,15 @@ namespace EscapeRoom
             room = lobby;
             inGameState = NORMAL;
 
-            clickables = new List<Clickable>();
+            
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-
-            lobby.LoadContent();
+            room.LoadContent();
+            displayables.Add(room.GetBG());
+            displayables.Add(room.GetClickable());
             clickables.Add(room.GetClickable());
         }
 
@@ -104,28 +102,7 @@ namespace EscapeRoom
 
         public override void Draw()
         {
-            base.Draw();
 
-            room.DrawRoom();
-
-            switch (inGameState)
-            {
-                case NORMAL:
-                    if (room.GetClickable() != null)
-                    {
-                        for (int i = 0; i < clickables.Count(); i++)
-                        {
-                            Clickable curr = clickables[i];
-
-                            spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
-                        }
-                    }
-                    break;
-
-                case POPUP:
-                    Game1.inventory.GetLastAdded().GetDescBox().Draw();
-                    break;
-            }
         }
     }
 }

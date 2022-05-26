@@ -36,10 +36,11 @@ namespace EscapeRoom
 
         public override void LoadContent()
         {
+            roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
             base.LoadContent();
 
             //Images
-            roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
+            
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
             pryDescImg = Content.Load<Texture2D>("Images/Sprites/PrybarDesc");
@@ -60,21 +61,21 @@ namespace EscapeRoom
 
             //Stacks
             itemCovers = new CoverStack();
-            itemStack = new ItemStack();
+            
 
             itemCovers.Push(new ItemCover(tableClothHB));
 
             itemStack.Push(pryBar);
         }
 
-        public override void UpdateRoom()
-        {
-            base.UpdateRoom();
-        }
+        //public override void UpdateRoom()
+        //{
+        //    base.UpdateRoom();
+        //}
 
-        public override void DrawRoom()
-        {
-            base.DrawRoom();
-        }
+        //public override void DrawRoom()
+        //{
+        //    base.DrawRoom();
+        //}
     }
 }
