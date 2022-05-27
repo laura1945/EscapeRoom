@@ -26,6 +26,8 @@ namespace EscapeRoom
         protected string text;
         protected SpriteFont font;
 
+        protected InGame gameState;
+
         public Clickable(int X, int Y, int width, int height)
         {
             location = new Vector2(X, Y);
@@ -48,6 +50,11 @@ namespace EscapeRoom
             {
                 this.font = font;
             }
+        }
+
+        public void SetClick(InGame gameState)
+        {
+            this.gameState = gameState;
         }
         
         //Accessors
@@ -79,7 +86,11 @@ namespace EscapeRoom
         //Modifiers
         public virtual void Click()
         {
-
+            Console.WriteLine("clicked");
+            if (gameState != null)
+            {
+                gameState.inGameState = 2;
+            }
         }
     }
 }

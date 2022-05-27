@@ -23,7 +23,7 @@ namespace EscapeRoom
         protected int screenHeight;
 
         public List<Clickable> displayables;
-        protected List<Clickable> clickables;
+        public List<Clickable> clickables;
 
         protected SpriteFont statFont;
 

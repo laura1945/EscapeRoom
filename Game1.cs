@@ -132,15 +132,17 @@ namespace EscapeRoom
 
             newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
             newKey = CheckKey(Keys.Space);
+            
+            gameState.Update();
 
-            //if (newClick || newKey)
-            //{
-                gameState.Update();
-            //}
-            //else if (gameState == inGame) //? should I do this for updating ingame timer? (timer updates even if user doesn't click)
-            //{
-            //    //gameState.UpdateTimer(); 
-            //}
+            for (int i = 0; i < inGame.clickables.Count(); i++)
+            {
+                if (Game1.CheckHit(inGame.clickables[i].GetHitbox()))
+                {
+                    inGame.clickables[i].Click();
+                    break;
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -201,7 +203,15 @@ namespace EscapeRoom
             for (int i = 0; i < show.Count(); i++)
             {
                 Clickable curr = show[i];
-                spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+
+                if (curr.GetImg() != null)
+                {
+                    spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+                }
+                else if (curr.GetText() != null)
+                {
+                    spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
+                }
             }
 
             spriteBatch.End();
