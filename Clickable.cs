@@ -28,12 +28,19 @@ namespace EscapeRoom
 
         protected InGame gameState;
 
-        public Clickable(int X, int Y, int width, int height)
+        public Clickable(int X, int Y, int width, int height) //pass image as parameter
         {
             location = new Vector2(X, Y);
             dimensions = new Vector2(width, height);
 
             hitbox = new Rectangle(X, Y, width, height);
+        }
+
+        public Clickable(int X, int Y, string text, SpriteFont font)
+        {
+            location = new Vector2(X, Y);
+            this.text = text;
+            this.font = font;
         }
 
         public void SetImg(Texture2D img)
