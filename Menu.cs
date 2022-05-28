@@ -31,6 +31,8 @@ namespace EscapeRoom
         int[] buttonDimen = new int[2];
         int buttonGap = 65;
 
+        private Clickable playBtt;
+
         public Menu(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
 
@@ -48,38 +50,52 @@ namespace EscapeRoom
             buttonDimen[0] = playBttImg.Width;
             buttonDimen[1] = playBttImg.Height;
 
-            playBttRec = new Rectangle((Game1.screenWidth - buttonDimen[0]) / 2, (int)(Game1.screenHeight / 2.5 * 1.5), buttonDimen[0], buttonDimen[1]);
+            //playBttRec = new Rectangle((Game1.screenWidth - buttonDimen[0]) / 2, (int)(Game1.screenHeight / 2.5 * 1.5), buttonDimen[0], buttonDimen[1]);
             instrBttRec = new Rectangle(playBttRec.X, playBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
             settingsBttRec = new Rectangle(playBttRec.X, instrBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
             loreBttRec = new Rectangle(playBttRec.X, settingsBttRec.Y + buttonGap, buttonDimen[0], buttonDimen[1]);
+
+            //clickables
+            playBtt = new Clickable(0, 0, buttonDimen[0], buttonDimen[1], playBttImg);
+
+            playBtt.SetClick(StartGame);
+
+            clickables.Add(playBtt);
+            displayables.Add(playBtt);
+        }
+
+        private void StartGame()
+        {
+            Game1.gameState = Game1.inGame;
+            Game1.inGame.startNormal();
         }
 
         public override void Update()
         {
-            if (Game1.CheckHit(playBttRec))
-            {
-                Game1.gameState = Game1.inGame;
-            }
-            else if (Game1.CheckHit(instrBttRec))
-            {
-                Game1.gameState = Game1.instructions;
-            }
-            else if (Game1.CheckHit(settingsBttRec))
-            {
-                Game1.gameState = Game1.settings;
-            }
-            else if (Game1.CheckHit(loreBttRec))
-            {
-                Game1.gameState = Game1.lore;
-            }
+            //if (Game1.CheckHit(playBttRec))
+            //{
+            //    Game1.gameState = Game1.inGame;
+            //}
+            //else if (Game1.CheckHit(instrBttRec))
+            //{
+            //    Game1.gameState = Game1.instructions;
+            //}
+            //else if (Game1.CheckHit(settingsBttRec))
+            //{
+            //    Game1.gameState = Game1.settings;
+            //}
+            //else if (Game1.CheckHit(loreBttRec))
+            //{
+            //    Game1.gameState = Game1.lore;
+            //}
         }
 
         public override void Draw()
         {
-            Game1.spriteBatch.Draw(playBttImg, playBttRec, Color.White);
-            Game1.spriteBatch.Draw(instrBttImg, instrBttRec, Color.White);
-            Game1.spriteBatch.Draw(settingsBttImg, settingsBttRec, Color.White);
-            Game1.spriteBatch.Draw(loreBttImg, loreBttRec, Color.White);
+            //Game1.spriteBatch.Draw(playBttImg, playBttRec, Color.White);
+            //Game1.spriteBatch.Draw(instrBttImg, instrBttRec, Color.White);
+            //Game1.spriteBatch.Draw(settingsBttImg, settingsBttRec, Color.White);
+            //Game1.spriteBatch.Draw(loreBttImg, loreBttRec, Color.White);
         }
     }
 }

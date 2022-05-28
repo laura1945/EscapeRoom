@@ -26,7 +26,8 @@ namespace EscapeRoom
         protected string text;
         protected SpriteFont font;
 
-        protected InGame gameState;
+        public delegate void clickAction(); //declaring a type called clickAction
+        private clickAction clickFunc; //clickFunc is an instance of clickAction
 
         public Clickable(int X, int Y, int width, int height) //pass image as parameter
         {
@@ -34,6 +35,15 @@ namespace EscapeRoom
             dimensions = new Vector2(width, height);
 
             hitbox = new Rectangle(X, Y, width, height);
+        }
+
+        public Clickable(int X, int Y, int width, int height, Texture2D img)
+        {
+            location = new Vector2(X, Y);
+            dimensions = new Vector2(width, height);
+
+            hitbox = new Rectangle(X, Y, width, height);
+            this.img = img;
         }
 
         public Clickable(int X, int Y, string text, SpriteFont font)
@@ -59,9 +69,9 @@ namespace EscapeRoom
             }
         }
 
-        public void SetClick(InGame gameState)
+        public void SetClick(clickAction clickAction)
         {
-            this.gameState = gameState;
+            clickFunc = clickAction;
         }
         
         //Accessors
@@ -93,11 +103,8 @@ namespace EscapeRoom
         //Modifiers
         public virtual void Click()
         {
-            Console.WriteLine("clicked");
-            if (gameState != null)
-            {
-                gameState.inGameState = 2;
-            }
+            Console.WriteLine("Clickable.Click()");
+            clickFunc();
         }
     }
 }

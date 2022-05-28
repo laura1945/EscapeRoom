@@ -132,14 +132,17 @@ namespace EscapeRoom
 
             newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
             newKey = CheckKey(Keys.Space);
-            
-            gameState.Update();
 
-            for (int i = 0; i < inGame.clickables.Count(); i++)
+            if (gameState != inGame && gameState != menu)
             {
-                if (Game1.CheckHit(inGame.clickables[i].GetHitbox()))
+                gameState.Update();
+            }
+
+            for (int i = 0; i < gameState.clickables.Count(); i++)
+            {
+                if (Game1.CheckHit(gameState.clickables[i].GetHitbox()))
                 {
-                    inGame.clickables[i].Click();
+                    gameState.clickables[i].Click();
                     break;
                 }
             }
@@ -199,6 +202,8 @@ namespace EscapeRoom
             gameState.Draw(); //migrate legacy code over to displayables/clickables
 
             List<Clickable> show = gameState.displayables;
+            Console.WriteLine(show.Count());
+            Console.WriteLine(show[0].GetImg());
 
             for (int i = 0; i < show.Count(); i++)
             {
@@ -211,6 +216,10 @@ namespace EscapeRoom
                 else if (curr.GetText() != null)
                 {
                     spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
+                }
+                else
+                {
+                    Console.WriteLine("Image null");
                 }
             }
 

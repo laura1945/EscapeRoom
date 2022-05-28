@@ -32,6 +32,7 @@ namespace EscapeRoom
         public const int INVENTORY = 1;
         public const int POPUP = 2;
         public int inGameState;
+        private int prevGameState;
 
         //Popup
         private Texture2D popupItemImg;
@@ -59,14 +60,13 @@ namespace EscapeRoom
             room = lobby;
             inGameState = NORMAL;
         }
-
+        
         public override void LoadContent()
         {
             base.LoadContent();
             room.LoadContent();
-            displayables.Add(room.GetBG());
-            displayables.Add(room.GetClickable());
-            clickables.Add(room.GetClickable());
+
+            room.GetClickable().SetClick(popStackAndPopUp);
 
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
@@ -80,7 +80,7 @@ namespace EscapeRoom
 
             okButton = new Clickable(popupRec.Right - okButtonImg.Width, popupRec.Bottom - okButtonImg.Height, okButtonImg.Width, okButtonImg.Height);
             okButton.SetImg(okButtonImg);
-            okButton.SetClick(this);
+            okButton.SetClick(startNormal);
             popupBGDisp = new Clickable(popupRec.X, popupRec.Y, popupRec.Width, popupRec.Height);
             popupBGDisp.SetImg(popupBG);
             popupName = new Clickable(popupRec.X, popupRec.Y + 20, 50, 50);
@@ -90,49 +90,46 @@ namespace EscapeRoom
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, 50, 50);
             popupDetails.SetText("A pry bar was found underneath the tablecloth.", Game1.font);
 
+            
+
         }
 
-        public override void Update()
+        private void popStackAndPopUp()
         {
+            room.GetItemStack().Pop();
+            startPopup();
+        }
+
+        private void startPopup()
+        {
+            Console.WriteLine("going to popup");
+            displayables.Clear();
             clickables.Clear();
+            displayables.Add(room.GetBG());
+            displayables.Add(popupBGDisp);
+            displayables.Add(popupName);
+            displayables.Add(popupItem);
+            displayables.Add(popupDetails);
+            displayables.Add(okButton);
+            clickables.Add(okButton);
+        }
 
-            Console.WriteLine("inGameState: " + inGameState);
+        public void startNormal()
+        {
+            Console.WriteLine("going back to normal");
+            displayables.Clear();
+            clickables.Clear();
+            displayables.Add(room.GetBG());
 
-            switch (inGameState)
+            Clickable currItem = room.GetClickable();
+            if (currItem != null)
             {
-                case NORMAL:
-                    
-                    clickables.Add(room.GetClickable());
+                displayables.Add(room.GetClickable());
+                clickables.Add(room.GetClickable());
 
-                    if (Game1.newKey)
-                    {
-                        inGameState = INVENTORY;
-                    }
-
-                    break;
-
-                case POPUP:
-                    
-                    bool clickedOK = Game1.inventory.GetLastAdded().GetDescBox().Update();
-
-                    if (clickedOK)
-                    {
-                        inGameState = NORMAL;
-                    }
-
-                    displayables.Add(popupBGDisp);
-                    displayables.Add(popupName);
-                    displayables.Add(popupItem);
-                    displayables.Add(popupDetails);
-                    displayables.Add(okButton);
-
-                    break;
-
-                case INVENTORY:
-                    Console.WriteLine("INVENTORY");
-                    break;
             }
         }
+        
 
         public override void Draw()
         {
