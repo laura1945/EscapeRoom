@@ -21,7 +21,7 @@ namespace EscapeRoom
 
         private Toggle muteButton;
 
-        public Settings(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
+        public Settings(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string titleTxt) : base(Content, spriteBatch, screenWidth, screenHeight, titleTxt)
         {
             buttons = new List<Clickable>();
 
@@ -41,31 +41,12 @@ namespace EscapeRoom
 
         public override void Update()
         {
-            base.Update();
-
-            for (int i = 0; i < buttons.Count(); i++)
-            {
-                if (Game1.CheckHit(buttons[i].GetHitbox()))
-                {
-                    buttons[i].Click();
-                }
-            }
+            
         }
 
         public override void Draw()
         {
-            base.Draw();
 
-            Clickable curButton;
-
-            spriteBatch.DrawString(statFont, "SETTINGS", testLoc, Color.White);
-
-            for (int i = 0; i < buttons.Count(); i++)
-            {
-                curButton = buttons[i];
-
-                spriteBatch.DrawString(curButton.GetFont(), curButton.GetText(), curButton.GetLoc(), Color.White);
-            }
         }
     }
 }

@@ -20,9 +20,9 @@ namespace EscapeRoom
         private Clickable story;
         private string storyText;
 
-        public Lore(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
+        public Lore(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string titleTxt) : base(Content, spriteBatch, screenWidth, screenHeight, titleTxt)
         {
-            storyText = "Back in 1920, ";
+            storyText = "Back in 1920, "; //use txt file
 
             story = new Clickable(100, 100, storyText, Game1.font);
         }
@@ -34,16 +34,12 @@ namespace EscapeRoom
 
         public override void Update()
         {
-            base.Update();
 
-            displayables.Add(story);
         }
 
         public override void Draw()
         {
-            base.Draw();
 
-            //spriteBatch.DrawString(statFont, "LORE", testLoc, Color.White);
         }
     }
 }

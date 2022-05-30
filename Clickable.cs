@@ -27,7 +27,7 @@ namespace EscapeRoom
         protected SpriteFont font;
 
         public delegate void clickAction(); //declaring a type called clickAction
-        private clickAction clickFunc; //clickFunc is an instance of clickAction
+        private clickAction clickFunc; //clickAction is an instance of clickAction
 
         public Clickable(int X, int Y, int width, int height) //pass image as parameter
         {
@@ -98,6 +98,16 @@ namespace EscapeRoom
         public Rectangle GetHitbox()
         {
             return hitbox;
+        }
+
+        public int X()
+        {
+            return (int)location.X;
+        }
+
+        public int Y()
+        {
+            return (int)location.Y;
         }
 
         //Modifiers

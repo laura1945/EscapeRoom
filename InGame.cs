@@ -41,6 +41,7 @@ namespace EscapeRoom
 
         private Texture2D okButtonImg;
         private Texture2D popupBG;
+        private Texture2D invIconImg;
 
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
@@ -53,6 +54,7 @@ namespace EscapeRoom
         private Clickable popupName;
         private Clickable popupItem;
         private Clickable popupDetails;
+        private Clickable invIcon;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -70,6 +72,7 @@ namespace EscapeRoom
 
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
+            invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
 
             popupRec = new Rectangle(300, 300, popupBG.Width / 2, popupBG.Height / 2);
             popupItemImg = room.GetClickable().GetImg();
@@ -78,20 +81,15 @@ namespace EscapeRoom
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
             detailsLoc = new Vector2(popupRec.X, popupRec.Y + 40);
 
-            okButton = new Clickable(popupRec.Right - okButtonImg.Width, popupRec.Bottom - okButtonImg.Height, okButtonImg.Width, okButtonImg.Height);
-            okButton.SetImg(okButtonImg);
+            okButton = new Clickable(popupRec.Right - okButtonImg.Width, popupRec.Bottom - okButtonImg.Height, okButtonImg.Width, okButtonImg.Height, okButtonImg);
+            popupBGDisp = new Clickable(popupRec.X, popupRec.Y, popupRec.Width, popupRec.Height, popupBG);
+            popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
+            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
+            invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
+
             okButton.SetClick(startNormal);
-            popupBGDisp = new Clickable(popupRec.X, popupRec.Y, popupRec.Width, popupRec.Height);
-            popupBGDisp.SetImg(popupBG);
-            popupName = new Clickable(popupRec.X, popupRec.Y + 20, 50, 50);
-            popupName.SetText("Floorboard Pry Bar", Game1.font);
-            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height);
-            popupItem.SetImg(popupItemImg);
-            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, 50, 50);
-            popupDetails.SetText("A pry bar was found underneath the tablecloth.", Game1.font);
-
-            
-
+            invIcon.SetClick(ShowInventory);
         }
 
         private void popStackAndPopUp()
@@ -128,8 +126,16 @@ namespace EscapeRoom
                 clickables.Add(room.GetClickable());
 
             }
+
+            clickables.Add(invIcon);
+            displayables.Add(invIcon);
         }
         
+        private void ShowInventory()
+        {
+            Console.WriteLine("inventory");
+            displayables.Add()
+        }
 
         public override void Draw()
         {

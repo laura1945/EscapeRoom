@@ -90,9 +90,9 @@ namespace EscapeRoom
 
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
-            instructions = new Instructions(Content, spriteBatch, screenWidth, screenHeight);
-            settings = new Settings(Content, spriteBatch, screenWidth, screenHeight);
-            lore = new Lore(Content, spriteBatch, screenWidth, screenHeight);
+            instructions = new Instructions(Content, spriteBatch, screenWidth, screenHeight, "Instructions");
+            settings = new Settings(Content, spriteBatch, screenWidth, screenHeight, "Settings");
+            lore = new Lore(Content, spriteBatch, screenWidth, screenHeight, "Back story");
 
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
 

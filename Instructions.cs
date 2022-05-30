@@ -17,14 +17,17 @@ namespace EscapeRoom
 {
     public class Instructions : SubMenu
     {
-        public Instructions(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
-        {
 
+        public Instructions(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string titleTxt) : base(Content, spriteBatch, screenWidth, screenHeight, titleTxt)
+        {
+            
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
+
+
         }
 
         public override void Update()
@@ -35,8 +38,7 @@ namespace EscapeRoom
         public override void Draw()
         {
             base.Draw();
-
-            spriteBatch.DrawString(statFont, "INSTRUCTIONS", testLoc, Color.White);
+            
         }
     }
 }

@@ -17,6 +17,7 @@
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/MusicRoom.jpg</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/WoodBackground.jpeg</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/BackArrow.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/boxes.jpg</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Cheese.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/FloorboardPry.png</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/hitbox.png</File>
@@ -39,6 +40,7 @@
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ViewItemsButton.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -20,9 +20,14 @@ namespace EscapeRoom
         protected Texture2D backBttImg;
         protected Rectangle backBttRec;
 
-        public SubMenu(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
-        {
+        protected Clickable backBtt;
+        protected Clickable title;
 
+        protected string titleTxt;
+
+        public SubMenu(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string titleTxt) : base(Content, spriteBatch, screenWidth, screenHeight)
+        {
+            this.titleTxt = titleTxt;
         }
 
         public override void LoadContent()
@@ -31,23 +36,30 @@ namespace EscapeRoom
 
             backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
 
-            backBttRec = new Rectangle(10, screenHeight - backBttImg.Height/4, backBttImg.Width/4, backBttImg.Height/4);
+            backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
+            title = new Clickable(100, 100, titleTxt, Game1.font);
+
+            backBtt.SetClick(ReturnToMenu);
+
+            clickables.Add(backBtt);
+
+            displayables.Add(backBtt);
+            displayables.Add(title);
+        }
+
+        private void ReturnToMenu()
+        {
+            Game1.gameState = Game1.menu;
         }
 
         public override void Update()
         {
-            base.Update();
-            
-            if (Game1.CheckHit(backBttRec))
-            {
-                Game1.gameState = Game1.menu;
-            }
-            
+
         }
 
         public override void Draw()
         {
-            spriteBatch.Draw(backBttImg, backBttRec, Color.White);
+
         }
     }
 }
