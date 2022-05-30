@@ -55,16 +55,11 @@ namespace EscapeRoom
             pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Pry Bar", pryImg, pryDetails);
 
             //covers
-            pryClickable = new Clickable(500, 410, 120, 90);
-            pryClickable.SetImg(clothHBImg);
+            pryClickable = new Clickable(500, 410, 120, 90, pryImg);
+            pryClickable.SetHitBoxImg(clothHBImg);
             pryBar.SetClickable(pryClickable);
 
             //Stacks
-            itemCovers = new CoverStack();
-            
-
-            itemCovers.Push(new ItemCover(tableClothHB));
-
             itemStack.Push(pryBar);
         }
 

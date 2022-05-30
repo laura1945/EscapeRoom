@@ -23,6 +23,7 @@ namespace EscapeRoom
         protected Rectangle hitbox;
         
         protected Texture2D img;
+        protected Texture2D hitBoxImg;
         protected string text;
         protected SpriteFont font;
 
@@ -73,6 +74,11 @@ namespace EscapeRoom
         {
             clickFunc = clickAction;
         }
+
+        public void SetHitBoxImg(Texture2D hitBoxImg)
+        {
+            this.hitBoxImg = hitBoxImg;
+        }
         
         //Accessors
         public virtual Texture2D GetImg()
@@ -98,6 +104,11 @@ namespace EscapeRoom
         public Rectangle GetHitbox()
         {
             return hitbox;
+        }
+
+        public Texture2D GetHitboxImg()
+        {
+            return hitBoxImg;
         }
 
         public int X()

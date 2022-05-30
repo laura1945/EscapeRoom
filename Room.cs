@@ -30,15 +30,12 @@ namespace EscapeRoom
         protected Room left;
 
         protected ItemStack itemStack;
-        protected CoverStack itemCovers;
 
         protected Texture2D roomImg;
 
         protected Rectangle roomRec;
 
         protected Clickable bg;
-
-        private bool justAdded;
 
         public Room(string name, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
         {
@@ -51,8 +48,6 @@ namespace EscapeRoom
             this.spriteBatch = spriteBatch;
 
             itemStack = new ItemStack();
-
-            justAdded = false;
         }
         
         public void SetConnection(Room connectedRoom, string direction)
@@ -91,20 +86,7 @@ namespace EscapeRoom
 
         public virtual void UpdateRoom()
         {
-            //Item itemAdded;
 
-            //if (!itemStack.IsEmpty())
-            //{
-            //    if (Game1.CheckHit(itemCovers.Top().GetRec()))
-            //    {
-            //        itemAdded = itemStack.Pop();
-            //        Game1.inventory.AddItem(itemAdded);
-
-            //        itemCovers.Pop();
-
-            //        Console.WriteLine("just added " + itemAdded.GetName());
-            //    }
-            //}
         }
 
         public virtual void DrawRoom()
