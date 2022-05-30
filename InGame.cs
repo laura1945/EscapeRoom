@@ -42,6 +42,7 @@ namespace EscapeRoom
         private Texture2D okButtonImg;
         private Texture2D popupBG;
         private Texture2D invIconImg;
+        private Texture2D XBttImg;
 
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
@@ -55,6 +56,7 @@ namespace EscapeRoom
         private Clickable popupItem;
         private Clickable popupDetails;
         private Clickable invIcon;
+        private Clickable XButton;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -73,6 +75,7 @@ namespace EscapeRoom
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
+            XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
 
             popupRec = new Rectangle(300, 300, popupBG.Width / 2, popupBG.Height / 2);
             popupItemImg = room.GetClickable().GetImg();
@@ -87,32 +90,43 @@ namespace EscapeRoom
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
+            XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
 
-            okButton.SetClick(startNormal);
+            okButton.SetClick(StartNormal);
             invIcon.SetClick(ShowInventory);
+            XButton.SetClick(StartNormal);
         }
 
         private void popStackAndPopUp()
         {
             room.GetItemStack().Pop();
-            startPopup();
+            ShowPopup();
         }
 
-        private void startPopup()
+        private void ShowPopup()
         {
             Console.WriteLine("going to popup");
             displayables.Clear();
             clickables.Clear();
+
+            //room images
             displayables.Add(room.GetBG());
+
+            //inventory icon
+            displayables.Add(invIcon);
+
+            //popup
+            clickables.Add(okButton);
+
             displayables.Add(popupBGDisp);
             displayables.Add(popupName);
             displayables.Add(popupItem);
             displayables.Add(popupDetails);
             displayables.Add(okButton);
-            clickables.Add(okButton);
+            
         }
 
-        public void startNormal()
+        public void StartNormal()
         {
             Console.WriteLine("going back to normal");
             displayables.Clear();
@@ -134,7 +148,14 @@ namespace EscapeRoom
         private void ShowInventory()
         {
             Console.WriteLine("inventory");
-            displayables.Add()
+            clickables.Clear();
+
+            clickables.Add(XButton);
+
+            displayables.Add(Game1.inventory.invLayout);
+            displayables.Add(XButton);
+
+
         }
 
         public override void Draw()

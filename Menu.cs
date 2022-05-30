@@ -83,7 +83,7 @@ namespace EscapeRoom
         private void StartGame()
         {
             Game1.gameState = Game1.inGame;
-            Game1.inGame.startNormal();
+            Game1.inGame.StartNormal();
         }
 
         private void ShowInstructions()

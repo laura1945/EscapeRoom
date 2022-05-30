@@ -110,6 +110,16 @@ namespace EscapeRoom
             return (int)location.Y;
         }
 
+        public int GetWidth()
+        {
+            return img.Width;
+        }
+
+        public int GetHeight()
+        {
+            return img.Height;
+        }
+
         //Modifiers
         public virtual void Click()
         {

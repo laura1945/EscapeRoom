@@ -34,7 +34,6 @@ namespace EscapeRoom
         private Texture2D itemDescImg;
 
         private Clickable clickable;
-        private PopUp descBox;
 
         public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
         {
@@ -44,8 +43,7 @@ namespace EscapeRoom
             this.screenHeight = screenHeight;
             this.name = name;
             this.itemImg = itemImg;
-
-            descBox = new PopUp(name, itemImg, details, Content, spriteBatch, screenWidth, screenHeight);
+            
         }
 
         public void SetCollectable() //item not part of stack
@@ -71,11 +69,6 @@ namespace EscapeRoom
         public string GetName()
         {
             return name;
-        }
-
-        public PopUp GetDescBox()
-        {
-            return descBox;
         }
 
         public Clickable GetClickable()

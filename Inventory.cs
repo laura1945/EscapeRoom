@@ -19,7 +19,7 @@ namespace EscapeRoom
     {
         private Texture2D invLayImg;
 
-        private Clickable invLayout;
+        public Clickable invLayout;
 
         private List<Item> items;
         private List<Item> collectables;
@@ -35,8 +35,7 @@ namespace EscapeRoom
             invLayImg = Content.Load<Texture2D>("Images/Sprites/InventoryLayout");
 
             //Displayed
-            invLayout = new Clickable(screenWidth - invLayImg.Width, 0, invLayImg.Width, invLayImg.Height);
-            invLayout.SetImg(invLayImg);
+            invLayout = new Clickable(screenWidth - invLayImg.Width, 0, invLayImg.Width, invLayImg.Height, invLayImg);
         }
 
         public Item GetLastAdded()
