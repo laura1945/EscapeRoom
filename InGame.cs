@@ -84,22 +84,35 @@ namespace EscapeRoom
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
             detailsLoc = new Vector2(popupRec.X, popupRec.Y + 40);
 
+            //general popup clickables
             okButton = new Clickable(popupRec.Right - okButtonImg.Width, popupRec.Bottom - okButtonImg.Height, okButtonImg.Width, okButtonImg.Height, okButtonImg);
             popupBGDisp = new Clickable(popupRec.X, popupRec.Y, popupRec.Width, popupRec.Height, popupBG);
+            backBtt = new Clickable(Game1.inventory.itemsPage.X(), Game1.inventory.itemsPage.GetHeight() - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
+
+            //varying clickables -put into update?
             popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
+
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
             XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
 
             okButton.SetClick(StartNormal);
             invIcon.SetClick(ShowInventory);
             XButton.SetClick(StartNormal);
+            Game1.inventory.viewItemsBtt.SetClick(ShowItems);
+            backBtt.SetClick(ShowInventory);
         }
 
         private void popStackAndPopUp()
         {
-            room.GetItemStack().Pop();
+            Item addedItem;
+
+            //Console.WriteLine("popStackAndPopUp item count: " + room.GetItemStack().Size());
+            addedItem = room.GetItemStack().Pop();
+            Game1.inventory.AddItem(addedItem);
+            addedItem.GetClickable().SetHitBoxImg(null);
+
             ShowPopup();
         }
 
@@ -150,12 +163,43 @@ namespace EscapeRoom
             Console.WriteLine("inventory");
             clickables.Clear();
 
+            //remove certain displayables
+            displayables.Remove(backBtt);
+
+            for (int i = 0; i < Game1.inventory.items.Count(); i++)
+            {
+                displayables.Remove(Game1.inventory.items[i].GetClickable());
+            }
+               
+
             clickables.Add(XButton);
+            clickables.Add(Game1.inventory.viewItemsBtt);
 
             displayables.Add(Game1.inventory.invLayout);
             displayables.Add(XButton);
+            displayables.Add(Game1.inventory.viewItemsBtt);
+        }
 
+        protected void ShowItems()
+        {
+            Console.WriteLine("Items page");
 
+            clickables.Clear();
+            
+            clickables.Add(XButton);
+            clickables.Add(backBtt);
+
+            displayables.Add(Game1.inventory.itemsPage);
+            displayables.Add(XButton);
+            displayables.Add(backBtt);
+
+            Console.WriteLine("number of items: " + Game1.inventory.items.Count());
+
+            //items
+            for (int i = 0; i < Game1.inventory.items.Count(); i++)
+            {
+                displayables.Add(Game1.inventory.items[i].GetClickable());
+            }
         }
 
         public override void Draw()

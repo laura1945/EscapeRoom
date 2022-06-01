@@ -18,10 +18,14 @@ namespace EscapeRoom
     public class Inventory : InGame
     {
         private Texture2D invLayImg;
+        private Texture2D viewItemsBttImg;
+        private Texture2D itemsPageImg;
 
         public Clickable invLayout;
+        public Clickable viewItemsBtt;
+        public Clickable itemsPage;
 
-        private List<Item> items;
+        public List<Item> items;
         private List<Item> collectables;
         private List<Item> keys;
 
@@ -33,10 +37,19 @@ namespace EscapeRoom
             
             //Images
             invLayImg = Content.Load<Texture2D>("Images/Sprites/InventoryLayout");
+            viewItemsBttImg = Content.Load<Texture2D>("Images/Sprites/ViewItemsButton");
+            itemsPageImg = Content.Load<Texture2D>("Images/Sprites/ItemPage");
 
             //Displayed
             invLayout = new Clickable(screenWidth - invLayImg.Width, 0, invLayImg.Width, invLayImg.Height, invLayImg);
+            itemsPage = new Clickable(invLayout.X(), invLayout.Y(), invLayout.GetWidth(), invLayout.GetHeight(), itemsPageImg);
+
+            //Clickable
+            viewItemsBtt = new Clickable(invLayout.GetHitbox().Left + 50, invLayout.GetHitbox().Top + invLayout.GetHeight()/4 + 10, viewItemsBttImg.Width, viewItemsBttImg.Height, viewItemsBttImg);
+
+            
         }
+
 
         public Item GetLastAdded()
         {

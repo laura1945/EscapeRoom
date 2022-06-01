@@ -29,6 +29,11 @@ namespace EscapeRoom
 
         protected Vector2 testLoc = new Vector2(100, 100);
 
+        protected Texture2D backBttImg;
+        protected Rectangle backBttRec;
+
+        protected Clickable backBtt;
+
         public GameState(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
         {
             this.Content = Content;
@@ -44,7 +49,12 @@ namespace EscapeRoom
 
         public virtual void LoadContent()
         {
+            backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
 
+            //backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
+
+            //clickables.Add(backBtt);
+            //displayables.Add(backBtt);
         }
 
         public virtual void Update()

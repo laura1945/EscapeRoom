@@ -17,10 +17,10 @@ namespace EscapeRoom
 {
     public class SubMenu : GameState
     {
-        protected Texture2D backBttImg;
-        protected Rectangle backBttRec;
+    //    protected Texture2D backBttImg;
+    //    protected Rectangle backBttRec;
 
-        protected Clickable backBtt;
+    //    protected Clickable backBtt;
         protected Clickable title;
 
         protected string titleTxt;
@@ -34,7 +34,7 @@ namespace EscapeRoom
         {
             base.LoadContent();
 
-            backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
+            //backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
 
             backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
             title = new Clickable(100, 100, titleTxt, Game1.font);

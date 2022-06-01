@@ -205,8 +205,8 @@ namespace EscapeRoom
             gameState.Draw(); //migrate legacy code over to displayables/clickables
 
             List<Clickable> show = gameState.displayables;
-            //Console.WriteLine(show.Count());
-            //Console.WriteLine(show[0].GetImg());
+            Console.WriteLine(show.Count());
+            Console.WriteLine(show[0].GetImg());
 
             for (int i = 0; i < show.Count(); i++)
             {
