@@ -54,6 +54,23 @@ namespace EscapeRoom
             this.font = font;
         }
 
+        public void SetLoc(int X, int Y)
+        {
+            location.X = X;
+            location.Y = Y;
+        }
+
+        public void SetHitbox(Rectangle newBox)
+        {
+            hitbox = newBox;
+        }
+
+        public void SetDimensions(double scaleFactor)
+        {
+            dimensions.X = (int)(img.Width * scaleFactor);
+            dimensions.Y = (int)(img.Height * scaleFactor);
+        }
+
         public void SetImg(Texture2D img)
         {
             this.img = img;

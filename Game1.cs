@@ -202,7 +202,7 @@ namespace EscapeRoom
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            gameState.Draw(); //migrate legacy code over to displayables/clickables
+            gameState.Draw();
 
             List<Clickable> show = gameState.displayables;
             Console.WriteLine(show.Count());
@@ -214,6 +214,10 @@ namespace EscapeRoom
 
                 if (curr.GetHitboxImg() != null)
                 {
+                    if (curr.GetImg() != null)
+                    {
+                        spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+                    }
                     spriteBatch.Draw(curr.GetHitboxImg(), curr.GetHitbox(), Color.White);
                 }
                 else if (curr.GetImg() != null)

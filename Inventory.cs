@@ -60,7 +60,8 @@ namespace EscapeRoom
         public void AddItem(Item newItem)
         {
             items.Add(newItem);
-            Console.WriteLine(newItem.GetName() + " added.");
+            //Console.WriteLine(newItem.GetName() + " added.");
+
         }
 
         public new void Update()
@@ -70,7 +71,7 @@ namespace EscapeRoom
 
         public void DrawInventory()
         {
-            spriteBatch.Draw(invLayImg, invLayout.GetHitbox(), Color.White);
+            //spriteBatch.Draw(invLayImg, invLayout.GetHitbox(), Color.White);
         }
     }
 }

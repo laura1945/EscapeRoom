@@ -34,6 +34,8 @@ namespace EscapeRoom
         public int inGameState;
         private int prevGameState;
 
+        private Item selectedItem;
+
         //Popup
         private Texture2D popupItemImg;
         private string name;
@@ -111,7 +113,7 @@ namespace EscapeRoom
             //Console.WriteLine("popStackAndPopUp item count: " + room.GetItemStack().Size());
             addedItem = room.GetItemStack().Pop();
             Game1.inventory.AddItem(addedItem);
-            addedItem.GetClickable().SetHitBoxImg(null);
+            //addedItem.GetClickable().SetHitBoxImg(null);
 
             ShowPopup();
         }
@@ -170,7 +172,6 @@ namespace EscapeRoom
             {
                 displayables.Remove(Game1.inventory.items[i].GetClickable());
             }
-               
 
             clickables.Add(XButton);
             clickables.Add(Game1.inventory.viewItemsBtt);
@@ -179,6 +180,11 @@ namespace EscapeRoom
             displayables.Add(XButton);
             displayables.Add(Game1.inventory.viewItemsBtt);
         }
+
+        //private void SelectItem(Item item)
+        //{
+        //    selectedItem = item;
+        //}
 
         protected void ShowItems()
         {
@@ -198,8 +204,26 @@ namespace EscapeRoom
             //items
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
+                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, 65, 63)); //! not working bc Game1 is using hitbox as location
+                Game1.inventory.items[i].GetClickable().SetClick(SelectItem);
+
                 displayables.Add(Game1.inventory.items[i].GetClickable());
+                clickables.Add(Game1.inventory.items[i].GetClickable());
+
+                Console.WriteLine("number of items in for loop: " + Game1.inventory.items.Count());
+
+                void SelectItem()
+                {
+                    selectedItem = Game1.inventory.items[0];
+                }
             }
+
+            if (selectedItem != null)
+            {
+                Console.WriteLine("selected item: " + selectedItem.GetName());
+            }
+
+            
         }
 
         public override void Draw()
