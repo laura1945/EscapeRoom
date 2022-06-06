@@ -115,6 +115,23 @@ namespace EscapeRoom
             Game1.inventory.AddItem(addedItem);
             //addedItem.GetClickable().SetHitBoxImg(null);
 
+            addedItem.GetClickable().SetClick(SelectItem);
+
+            void SelectItem()
+            {
+                selectedItem = addedItem;
+                Console.WriteLine("selected item: " + selectedItem.GetName());
+
+                selectedItem.GetClickable().SetClick(DeselectItem);
+            }
+
+            void DeselectItem()
+            {
+                selectedItem.GetClickable().SetClick(SelectItem);
+                Console.WriteLine("deselected: " + selectedItem.GetName());
+                selectedItem = null;
+            }
+
             ShowPopup();
         }
 
@@ -181,10 +198,10 @@ namespace EscapeRoom
             displayables.Add(Game1.inventory.viewItemsBtt);
         }
 
-        //private void SelectItem(Item item)
-        //{
-        //    selectedItem = item;
-        //}
+        private void SelectItem(Item item)
+        {
+            selectedItem = item;
+        }
 
         protected void ShowItems()
         {
@@ -204,18 +221,19 @@ namespace EscapeRoom
             //items
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
-                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, 65, 63)); //! not working bc Game1 is using hitbox as location
-                Game1.inventory.items[i].GetClickable().SetClick(SelectItem);
+                //reset hitbox location
+                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, 65, 63)); 
+                //Game1.inventory.items[i].GetClickable().SetClick(SelectItem);
 
                 displayables.Add(Game1.inventory.items[i].GetClickable());
                 clickables.Add(Game1.inventory.items[i].GetClickable());
 
                 Console.WriteLine("number of items in for loop: " + Game1.inventory.items.Count());
 
-                void SelectItem()
-                {
-                    selectedItem = Game1.inventory.items[0];
-                }
+                //void SelectItem()
+                //{
+                //    selectedItem = Game1.inventory.items[0];
+                //}
             }
 
             if (selectedItem != null)
