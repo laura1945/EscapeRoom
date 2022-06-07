@@ -21,6 +21,7 @@ namespace EscapeRoom
         protected Vector2 location;
         protected Vector2 dimensions;
         protected Rectangle hitbox;
+        protected Clickable hitboxCB;
         
         protected Texture2D img;
         protected Texture2D hitBoxImg;
@@ -44,7 +45,9 @@ namespace EscapeRoom
             dimensions = new Vector2(width, height);
 
             hitbox = new Rectangle(X, Y, width, height);
+            
             this.img = img;
+            
         }
 
         public Clickable(int X, int Y, string text, SpriteFont font)
@@ -95,6 +98,7 @@ namespace EscapeRoom
         public void SetHitBoxImg(Texture2D hitBoxImg)
         {
             this.hitBoxImg = hitBoxImg;
+            hitboxCB = new Clickable(hitbox.X, hitbox.Y, hitbox.Width, hitbox.Height, hitBoxImg);
         }
         
         //Accessors
@@ -126,6 +130,11 @@ namespace EscapeRoom
         public Texture2D GetHitboxImg()
         {
             return hitBoxImg;
+        }
+
+        public Clickable GetHitClickable()
+        {
+            return hitboxCB;
         }
 
         public int X()

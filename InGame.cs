@@ -121,6 +121,7 @@ namespace EscapeRoom
             {
                 selectedItem = addedItem;
                 Console.WriteLine("selected item: " + selectedItem.GetName());
+                displayables.Add(selectedItem.GetClickable().GetHitClickable());
 
                 selectedItem.GetClickable().SetClick(DeselectItem);
             }
@@ -129,6 +130,7 @@ namespace EscapeRoom
             {
                 selectedItem.GetClickable().SetClick(SelectItem);
                 Console.WriteLine("deselected: " + selectedItem.GetName());
+                displayables.Remove(selectedItem.GetClickable().GetHitClickable());
                 selectedItem = null;
             }
 
@@ -229,11 +231,6 @@ namespace EscapeRoom
                 clickables.Add(Game1.inventory.items[i].GetClickable());
 
                 Console.WriteLine("number of items in for loop: " + Game1.inventory.items.Count());
-
-                //void SelectItem()
-                //{
-                //    selectedItem = Game1.inventory.items[0];
-                //}
             }
 
             if (selectedItem != null)
