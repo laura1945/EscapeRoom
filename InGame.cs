@@ -59,6 +59,7 @@ namespace EscapeRoom
         private Clickable popupDetails;
         private Clickable invIcon;
         private Clickable XButton;
+        private Clickable selectedHB;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -121,7 +122,8 @@ namespace EscapeRoom
             {
                 selectedItem = addedItem;
                 Console.WriteLine("selected item: " + selectedItem.GetName());
-                displayables.Add(selectedItem.GetClickable().GetHitClickable());
+                selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
+                displayables.Add(selectedHB);
 
                 selectedItem.GetClickable().SetClick(DeselectItem);
             }
@@ -130,7 +132,7 @@ namespace EscapeRoom
             {
                 selectedItem.GetClickable().SetClick(SelectItem);
                 Console.WriteLine("deselected: " + selectedItem.GetName());
-                displayables.Remove(selectedItem.GetClickable().GetHitClickable());
+                displayables.Remove(selectedHB);
                 selectedItem = null;
             }
 
@@ -170,7 +172,7 @@ namespace EscapeRoom
             Clickable currItem = room.GetClickable();
             if (currItem != null)
             {
-                displayables.Add(room.GetClickable());
+                displayables.Add(room.GetClickable().GetHitClickable());
                 clickables.Add(room.GetClickable());
 
             }
@@ -210,6 +212,8 @@ namespace EscapeRoom
             Console.WriteLine("Items page");
 
             clickables.Clear();
+
+            displayables.Remove(selectedHB);
             
             clickables.Add(XButton);
             clickables.Add(backBtt);
@@ -235,10 +239,8 @@ namespace EscapeRoom
 
             if (selectedItem != null)
             {
-                Console.WriteLine("selected item: " + selectedItem.GetName());
+                displayables.Add(selectedHB);
             }
-
-            
         }
 
         public override void Draw()
