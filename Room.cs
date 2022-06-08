@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Room
+    public class Room
     {
         protected ContentManager Content;
         protected SpriteBatch spriteBatch;
@@ -29,9 +29,12 @@ namespace EscapeRoom
         protected Room right;
         protected Room left;
 
-        protected ItemStack itemStack;
+        public ItemStack itemStack;
+        protected List<Key> keys;
 
         protected Texture2D roomImg;
+        protected Texture2D yellowTintImg;
+        protected Texture2D keyImg;
 
         protected Rectangle roomRec;
 
@@ -41,6 +44,9 @@ namespace EscapeRoom
         {
             Game1.test = 3; //testing
 
+            yellowTintImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
+            keyImg = Content.Load<Texture2D>("Images/Sprites/Key");
+
             this.name = name;
             this.Content = Content;
             this.screenWidth = screenWidth;
@@ -48,6 +54,7 @@ namespace EscapeRoom
             this.spriteBatch = spriteBatch;
 
             itemStack = new ItemStack();
+            keys = new List<Key>();
         }
         
         public void SetConnection(Room connectedRoom, string direction)
@@ -82,6 +89,11 @@ namespace EscapeRoom
         public ItemStack GetItemStack()
         {
             return itemStack;
+        }
+
+        public List<Key> GetKeys()
+        {
+            return keys;
         }
 
         public virtual void UpdateRoom()

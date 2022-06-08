@@ -39,7 +39,9 @@ namespace EscapeRoom
         bool newClick;
         public static bool newKey;
 
-        Lobby lobby;
+        public static Lobby lobby;
+        public static Ballroom ballroom;
+        public static DiningHall diningRoom;
 
         public static MouseState prevMouse;
         public static MouseState mouse;
@@ -95,6 +97,11 @@ namespace EscapeRoom
             lore = new Lore(Content, spriteBatch, screenWidth, screenHeight, "Back story");
 
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
+            ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
+            diningRoom = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
+
+            lobby.SetConnection(ballroom, "right");
+            lobby.SetConnection(diningRoom, "left");
 
             menu.LoadContent();
             inGame.LoadContent();
@@ -205,8 +212,8 @@ namespace EscapeRoom
             gameState.Draw();
 
             List<Clickable> show = gameState.displayables;
-            Console.WriteLine(show.Count());
-            Console.WriteLine(show[0].GetImg());
+            //Console.WriteLine(show.Count());
+            //Console.WriteLine(show[0].GetImg());
 
             for (int i = 0; i < show.Count(); i++)
             {
@@ -220,18 +227,23 @@ namespace EscapeRoom
                 //    }
                 //    spriteBatch.Draw(curr.GetHitboxImg(), curr.GetHitbox(), Color.White);
                 //}
-                if (curr.GetImg() != null)
+
+                if (curr != null)
                 {
-                    spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+                    if (curr.GetImg() != null)
+                    {
+                        spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
+                    }
+                    else if (curr.GetText() != null)
+                    {
+                        spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Image null");
+                    }
                 }
-                else if (curr.GetText() != null)
-                {
-                    spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
-                }
-                else
-                {
-                    Console.WriteLine("Image null");
-                }
+                
             }
 
             spriteBatch.End();

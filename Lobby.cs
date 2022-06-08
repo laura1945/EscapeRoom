@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace EscapeRoom
 {
-    class Lobby : Room
+    public class Lobby : Room
     {
         private Texture2D clothHBImg;
         private Texture2D pryImg;
@@ -28,10 +28,12 @@ namespace EscapeRoom
         private string pryDetails;
 
         private Clickable pryClickable;
+        private Key ballroomKey;
+        private Key diningKey;
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
-
+            
         }
 
         public override void LoadContent()
@@ -61,6 +63,19 @@ namespace EscapeRoom
 
             //Stacks
             itemStack.Push(pryBar);
+
+            //keys
+            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Ballroom Key", keyImg, "A key that leads to the ballroom.", Game1.ballroom);
+            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Dining Hall Key", keyImg, "A key that leads to the dining hall.", Game1.diningRoom);
+
+            ballroomKey.SetClickable(new Clickable(915, 525, 100, 40, yellowTintImg));
+            diningKey.SetClickable(new Clickable(150, 525, 100, 40, yellowTintImg));
+
+            ballroomKey.SetHelperItem(pryBar);
+            diningKey.SetHelperItem(pryBar);
+
+            keys.Add(ballroomKey);
+            keys.Add(diningKey);
         }
 
         //public override void UpdateRoom()

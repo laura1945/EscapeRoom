@@ -34,6 +34,7 @@ namespace EscapeRoom
         private Texture2D itemDescImg;
 
         private Clickable clickable;
+        private Item helperItem;
 
         public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
         {
@@ -66,6 +67,11 @@ namespace EscapeRoom
             condition = true;
         }
 
+        public void SetHelperItem(Item item)
+        {
+            helperItem = item;
+        }
+
         public string GetName()
         {
             return name;
@@ -74,6 +80,11 @@ namespace EscapeRoom
         public Clickable GetClickable()
         {
             return clickable;
+        }
+
+        public Item GetHelperItem()
+        {
+            return helperItem;
         }
     }
 }

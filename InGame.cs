@@ -105,13 +105,34 @@ namespace EscapeRoom
             XButton.SetClick(StartNormal);
             Game1.inventory.viewItemsBtt.SetClick(ShowItems);
             backBtt.SetClick(ShowInventory);
+
+            for (int i = 0; i < room.GetKeys().Count(); i++)
+            {
+                Key key = room.GetKeys()[i];
+                key.GetClickable().SetClick(CheckChangeRoom);
+
+                void CheckChangeRoom()
+                {
+                    if (key.GetHelperItem() == null)
+                    {
+                        Console.WriteLine("helper not null");
+                        room = key.GetRoom();
+                        StartNormal();
+                    }
+                    else if (selectedItem == key.GetHelperItem())
+                    {
+                        Console.WriteLine("helper selected");
+                        room = key.GetRoom();
+                        StartNormal();
+                    }
+                }
+            }
         }
 
         private void popStackAndPopUp()
         {
             Item addedItem;
-
-            //Console.WriteLine("popStackAndPopUp item count: " + room.GetItemStack().Size());
+            
             addedItem = room.GetItemStack().Pop();
             Game1.inventory.AddItem(addedItem);
             //addedItem.GetClickable().SetHitBoxImg(null);
@@ -174,7 +195,17 @@ namespace EscapeRoom
             {
                 displayables.Add(room.GetClickable().GetHitClickable());
                 clickables.Add(room.GetClickable());
+            }
+            else
+            {
+                List<Key> keys = room.GetKeys();
+                Console.WriteLine("Keys: " + keys.Count());
 
+                for (int i = 0; i < keys.Count(); i++)
+                {
+                    displayables.Add(keys[i].GetClickable());
+                    clickables.Add(keys[i].GetClickable());
+                }
             }
 
             clickables.Add(invIcon);
