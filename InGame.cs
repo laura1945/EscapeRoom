@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -80,9 +74,9 @@ namespace EscapeRoom
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
             XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
 
-            popupRec = new Rectangle(300, 300, popupBG.Width / 2, popupBG.Height / 2);
+            popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
             popupItemImg = room.GetClickable().GetImg();
-            popupItemImgRec = new Rectangle(popupRec.X, popupRec.Y + popupRec.Height / 2, 100, 100);
+            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width/2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
 
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
             detailsLoc = new Vector2(popupRec.X, popupRec.Y + 40);
@@ -111,17 +105,31 @@ namespace EscapeRoom
                 Key key = room.GetKeys()[i];
                 key.GetClickable().SetClick(CheckChangeRoom);
 
+                //void CheckChangeRoom()
+                //{
+                //    if (key.GetHelperItem() == null)
+                //    {
+                //        Console.WriteLine("helper not null");
+                //        room = key.GetRoom();
+                //        StartNormal();
+                //    }
+                //    else if (selectedItem == key.GetHelperItem())
+                //    {
+                //        Console.WriteLine("helper selected");
+                //        room = key.GetRoom();
+                //        StartNormal();
+                //    }
+                //}
+
                 void CheckChangeRoom()
                 {
                     if (key.GetHelperItem() == null)
                     {
-                        Console.WriteLine("helper not null");
                         room = key.GetRoom();
-                        StartNormal();
+                        ShowKeyPopup();
                     }
                     else if (selectedItem == key.GetHelperItem())
                     {
-                        Console.WriteLine("helper selected");
                         room = key.GetRoom();
                         StartNormal();
                     }
@@ -180,7 +188,11 @@ namespace EscapeRoom
             displayables.Add(popupItem);
             displayables.Add(popupDetails);
             displayables.Add(okButton);
-            
+        }
+
+        private void ShowKeyPopup()
+        {
+
         }
 
         public void StartNormal()
