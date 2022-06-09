@@ -106,7 +106,7 @@ namespace EscapeRoom
             for (int i = 0; i < room.GetKeys().Count(); i++)
             {
                 key = room.GetKeys()[i];
-                key.GetClickable().SetClick(ShowKeyPopup);
+                key.GetClickable().SetClick(CheckKeyPickup);
 
                 //void CheckChangeRoom()
                 //{
@@ -123,6 +123,38 @@ namespace EscapeRoom
                 //        StartNormal();
                 //    }
                 //}
+
+                void CheckKeyPickup()
+                {
+                    if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
+                    {
+                        AddKeyAndPopup();
+                    }
+                }
+
+                void AddKeyAndPopup()
+                {
+                    //Game1.inventory.AddItem(room.GetKeys()[i]); //!
+                    //Console.WriteLine("key popup");
+                    displayables.Clear();
+                    clickables.Clear();
+
+                    //room images
+                    displayables.Add(room.GetBG());
+
+                    //inventory icon
+                    displayables.Add(invIcon);
+
+                    //popup
+                    clickables.Add(okButton);
+
+                    displayables.Add(popupBGDisp);
+
+                    displayables.Add(popupName);
+                    displayables.Add(popupItem);
+                    displayables.Add(popupDetails);
+                    displayables.Add(okButton);
+                }
             }
         }
 
@@ -179,29 +211,7 @@ namespace EscapeRoom
             displayables.Add(okButton);
         }
 
-        private void ShowKeyPopup()
-        {
-            //Game1.inventory.AddItem()
-            //Console.WriteLine("key popup");
-            displayables.Clear();
-            clickables.Clear();
-
-            //room images
-            displayables.Add(room.GetBG());
-
-            //inventory icon
-            displayables.Add(invIcon);
-
-            //popup
-            clickables.Add(okButton);
-
-            displayables.Add(popupBGDisp);
-
-            displayables.Add(popupName);
-            displayables.Add(popupItem);
-            displayables.Add(popupDetails);
-            displayables.Add(okButton);
-        }
+        
 
         public void StartNormal()
         {

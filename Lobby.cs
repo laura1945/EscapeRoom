@@ -54,7 +54,7 @@ namespace EscapeRoom
             pryDetails = "A floorboard pry bar was found beneath the table cloth.";
 
             //Items
-            pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Pry Bar", pryImg, pryDetails);
+            pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Floorboard Pry Bar", pryImg, pryDetails);
 
             //covers
             pryClickable = new Clickable(500, 410, 120, 90, pryImg);

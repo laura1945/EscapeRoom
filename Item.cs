@@ -44,9 +44,9 @@ namespace EscapeRoom
             this.screenHeight = screenHeight;
             this.name = name;
             this.itemImg = itemImg;
-            
         }
 
+        //modifiers
         public void SetCollectable() //item not part of stack
         {
             collectable = true;
@@ -72,6 +72,12 @@ namespace EscapeRoom
             helperItem = item;
         }
 
+        public void SetDetails(string details)
+        {
+            this.details = details;
+        }
+
+        //accessors
         public string GetName()
         {
             return name;
@@ -85,6 +91,11 @@ namespace EscapeRoom
         public Item GetHelperItem()
         {
             return helperItem;
+        }
+
+        public string GetDetails()
+        {
+            return details;
         }
     }
 }
