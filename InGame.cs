@@ -55,6 +55,8 @@ namespace EscapeRoom
         private Clickable XButton;
         private Clickable selectedHB;
 
+        private Key key;
+
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
@@ -75,8 +77,7 @@ namespace EscapeRoom
             XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
 
             popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
-            popupItemImg = room.GetClickable().GetImg();
-            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width/2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
+            
 
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
             detailsLoc = new Vector2(popupRec.X, popupRec.Y + 40);
@@ -87,6 +88,8 @@ namespace EscapeRoom
             backBtt = new Clickable(Game1.inventory.itemsPage.X(), Game1.inventory.itemsPage.GetHeight() - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
 
             //varying clickables -put into update?
+            popupItemImg = room.GetClickable().GetImg();
+            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
             popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
@@ -102,8 +105,8 @@ namespace EscapeRoom
 
             for (int i = 0; i < room.GetKeys().Count(); i++)
             {
-                Key key = room.GetKeys()[i];
-                key.GetClickable().SetClick(CheckChangeRoom);
+                key = room.GetKeys()[i];
+                key.GetClickable().SetClick(ShowKeyPopup);
 
                 //void CheckChangeRoom()
                 //{
@@ -120,20 +123,6 @@ namespace EscapeRoom
                 //        StartNormal();
                 //    }
                 //}
-
-                void CheckChangeRoom()
-                {
-                    if (key.GetHelperItem() == null)
-                    {
-                        room = key.GetRoom();
-                        ShowKeyPopup();
-                    }
-                    else if (selectedItem == key.GetHelperItem())
-                    {
-                        room = key.GetRoom();
-                        StartNormal();
-                    }
-                }
             }
         }
 
@@ -192,7 +181,26 @@ namespace EscapeRoom
 
         private void ShowKeyPopup()
         {
+            //Game1.inventory.AddItem()
+            //Console.WriteLine("key popup");
+            displayables.Clear();
+            clickables.Clear();
 
+            //room images
+            displayables.Add(room.GetBG());
+
+            //inventory icon
+            displayables.Add(invIcon);
+
+            //popup
+            clickables.Add(okButton);
+
+            displayables.Add(popupBGDisp);
+
+            displayables.Add(popupName);
+            displayables.Add(popupItem);
+            displayables.Add(popupDetails);
+            displayables.Add(okButton);
         }
 
         public void StartNormal()
@@ -284,11 +292,6 @@ namespace EscapeRoom
             {
                 displayables.Add(selectedHB);
             }
-        }
-
-        public override void Draw()
-        {
-
         }
     }
 }
