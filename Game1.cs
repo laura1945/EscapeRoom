@@ -141,7 +141,7 @@ namespace EscapeRoom
             newKey = CheckKey(Keys.Space);
 
             List<Clickable> clickables = gameState.clickables;
-            Console.WriteLine(clickables.Count());
+            //Console.WriteLine(clickables.Count());
 
             if (gameState != inGame && gameState != menu)
             {

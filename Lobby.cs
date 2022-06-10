@@ -74,8 +74,9 @@ namespace EscapeRoom
             ballroomKey.SetHelperItem(pryBar);
             diningKey.SetHelperItem(pryBar);
 
-            keys.Add(ballroomKey);
             keys.Add(diningKey);
+            keys.Add(ballroomKey);
+            
         }
 
         //public override void UpdateRoom()

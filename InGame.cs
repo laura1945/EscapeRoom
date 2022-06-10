@@ -55,7 +55,7 @@ namespace EscapeRoom
         private Clickable XButton;
         private Clickable selectedHB;
 
-        private Key key;
+        //private Key key;
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -103,9 +103,11 @@ namespace EscapeRoom
             Game1.inventory.viewItemsBtt.SetClick(ShowItems);
             backBtt.SetClick(ShowInventory);
 
-            for (int i = 0; i < room.GetKeys().Count(); i++)
+            List<Key> keys = room.GetKeys();
+
+            for (int i = 0; i < keys.Count(); i++)
             {
-                key = room.GetKeys()[i];
+                Key key = keys[i];
                 key.GetClickable().SetClick(CheckKeyPickup);
 
                 //void CheckChangeRoom()
@@ -128,13 +130,15 @@ namespace EscapeRoom
                 {
                     if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
                     {
-                        AddKeyAndPopup();
+                        Console.WriteLine("key name: " + key.GetName());
+                        AddKeyAndPopup(key);
+                        keys.Remove(key);
                     }
                 }
 
-                void AddKeyAndPopup()
+                void AddKeyAndPopup(Key newKey)
                 {
-                    //Game1.inventory.AddItem(room.GetKeys()[i]); //!
+                    Game1.inventory.AddItem(newKey);
                     //Console.WriteLine("key popup");
                     displayables.Clear();
                     clickables.Clear();
