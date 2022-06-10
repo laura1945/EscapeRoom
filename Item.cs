@@ -44,6 +44,7 @@ namespace EscapeRoom
             this.screenHeight = screenHeight;
             this.name = name;
             this.itemImg = itemImg;
+            this.details = details;
         }
 
         //modifiers

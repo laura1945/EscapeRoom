@@ -234,13 +234,18 @@ namespace EscapeRoom
                     {
                         spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
                     }
-                    else if (curr.GetText() != null)
+                    else
+                    {
+                        Console.WriteLine("Image null");
+                    }
+
+                    if (curr.GetText() != null)
                     {
                         spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
                     }
                     else
                     {
-                        Console.WriteLine("Image null");
+                        Console.WriteLine("Text null");
                     }
                 }
                 

@@ -88,11 +88,11 @@ namespace EscapeRoom
             backBtt = new Clickable(Game1.inventory.itemsPage.X(), Game1.inventory.itemsPage.GetHeight() - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
 
             //varying clickables -put into update?
-            popupItemImg = room.GetClickable().GetImg();
-            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
-            popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
-            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
-            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
+            //popupItemImg = room.GetClickable().GetImg();
+            //popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
+            //popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
+            //popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+            //popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
 
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
             XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
@@ -154,19 +154,41 @@ namespace EscapeRoom
 
                     displayables.Add(popupBGDisp);
 
+                    Clickable keyClickable = newKey.GetClickable();
+
+                    popupItemImg = keyClickable.GetImg();
+                    popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
+                    popupName = new Clickable(popupRec.X, popupRec.Y + 20, newKey.GetName(), Game1.font);
+                    popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width/8, popupItemImgRec.Height/8, popupItemImg);
+                    popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, newKey.GetDetails(), Game1.font);
+
+                    okButton.SetClick(ChangeRoom);
+
                     displayables.Add(popupName);
                     displayables.Add(popupItem);
                     displayables.Add(popupDetails);
                     displayables.Add(okButton);
+
+                    void ChangeRoom()
+                    {
+                        room = newKey.GetRoom();
+                        StartNormal();
+                    }
                 }
             }
         }
 
         private void popStackAndPopUp()
         {
-            Item addedItem;
-            
-            addedItem = room.GetItemStack().Pop();
+            Item addedItem = room.GetItemStack().Top();
+
+            popupItemImg = room.GetClickable().GetImg();
+            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
+            popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font);
+            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font);
+
+            room.GetItemStack().Pop();
             Game1.inventory.AddItem(addedItem);
             //addedItem.GetClickable().SetHitBoxImg(null);
 
@@ -209,6 +231,7 @@ namespace EscapeRoom
             clickables.Add(okButton);
 
             displayables.Add(popupBGDisp);
+
             displayables.Add(popupName);
             displayables.Add(popupItem);
             displayables.Add(popupDetails);
