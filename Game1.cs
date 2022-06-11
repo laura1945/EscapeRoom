@@ -32,7 +32,7 @@ namespace EscapeRoom
         public static SpriteFont font;
 
         public static Inventory inventory;
-        public static Key lobbyKey;
+        private Key lobbyKey;
 
         public static int screenWidth = 1183;
         public static int screenHeight = 666;
@@ -104,8 +104,6 @@ namespace EscapeRoom
             lobby.SetConnection(ballroom, "right");
             lobby.SetConnection(diningRoom, "left");
 
-            inventory.AddKey(lobbyKey);
-
             menu.LoadContent();
             inGame.LoadContent();
             instructions.LoadContent();
@@ -113,6 +111,10 @@ namespace EscapeRoom
             lore.LoadContent();
 
             lobbyKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Lobby Key", lobby.keyImg, "A key to the lobby.", lobby);
+
+            lobbyKey.SetClickable(new Clickable(50, 200, lobby.keyImg.Width / 12, lobby.keyImg.Height / 12, lobby.keyImg));
+
+            inventory.AddKey(lobbyKey);
 
             gameState = menu;
         }
@@ -241,7 +243,7 @@ namespace EscapeRoom
                     }
                     else
                     {
-                        Console.WriteLine("Image null");
+                        //Console.WriteLine("Image null");
                     }
 
                     if (curr.GetText() != null)
@@ -250,7 +252,7 @@ namespace EscapeRoom
                     }
                     else
                     {
-                        Console.WriteLine("Text null");
+                        //Console.WriteLine("Text null");
                     }
                 }
                 

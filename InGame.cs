@@ -47,6 +47,7 @@ namespace EscapeRoom
 
         private Vector2 nameLoc;
         private Vector2 detailsLoc;
+        private int[] invItemsHBDim = new int[] { 65, 63 };
 
         private Clickable okButton;
         private Clickable popupBGDisp;
@@ -141,7 +142,7 @@ namespace EscapeRoom
 
                 void AddKeyAndPopup(Key newKey)
                 {
-                    Game1.inventory.AddItem(newKey);
+                    Game1.inventory.AddKey(newKey);
                     //Console.WriteLine("key popup");
                     displayables.Clear();
                     clickables.Clear();
@@ -274,6 +275,7 @@ namespace EscapeRoom
         
         private void ShowInventory()
         {
+            List<Key> keys = Game1.inventory.GetKeys();
             Console.WriteLine("inventory");
             clickables.Clear();
 
@@ -291,6 +293,33 @@ namespace EscapeRoom
             displayables.Add(Game1.inventory.invLayout);
             displayables.Add(XButton);
             displayables.Add(Game1.inventory.viewItemsBtt);
+
+            if (keys != null)
+            {
+                Console.WriteLine("keys in inventory: " + keys.Count());
+
+                int leftMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Left + 125;
+                int topMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Top + 245;
+                int count = 0;
+
+                //columns
+                for (int i = 0; i < 3; i++)
+                {
+                    //rows
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (count <= keys.Count() - 1)
+                        {
+                            //reset hitbox location
+                            keys[count].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+
+                            displayables.Add(keys[count].GetClickable());
+
+                            count++;
+                        }
+                    }
+                }
+            }
         }
 
         private void SelectItem(Item item)
@@ -319,8 +348,7 @@ namespace EscapeRoom
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
                 //reset hitbox location
-                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, 65, 63)); 
-                //Game1.inventory.items[i].GetClickable().SetClick(SelectItem);
+                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, invItemsHBDim[0], invItemsHBDim[1])); 
 
                 displayables.Add(Game1.inventory.items[i].GetClickable());
                 clickables.Add(Game1.inventory.items[i].GetClickable());

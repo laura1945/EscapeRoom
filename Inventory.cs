@@ -27,13 +27,13 @@ namespace EscapeRoom
 
         public List<Item> items;
         private List<Item> collectables;
-        private List<Item> keys;
+        private List<Key> keys;
 
         public Inventory(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             items = new List<Item>();
             collectables = new List<Item>();
-            keys = new List<Item>();
+            keys = new List<Key>();
             
             //Images
             invLayImg = Content.Load<Texture2D>("Images/Sprites/InventoryLayout");
@@ -50,13 +50,19 @@ namespace EscapeRoom
             
         }
 
-
+        //accessors
         public Item GetLastAdded()
         {
             //Console.WriteLine("items count: " + items.Count());
             return items[items.Count() - 1];
         }
 
+        public List<Key> GetKeys()
+        {
+            return keys;
+        }
+
+        //modifiers
         public void AddItem(Item newItem)
         {
             items.Add(newItem);
@@ -66,16 +72,6 @@ namespace EscapeRoom
         public void AddKey(Key key)
         {
             keys.Add(key);
-        }
-
-        public new void Update()
-        {
-
-        }
-
-        public void DrawInventory()
-        {
-            //spriteBatch.Draw(invLayImg, invLayout.GetHitbox(), Color.White);
         }
     }
 }
