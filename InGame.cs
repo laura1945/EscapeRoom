@@ -39,6 +39,7 @@ namespace EscapeRoom
         private Texture2D popupBG;
         private Texture2D invIconImg;
         private Texture2D XBttImg;
+        private Texture2D goRoomBttImg;
 
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
@@ -54,6 +55,7 @@ namespace EscapeRoom
         private Clickable invIcon;
         private Clickable XButton;
         private Clickable selectedHB;
+        private Clickable goToRoomBtt;
 
         //private Key key;
 
@@ -75,6 +77,7 @@ namespace EscapeRoom
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
             XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
+            goRoomBttImg = Content.Load<Texture2D>("Images/Sprites/GoToRoomBtt");
 
             popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
             

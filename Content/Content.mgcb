@@ -188,7 +188,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Cheese.png
 
-#begin Images/Sprites/FloorboardPry.png
+#begin Images/Sprites/FloorboardPryer.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -198,7 +198,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Sprites/FloorboardPry.png
+/build:Images/Sprites/FloorboardPryer.png
+
+#begin Images/Sprites/GoToRoomBtt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/GoToRoomBtt.png
 
 #begin Images/Sprites/hitbox.png
 /importer:TextureImporter
