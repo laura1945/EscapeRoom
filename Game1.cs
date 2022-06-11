@@ -30,6 +30,7 @@ namespace EscapeRoom
         public static Lore lore;
 
         public static SpriteFont font;
+        public static SpriteFont labelFont;
 
         public static Inventory inventory;
         private Key lobbyKey;
@@ -88,6 +89,7 @@ namespace EscapeRoom
             graphics.ApplyChanges();
 
             font = Content.Load<SpriteFont>("Fonts/StatFont");
+            labelFont = Content.Load<SpriteFont>("Fonts/LabelFont");
 
             inventory = new Inventory(Content, spriteBatch, screenWidth, screenHeight);
 
@@ -248,7 +250,7 @@ namespace EscapeRoom
 
                     if (curr.GetText() != null)
                     {
-                        spriteBatch.DrawString(font, curr.GetText(), curr.GetLoc(), Color.White);
+                        spriteBatch.DrawString(curr.GetFont(), curr.GetText(), curr.GetLoc(), curr.GetColour());
                     }
                     else
                     {

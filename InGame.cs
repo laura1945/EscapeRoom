@@ -114,22 +114,6 @@ namespace EscapeRoom
                 Key key = keys[i];
                 key.GetClickable().SetClick(CheckKeyPickup);
 
-                //void CheckChangeRoom()
-                //{
-                //    if (key.GetHelperItem() == null)
-                //    {
-                //        Console.WriteLine("helper not null");
-                //        room = key.GetRoom();
-                //        StartNormal();
-                //    }
-                //    else if (selectedItem == key.GetHelperItem())
-                //    {
-                //        Console.WriteLine("helper selected");
-                //        room = key.GetRoom();
-                //        StartNormal();
-                //    }
-                //}
-
                 void CheckKeyPickup()
                 {
                     if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
@@ -139,48 +123,54 @@ namespace EscapeRoom
                         keys.Remove(key);
                     }
                 }
+            }
+        }
 
-                void AddKeyAndPopup(Key newKey)
-                {
-                    Game1.inventory.AddKey(newKey);
-                    //Console.WriteLine("key popup");
-                    displayables.Clear();
-                    clickables.Clear();
+        private void AddKeyAndPopup(Key newKey)
+        {
+            Game1.inventory.AddKey(newKey);
+            //Console.WriteLine("key popup");
+            displayables.Clear();
+            clickables.Clear();
 
-                    //room images
-                    displayables.Add(room.GetBG());
+            //room images
+            displayables.Add(room.GetBG());
 
-                    //inventory icon
-                    displayables.Add(invIcon);
+            //inventory icon
+            displayables.Add(invIcon);
 
-                    //popup
-                    clickables.Add(goToRoomBtt);
-                    clickables.Add(cancelBtt);
+            //popup
+            clickables.Add(goToRoomBtt);
+            clickables.Add(cancelBtt);
 
-                    displayables.Add(popupBGDisp);
+            displayables.Add(popupBGDisp);
 
-                    Clickable keyClickable = newKey.GetClickable();
+            Clickable keyClickable = newKey.GetClickable();
 
-                    popupItemImg = keyClickable.GetImg();
-                    popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
-                    popupName = new Clickable(popupRec.X, popupRec.Y + 20, newKey.GetName(), Game1.font);
-                    popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width/8, popupItemImgRec.Height/8, popupItemImg);
-                    popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, newKey.GetDetails(), Game1.font);
+            popupItemImg = keyClickable.GetImg();
+            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
+            popupName = new Clickable(popupRec.X, popupRec.Y + 20, newKey.GetName(), Game1.font, Color.White);
+            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width / 8, popupItemImgRec.Height / 8, popupItemImg);
+            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, newKey.GetDetails(), Game1.font, Color.White);
 
-                    goToRoomBtt.SetClick(ChangeRoom);
+            goToRoomBtt.SetClick(ChangeRoom);
 
-                    displayables.Add(popupName);
-                    displayables.Add(popupItem);
-                    displayables.Add(popupDetails);
-                    displayables.Add(goToRoomBtt);
-                    displayables.Add(cancelBtt);
+            displayables.Add(popupName);
+            displayables.Add(popupItem);
+            displayables.Add(popupDetails);
+            displayables.Add(goToRoomBtt);
+            displayables.Add(cancelBtt);
 
-                    void ChangeRoom()
-                    {
-                        room = newKey.GetRoom();
-                        StartNormal();
-                    }
-                }
+            void ChangeRoom()
+            {
+                Room newRoom = newKey.GetRoom();
+
+                //if (!newRoom.GetName().Equals(room.GetName()))
+                //{
+                    room = newKey.GetRoom();
+                //}
+
+                StartNormal();
             }
         }
 
@@ -190,9 +180,9 @@ namespace EscapeRoom
 
             popupItemImg = room.GetClickable().GetImg();
             popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
-            popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font);
+            popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
-            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font);
+            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
 
             room.GetItemStack().Pop();
             Game1.inventory.AddItem(addedItem);
@@ -310,10 +300,66 @@ namespace EscapeRoom
                     {
                         if (count <= keys.Count() - 1)
                         {
+                            int index = count;
                             //reset hitbox location
-                            keys[count].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+                            keys[index].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+                            
+                            Clickable keyCB = keys[index].GetClickable();
+                            Rectangle hitbox = keyCB.GetHitbox();
+                            
 
-                            displayables.Add(keys[count].GetClickable());
+                            keyCB.SetClick(AddKeyAndPopup);
+
+                            displayables.Add(keys[index].GetClickable());
+                            displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
+
+                            clickables.Add(keyCB);
+
+                            void AddKeyAndPopup()
+                            {
+                                displayables.Clear();
+                                clickables.Clear();
+
+                                //room images
+                                displayables.Add(room.GetBG());
+
+                                //inventory icon
+                                displayables.Add(invIcon);
+
+                                //popup
+                                clickables.Add(goToRoomBtt);
+                                clickables.Add(cancelBtt);
+
+                                displayables.Add(popupBGDisp);
+                                Console.WriteLine("count: " + count);
+                                Clickable keyClickable = keys[index].GetClickable();
+
+                                popupItemImg = keyClickable.GetImg();
+                                popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
+                                popupName = new Clickable(popupRec.X, popupRec.Y + 20, keys[index].GetName(), Game1.font, Color.White);
+                                popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width / 8, popupItemImgRec.Height / 8, popupItemImg);
+                                popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, keys[index].GetDetails(), Game1.font, Color.White);
+
+                                goToRoomBtt.SetClick(ChangeRoom);
+
+                                displayables.Add(popupName);
+                                displayables.Add(popupItem);
+                                displayables.Add(popupDetails);
+                                displayables.Add(goToRoomBtt);
+                                displayables.Add(cancelBtt);
+
+                                void ChangeRoom()
+                                {
+                                    Room newRoom = keys[index].GetRoom();
+
+                                    //if (!newRoom.GetName().Equals(room.GetName()))
+                                    //{
+                                        room = keys[index].GetRoom();
+                                    //}
+
+                                    StartNormal();
+                                }
+                            }
 
                             count++;
                         }

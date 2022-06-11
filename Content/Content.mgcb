@@ -13,6 +13,13 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/LabelFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/LabelFont.spritefont
+
 #begin Fonts/StatFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

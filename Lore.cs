@@ -24,7 +24,7 @@ namespace EscapeRoom
         {
             storyText = "Back in 1920, "; //use txt file
 
-            story = new Clickable(100, 100, storyText, Game1.font);
+            story = new Clickable(100, 100, storyText, Game1.font, Color.White);
         }
 
         public override void LoadContent()

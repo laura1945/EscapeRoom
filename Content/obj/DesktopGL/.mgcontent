@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Attic.jpg</File>
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Ballroom.png</File>
@@ -43,6 +44,7 @@
     <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/XButton.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

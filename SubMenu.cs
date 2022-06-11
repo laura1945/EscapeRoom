@@ -37,7 +37,7 @@ namespace EscapeRoom
             //backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
 
             backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
-            title = new Clickable(100, 100, titleTxt, Game1.font);
+            title = new Clickable(100, 100, titleTxt, Game1.font, Color.White);
 
             backBtt.SetClick(ReturnToMenu);
 

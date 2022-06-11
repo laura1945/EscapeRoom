@@ -82,8 +82,12 @@ namespace EscapeRoom
         public virtual void LoadContent()
         {
             roomRec = new Rectangle(0, 0, screenWidth, screenHeight);
-            bg = new Clickable(0, 0, screenWidth, screenHeight);
-            bg.SetImg(roomImg);
+            bg = new Clickable(0, 0, screenWidth, screenHeight, roomImg);
+        }
+
+        public string GetName()
+        {
+            return name;
         }
 
         public ItemStack GetItemStack()

@@ -27,6 +27,7 @@ namespace EscapeRoom
         protected Texture2D hitBoxImg;
         protected string text;
         protected SpriteFont font;
+        protected Color colour;
 
         public delegate void clickAction(); //declaring a type called clickAction
         private clickAction clickFunc; //clickAction is an instance of clickAction
@@ -39,6 +40,7 @@ namespace EscapeRoom
             hitbox = new Rectangle(X, Y, width, height);
         }
 
+        //images
         public Clickable(int X, int Y, int width, int height, Texture2D img)
         {
             location = new Vector2(X, Y);
@@ -50,11 +52,13 @@ namespace EscapeRoom
             
         }
 
-        public Clickable(int X, int Y, string text, SpriteFont font)
+        //text
+        public Clickable(int X, int Y, string text, SpriteFont font, Color colour)
         {
             location = new Vector2(X, Y);
             this.text = text;
             this.font = font;
+            this.colour = colour;
         }
 
         public void SetLoc(int X, int Y)
@@ -115,6 +119,11 @@ namespace EscapeRoom
         public SpriteFont GetFont()
         {
             return font;
+        }
+
+        public Color GetColour()
+        {
+            return colour;
         }
 
         public Vector2 GetLoc()
