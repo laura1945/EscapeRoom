@@ -40,6 +40,7 @@ namespace EscapeRoom
         private Texture2D invIconImg;
         private Texture2D XBttImg;
         private Texture2D goRoomBttImg;
+        private Texture2D cancelBttImg;
 
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
@@ -56,6 +57,7 @@ namespace EscapeRoom
         private Clickable XButton;
         private Clickable selectedHB;
         private Clickable goToRoomBtt;
+        private Clickable cancelBtt;
 
         //private Key key;
 
@@ -78,9 +80,9 @@ namespace EscapeRoom
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
             XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
             goRoomBttImg = Content.Load<Texture2D>("Images/Sprites/GoToRoomBtt");
+            cancelBttImg = Content.Load<Texture2D>("Images/Sprites/CancelButton");
 
             popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
-            
 
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
             detailsLoc = new Vector2(popupRec.X, popupRec.Y + 40);
@@ -90,12 +92,9 @@ namespace EscapeRoom
             popupBGDisp = new Clickable(popupRec.X, popupRec.Y, popupRec.Width, popupRec.Height, popupBG);
             backBtt = new Clickable(Game1.inventory.itemsPage.X(), Game1.inventory.itemsPage.GetHeight() - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
 
-            //varying clickables -put into update?
-            //popupItemImg = room.GetClickable().GetImg();
-            //popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
-            //popupName = new Clickable(popupRec.X, popupRec.Y + 20, "Floorboard pry bar", Game1.font);
-            //popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
-            //popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, "A pry bar was found underneath the tablecloth.", Game1.font);
+            //key popup clickables
+            goToRoomBtt = new Clickable(popupRec.Right - goRoomBttImg.Width, popupRec.Bottom - goRoomBttImg.Height, goRoomBttImg.Width, goRoomBttImg.Height, goRoomBttImg);
+            cancelBtt = new Clickable(popupRec.Left, popupRec.Bottom - goRoomBttImg.Height, cancelBttImg.Width, cancelBttImg.Height, cancelBttImg);
 
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
             XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
@@ -105,6 +104,7 @@ namespace EscapeRoom
             XButton.SetClick(StartNormal);
             Game1.inventory.viewItemsBtt.SetClick(ShowItems);
             backBtt.SetClick(ShowInventory);
+            cancelBtt.SetClick(StartNormal);
 
             List<Key> keys = room.GetKeys();
 
@@ -153,7 +153,8 @@ namespace EscapeRoom
                     displayables.Add(invIcon);
 
                     //popup
-                    clickables.Add(okButton);
+                    clickables.Add(goToRoomBtt);
+                    clickables.Add(cancelBtt);
 
                     displayables.Add(popupBGDisp);
 
@@ -165,12 +166,13 @@ namespace EscapeRoom
                     popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width/8, popupItemImgRec.Height/8, popupItemImg);
                     popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, newKey.GetDetails(), Game1.font);
 
-                    okButton.SetClick(ChangeRoom);
+                    goToRoomBtt.SetClick(ChangeRoom);
 
                     displayables.Add(popupName);
                     displayables.Add(popupItem);
                     displayables.Add(popupDetails);
-                    displayables.Add(okButton);
+                    displayables.Add(goToRoomBtt);
+                    displayables.Add(cancelBtt);
 
                     void ChangeRoom()
                     {
@@ -240,8 +242,6 @@ namespace EscapeRoom
             displayables.Add(popupDetails);
             displayables.Add(okButton);
         }
-
-        
 
         public void StartNormal()
         {

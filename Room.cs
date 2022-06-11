@@ -34,7 +34,7 @@ namespace EscapeRoom
 
         protected Texture2D roomImg;
         protected Texture2D yellowTintImg;
-        protected Texture2D keyImg;
+        public Texture2D keyImg;
 
         protected Rectangle roomRec;
 

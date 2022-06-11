@@ -61,7 +61,11 @@ namespace EscapeRoom
         {
             items.Add(newItem);
             //Console.WriteLine(newItem.GetName() + " added.");
+        }
 
+        public void AddKey(Key key)
+        {
+            keys.Add(key);
         }
 
         public new void Update()
