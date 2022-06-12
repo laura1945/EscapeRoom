@@ -242,6 +242,7 @@ namespace EscapeRoom
             displayables.Add(room.GetBG());
 
             Clickable currItem = room.GetClickable();
+
             if (currItem != null)
             {
                 displayables.Add(room.GetClickable().GetHitClickable());

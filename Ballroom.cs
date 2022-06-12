@@ -17,9 +17,20 @@ namespace EscapeRoom
 {
     public class Ballroom : Room
     {
+        private Texture2D sheetMusicImg;
+
+        private Item sheetMusic;
+
+        private Clickable sheetMusicCB;
+
         public Ballroom(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/Ballroom");
+            base.LoadContent();
+        }
+
+        public override void LoadContent()
+        {
             base.LoadContent();
         }
     }

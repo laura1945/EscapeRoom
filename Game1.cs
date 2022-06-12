@@ -221,7 +221,7 @@ namespace EscapeRoom
             gameState.Draw();
 
             List<Clickable> show = gameState.displayables;
-            //Console.WriteLine(show.Count());
+            Console.WriteLine(show.Count());
             //Console.WriteLine(show[0].GetImg());
 
             for (int i = 0; i < show.Count(); i++)
@@ -245,7 +245,7 @@ namespace EscapeRoom
                     }
                     else
                     {
-                        //Console.WriteLine("Image null");
+                        Console.WriteLine("Image null");
                     }
 
                     if (curr.GetText() != null)

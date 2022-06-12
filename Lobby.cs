@@ -33,13 +33,13 @@ namespace EscapeRoom
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
-            
+            roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
+            base.LoadContent();
         }
 
         public override void LoadContent()
         {
-            roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
-            base.LoadContent();
+            
 
             //Images
             
