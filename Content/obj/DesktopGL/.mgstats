@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont","A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/LabelFont.xnb","FontDescriptionProcessor","SpriteFontContent",2009,9227,0.3015528
+"A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont","A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/LabelFont.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21515,0.3198672
 "A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont","A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/StatFont.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21515,0.3125195
 "A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Attic.jpg","A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Images/Backgrounds/Attic.xnb","TextureProcessor","Texture2DContent",27318,665941,0.2968953
 "A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Ballroom.png","A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Images/Backgrounds/Ballroom.xnb","TextureProcessor","Texture2DContent",247024,928885,0.0468776

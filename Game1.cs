@@ -93,15 +93,17 @@ namespace EscapeRoom
 
             inventory = new Inventory(Content, spriteBatch, screenWidth, screenHeight);
 
+            lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
+            ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
+            diningRoom = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
+            
+            lobby.LoadContent();
+
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
             instructions = new Instructions(Content, spriteBatch, screenWidth, screenHeight, "Instructions");
             settings = new Settings(Content, spriteBatch, screenWidth, screenHeight, "Settings");
             lore = new Lore(Content, spriteBatch, screenWidth, screenHeight, "Back story");
-
-            lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
-            ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
-            diningRoom = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
 
             lobby.SetConnection(ballroom, "right");
             lobby.SetConnection(diningRoom, "left");
@@ -221,7 +223,7 @@ namespace EscapeRoom
             gameState.Draw();
 
             List<Clickable> show = gameState.displayables;
-            Console.WriteLine(show.Count());
+            //Console.WriteLine(show.Count());
             //Console.WriteLine(show[0].GetImg());
 
             for (int i = 0; i < show.Count(); i++)
@@ -245,7 +247,7 @@ namespace EscapeRoom
                     }
                     else
                     {
-                        Console.WriteLine("Image null");
+                        //Console.WriteLine("Image null");
                     }
 
                     if (curr.GetText() != null)

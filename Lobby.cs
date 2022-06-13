@@ -39,10 +39,7 @@ namespace EscapeRoom
 
         public override void LoadContent()
         {
-            
-
             //Images
-            
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
             pryDescImg = Content.Load<Texture2D>("Images/Sprites/PrybarDesc");

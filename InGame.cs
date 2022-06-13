@@ -64,15 +64,15 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
-            room = lobby;
+            //lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
+            room = Game1.lobby;
             inGameState = NORMAL;
         }
         
         public override void LoadContent()
         {
             base.LoadContent();
-            room.LoadContent();
+            //room.LoadContent();
 
             room.GetClickable().SetClick(popStackAndPopUp);
 
@@ -236,12 +236,14 @@ namespace EscapeRoom
 
         public void StartNormal()
         {
+
             Console.WriteLine("going back to normal");
             displayables.Clear();
             clickables.Clear();
             displayables.Add(room.GetBG());
 
             Clickable currItem = room.GetClickable();
+            Console.WriteLine("currItem: " + currItem);
 
             if (currItem != null)
             {
