@@ -44,6 +44,8 @@ namespace EscapeRoom
         public static Lobby lobby;
         public static Ballroom ballroom;
         public static DiningHall diningRoom;
+        public static Bedroom1 bedroom1;
+        public static Kitchen kitchen;
 
         public static MouseState prevMouse;
         public static MouseState mouse;
@@ -96,8 +98,11 @@ namespace EscapeRoom
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
             diningRoom = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
-            
+            bedroom1 = new Bedroom1(Content, spriteBatch, screenWidth, screenHeight);
+            kitchen = new Kitchen(Content, spriteBatch, screenWidth, screenHeight);
+
             lobby.LoadContent();
+            ballroom.LoadContent();
 
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
@@ -107,6 +112,8 @@ namespace EscapeRoom
 
             lobby.SetConnection(ballroom, "right");
             lobby.SetConnection(diningRoom, "left");
+            ballroom.SetConnection(bedroom1, "front");
+            ballroom.SetConnection(kitchen, "left");
 
             menu.LoadContent();
             inGame.LoadContent();

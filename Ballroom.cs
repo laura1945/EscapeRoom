@@ -19,9 +19,12 @@ namespace EscapeRoom
     {
         private Texture2D sheetMusicImg;
 
-        private Item sheetMusic;
+        private Item sheetMusicItem;
 
-        private Clickable sheetMusicCB;
+        private Clickable sheetMusic;
+
+        private Key bedroom1Key;
+        private Key kitchenKey;
 
         public Ballroom(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
@@ -31,7 +34,29 @@ namespace EscapeRoom
 
         public override void LoadContent()
         {
-            base.LoadContent();
+            //Images
+            sheetMusicImg = Content.Load<Texture2D>("Images/Sprites/SheetMusic");
+
+            //Clickables
+            sheetMusic = new Clickable(100, 300, 10, 3, sheetMusicImg);
+
+            //Items
+            sheetMusicItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Piano Sheet Music", sheetMusicImg, "A piano version of a German song.");
+            
+            sheetMusicItem.SetClickable(sheetMusic);
+
+            //stacks
+            itemStack.Push(sheetMusicItem);
+
+            //keys
+            bedroom1Key = new Key(Content, spriteBatch, screenWidth, screenHeight, "Bedroom I Key", keyImg, "A key that leads to bedroom I.", Game1.bedroom1);
+            kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Kitchen Key", keyImg, "A key that leads to the kitchen.", Game1.kitchen);
+
+            bedroom1Key.SetClickable(new Clickable(200, 200, 10, 3, keyImg));
+            kitchenKey.SetClickable(new Clickable(190, 50, 20, 8, keyImg));
+
+            keys.Add(bedroom1Key);
+            keys.Add(kitchenKey);
         }
     }
 }

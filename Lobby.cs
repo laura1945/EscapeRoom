@@ -42,7 +42,6 @@ namespace EscapeRoom
             //Images
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
-            pryDescImg = Content.Load<Texture2D>("Images/Sprites/PrybarDesc");
 
             //Rectangles
             tableClothHB = new Rectangle(500, 410, 120, 90);
@@ -53,7 +52,7 @@ namespace EscapeRoom
             //Items
             pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Floorboard Pry Bar", pryImg, pryDetails);
 
-            //covers
+            //clickables
             pryClickable = new Clickable(500, 410, 120, 90, pryImg);
             pryClickable.SetHitBoxImg(clothHBImg);
             pryBar.SetClickable(pryClickable);

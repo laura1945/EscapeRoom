@@ -64,7 +64,6 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            //lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             room = Game1.lobby;
             inGameState = NORMAL;
         }
@@ -72,7 +71,6 @@ namespace EscapeRoom
         public override void LoadContent()
         {
             base.LoadContent();
-            //room.LoadContent();
 
             room.GetClickable().SetClick(popStackAndPopUp);
 
@@ -119,16 +117,17 @@ namespace EscapeRoom
                     if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
                     {
                         Console.WriteLine("key name: " + key.GetName());
-                        AddKeyAndPopup(key);
+                        Game1.inventory.AddKey(key);
+                        KeyPopup(key);
                         keys.Remove(key);
                     }
                 }
             }
         }
 
-        private void AddKeyAndPopup(Key newKey)
+        private void KeyPopup(Key newKey)
         {
-            Game1.inventory.AddKey(newKey);
+            //Game1.inventory.AddKey(newKey);
             //Console.WriteLine("key popup");
             displayables.Clear();
             clickables.Clear();
@@ -311,57 +310,16 @@ namespace EscapeRoom
                             Rectangle hitbox = keyCB.GetHitbox();
                             
 
-                            keyCB.SetClick(AddKeyAndPopup);
+                            keyCB.SetClick(KeyPopupInventory);
 
                             displayables.Add(keys[index].GetClickable());
                             displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
 
                             clickables.Add(keyCB);
 
-                            void AddKeyAndPopup()
+                            void KeyPopupInventory()
                             {
-                                displayables.Clear();
-                                clickables.Clear();
-
-                                //room images
-                                displayables.Add(room.GetBG());
-
-                                //inventory icon
-                                displayables.Add(invIcon);
-
-                                //popup
-                                clickables.Add(goToRoomBtt);
-                                clickables.Add(cancelBtt);
-
-                                displayables.Add(popupBGDisp);
-                                Console.WriteLine("count: " + count);
-                                Clickable keyClickable = keys[index].GetClickable();
-
-                                popupItemImg = keyClickable.GetImg();
-                                popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
-                                popupName = new Clickable(popupRec.X, popupRec.Y + 20, keys[index].GetName(), Game1.font, Color.White);
-                                popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width / 8, popupItemImgRec.Height / 8, popupItemImg);
-                                popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, keys[index].GetDetails(), Game1.font, Color.White);
-
-                                goToRoomBtt.SetClick(ChangeRoom);
-
-                                displayables.Add(popupName);
-                                displayables.Add(popupItem);
-                                displayables.Add(popupDetails);
-                                displayables.Add(goToRoomBtt);
-                                displayables.Add(cancelBtt);
-
-                                void ChangeRoom()
-                                {
-                                    Room newRoom = keys[index].GetRoom();
-
-                                    //if (!newRoom.GetName().Equals(room.GetName()))
-                                    //{
-                                        room = keys[index].GetRoom();
-                                    //}
-
-                                    StartNormal();
-                                }
+                                KeyPopup(keys[index]);
                             }
 
                             count++;
