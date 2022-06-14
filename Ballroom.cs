@@ -38,7 +38,8 @@ namespace EscapeRoom
             sheetMusicImg = Content.Load<Texture2D>("Images/Sprites/SheetMusic");
 
             //Clickables
-            sheetMusic = new Clickable(100, 300, 10, 3, sheetMusicImg);
+            sheetMusic = new Clickable(100, 300, 100, 50, sheetMusicImg);
+            sheetMusic.SetHitBoxImg(hitboxImg);
 
             //Items
             sheetMusicItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Piano Sheet Music", sheetMusicImg, "A piano version of a German song.");

@@ -44,7 +44,7 @@ namespace EscapeRoom
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
 
             //Rectangles
-            tableClothHB = new Rectangle(500, 410, 120, 90);
+            //tableClothHB = new Rectangle(500, 410, 120, 90);
 
             //Details
             pryDetails = "A floorboard pry bar was found beneath the table cloth.";
@@ -54,7 +54,9 @@ namespace EscapeRoom
 
             //clickables
             pryClickable = new Clickable(500, 410, 120, 90, pryImg);
+
             pryClickable.SetHitBoxImg(clothHBImg);
+
             pryBar.SetClickable(pryClickable);
 
             //Stacks

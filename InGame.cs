@@ -72,7 +72,7 @@ namespace EscapeRoom
         {
             base.LoadContent();
 
-            room.GetClickable().SetClick(popStackAndPopUp);
+            //room.GetClickable().SetClick(popStackAndPopUp);
 
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
@@ -237,6 +237,7 @@ namespace EscapeRoom
         {
 
             Console.WriteLine("going back to normal");
+
             displayables.Clear();
             clickables.Clear();
             displayables.Add(room.GetBG());
@@ -246,6 +247,8 @@ namespace EscapeRoom
 
             if (currItem != null)
             {
+                room.GetClickable().SetClick(popStackAndPopUp);
+
                 displayables.Add(room.GetClickable().GetHitClickable());
                 clickables.Add(room.GetClickable());
             }
