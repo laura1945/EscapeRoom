@@ -72,8 +72,6 @@ namespace EscapeRoom
         {
             base.LoadContent();
 
-            //room.GetClickable().SetClick(popStackAndPopUp);
-
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
@@ -189,11 +187,23 @@ namespace EscapeRoom
 
             addedItem.GetClickable().SetClick(SelectItem);
 
+            if (selectedItem == null)
+            {
+                Console.WriteLine("null selected item");
+            }
+
             void SelectItem()
             {
-                selectedItem = addedItem;
-                Console.WriteLine("selected item: " + selectedItem.GetName());
-                selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
+                Item tempItem = addedItem;
+
+                if (selectedItem != null)
+                {
+                    DeselectItem();
+                }
+
+                selectedItem = tempItem;
+                Console.WriteLine("selected item: " + tempItem.GetName());
+                selectedHB = new Clickable(tempItem.GetClickable().GetHitbox().X, tempItem.GetClickable().GetHitbox().Y, tempItem.GetClickable().GetHitbox().Width, tempItem.GetClickable().GetHitbox().Height, tempItem.GetClickable().GetHitboxImg());
                 displayables.Add(selectedHB);
 
                 selectedItem.GetClickable().SetClick(DeselectItem);
@@ -332,11 +342,6 @@ namespace EscapeRoom
             }
         }
 
-        private void SelectItem(Item item)
-        {
-            selectedItem = item;
-        }
-
         protected void ShowItems()
         {
             Console.WriteLine("Items page");
@@ -354,16 +359,26 @@ namespace EscapeRoom
 
             Console.WriteLine("number of items: " + Game1.inventory.items.Count());
 
+            int col = 0;
+            int row = 0;
+            int leftMargin = 63;
+            int boxDim = 70;
+
             //items
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
                 //reset hitbox location
-                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + 63, Game1.inventory.itemsPage.GetHitbox().Top + 138, invItemsHBDim[0], invItemsHBDim[1])); 
+                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col*boxDim , Game1.inventory.itemsPage.GetHitbox().Top + 138, invItemsHBDim[0], invItemsHBDim[1]));
+                col++;
+
+                if (col > 4)
+                {
+                    col = 0;
+                    row++;
+                }
 
                 displayables.Add(Game1.inventory.items[i].GetClickable());
                 clickables.Add(Game1.inventory.items[i].GetClickable());
-
-                Console.WriteLine("number of items in for loop: " + Game1.inventory.items.Count());
             }
 
             if (selectedItem != null)
