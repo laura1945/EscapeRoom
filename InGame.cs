@@ -183,38 +183,25 @@ namespace EscapeRoom
 
             room.GetItemStack().Pop();
             Game1.inventory.AddItem(addedItem);
-            //addedItem.GetClickable().SetHitBoxImg(null);
 
             addedItem.GetClickable().SetClick(SelectItem);
 
-            if (selectedItem == null)
-            {
-                Console.WriteLine("null selected item");
-            }
-
             void SelectItem()
             {
-                Item tempItem = addedItem;
-
-                if (selectedItem != null)
-                {
-                    DeselectItem();
-                }
-
-                selectedItem = tempItem;
-                Console.WriteLine("selected item: " + tempItem.GetName());
-                selectedHB = new Clickable(tempItem.GetClickable().GetHitbox().X, tempItem.GetClickable().GetHitbox().Y, tempItem.GetClickable().GetHitbox().Width, tempItem.GetClickable().GetHitbox().Height, tempItem.GetClickable().GetHitboxImg());
-                displayables.Add(selectedHB);
-
-                selectedItem.GetClickable().SetClick(DeselectItem);
-            }
-
-            void DeselectItem()
-            {
-                selectedItem.GetClickable().SetClick(SelectItem);
-                Console.WriteLine("deselected: " + selectedItem.GetName());
                 displayables.Remove(selectedHB);
-                selectedItem = null;
+
+                if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
+                {
+                    selectedItem = addedItem;
+                    Console.WriteLine("selected item: " + selectedItem.GetName());
+                    selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
+                    displayables.Add(selectedHB);
+                }
+                else //only run if selectItem = addedItem
+                {
+                    Console.WriteLine("Deselected: " + selectedItem.GetName());
+                    selectedItem = null;
+                }
             }
 
             ShowPopup();
