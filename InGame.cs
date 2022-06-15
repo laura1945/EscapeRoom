@@ -102,25 +102,6 @@ namespace EscapeRoom
             Game1.inventory.viewItemsBtt.SetClick(ShowItems);
             backBtt.SetClick(ShowInventory);
             cancelBtt.SetClick(StartNormal);
-
-            //List<Key> keys = room.GetKeys();
-
-            //for (int i = 0; i < keys.Count(); i++)
-            //{
-            //    Key key = keys[i];
-            //    key.GetClickable().SetClick(CheckKeyPickup);
-
-            //    void CheckKeyPickup()
-            //    {
-            //        if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
-            //        {
-            //            Console.WriteLine("key name: " + key.GetName());
-            //            Game1.inventory.AddKey(key);
-            //            KeyPopup(key);
-            //            keys.Remove(key);
-            //        }
-            //    }
-            //}
         }
 
         private void KeyPopup(Key newKey)

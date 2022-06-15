@@ -17,6 +17,8 @@ namespace EscapeRoom
 {
     public class DiningHall : Room
     {
+        //private Texture2D 
+
         public DiningHall(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/DiningHall");
