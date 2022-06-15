@@ -103,24 +103,24 @@ namespace EscapeRoom
             backBtt.SetClick(ShowInventory);
             cancelBtt.SetClick(StartNormal);
 
-            List<Key> keys = room.GetKeys();
+            //List<Key> keys = room.GetKeys();
 
-            for (int i = 0; i < keys.Count(); i++)
-            {
-                Key key = keys[i];
-                key.GetClickable().SetClick(CheckKeyPickup);
+            //for (int i = 0; i < keys.Count(); i++)
+            //{
+            //    Key key = keys[i];
+            //    key.GetClickable().SetClick(CheckKeyPickup);
 
-                void CheckKeyPickup()
-                {
-                    if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
-                    {
-                        Console.WriteLine("key name: " + key.GetName());
-                        Game1.inventory.AddKey(key);
-                        KeyPopup(key);
-                        keys.Remove(key);
-                    }
-                }
-            }
+            //    void CheckKeyPickup()
+            //    {
+            //        if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
+            //        {
+            //            Console.WriteLine("key name: " + key.GetName());
+            //            Game1.inventory.AddKey(key);
+            //            KeyPopup(key);
+            //            keys.Remove(key);
+            //        }
+            //    }
+            //}
         }
 
         private void KeyPopup(Key newKey)
@@ -264,13 +264,27 @@ namespace EscapeRoom
             }
             else
             {
-                List<Key> keys = room.GetKeys();
+                List<Key> keys = room.GetKeys(); //!
                 Console.WriteLine("Keys: " + keys.Count());
 
                 for (int i = 0; i < keys.Count(); i++)
                 {
+                    Key key = keys[i];
+                    key.GetClickable().SetClick(CheckKeyPickup);
+
                     displayables.Add(keys[i].GetClickable());
                     clickables.Add(keys[i].GetClickable());
+
+                    void CheckKeyPickup()
+                    {
+                        if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
+                        {
+                            Console.WriteLine("key name: " + key.GetName());
+                            Game1.inventory.AddKey(key);
+                            KeyPopup(key);
+                            keys.Remove(key);
+                        }
+                    }
                 }
             }
 

@@ -237,15 +237,6 @@ namespace EscapeRoom
             {
                 Clickable curr = show[i];
 
-                //if (curr.GetHitboxImg() != null)
-                //{
-                //    if (curr.GetImg() != null)
-                //    {
-                //        spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
-                //    }
-                //    spriteBatch.Draw(curr.GetHitboxImg(), curr.GetHitbox(), Color.White);
-                //}
-
                 if (curr != null)
                 {
                     if (curr.GetImg() != null)

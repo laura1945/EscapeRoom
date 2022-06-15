@@ -53,8 +53,8 @@ namespace EscapeRoom
             bedroom1Key = new Key(Content, spriteBatch, screenWidth, screenHeight, "Bedroom I Key", keyImg, "A key that leads to bedroom I.", Game1.bedroom1);
             kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Kitchen Key", keyImg, "A key that leads to the kitchen.", Game1.kitchen);
 
-            bedroom1Key.SetClickable(new Clickable(200, 200, 10, 3, keyImg));
-            kitchenKey.SetClickable(new Clickable(190, 50, 20, 8, keyImg));
+            bedroom1Key.SetClickable(new Clickable(200, 200, 100, 40, keyImg));
+            kitchenKey.SetClickable(new Clickable(190, 50, 100, 40, keyImg));
 
             keys.Add(bedroom1Key);
             keys.Add(kitchenKey);
