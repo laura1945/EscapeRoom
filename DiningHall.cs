@@ -50,8 +50,8 @@ namespace EscapeRoom
             pictureNote.SetHitBoxImg(hitboxImg);
 
             //Items
-            hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note", hungryNoteImg, "A handwritten note hidden within the statue.");
-            pictureNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note", pictureNoteImg, "A handwritten note found in the vending machine.");
+            hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about hunger", hungryNoteImg, "A handwritten note hidden within the statue.");
+            pictureNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about pictures", pictureNoteImg, "A handwritten note found in the vending machine.");
 
             hungryNoteItem.SetClickable(hungryNote);
             pictureNoteItem.SetClickable(pictureNote);

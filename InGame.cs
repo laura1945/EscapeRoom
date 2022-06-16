@@ -142,11 +142,7 @@ namespace EscapeRoom
             void ChangeRoom()
             {
                 Room newRoom = newKey.GetRoom();
-
-                //if (!newRoom.GetName().Equals(room.GetName()))
-                //{
-                    room = newKey.GetRoom();
-                //}
+                room = newKey.GetRoom();
 
                 StartNormal();
             }
@@ -156,37 +152,41 @@ namespace EscapeRoom
         {
             Item addedItem = room.GetItemStack().Top();
 
-            popupItemImg = room.GetClickable().GetImg();
-            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
-            popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
-            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
-            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
-
-            room.GetItemStack().Pop();
-            Game1.inventory.AddItem(addedItem);
-
-            addedItem.GetClickable().SetClick(SelectItem);
-
-            void SelectItem()
+            if (selectedItem == addedItem.GetHelperItem() || addedItem.GetHelperItem() == null)
             {
-                displayables.Remove(selectedHB);
+                room.GetItemStack().Pop();
+                Game1.inventory.AddItem(addedItem);
 
-                if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
+                popupItemImg = addedItem.GetClickable().GetImg();
+                popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
+                popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
+                popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+                popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
+
+                addedItem.GetClickable().SetClick(SelectItem);
+
+                void SelectItem()
                 {
-                    selectedItem = addedItem;
-                    Console.WriteLine("selected item: " + selectedItem.GetName());
-                    selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
-                    displayables.Add(selectedHB);
+                    displayables.Remove(selectedHB);
+
+                    if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
+                    {
+                        selectedItem = addedItem;
+                        Console.WriteLine("selected item: " + selectedItem.GetName());
+                        selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
+                        displayables.Add(selectedHB);
+                    }
+                    else //only run if selectItem = addedItem
+                    {
+                        Console.WriteLine("Deselected: " + selectedItem.GetName());
+                        selectedItem = null;
+                    }
                 }
-                else //only run if selectItem = addedItem
-                {
-                    Console.WriteLine("Deselected: " + selectedItem.GetName());
-                    selectedItem = null;
-                }
+
+                ShowPopup();
             }
-
-            ShowPopup();
         }
+
 
         private void ShowPopup()
         {
@@ -216,20 +216,23 @@ namespace EscapeRoom
             displayables.Clear();
             clickables.Clear();
             displayables.Add(room.GetBG());
-            
 
-            Clickable currItem = room.GetClickable();
-            Console.WriteLine("currItem: " + currItem);
+            Clickable currItemCB = room.GetClickable();
+            Item currItem = room.GetItem();
 
-            if (currItem != null)
+            if (currItemCB != null)
             {
-                room.GetClickable().SetClick(popStackAndPopUp);
+                Console.WriteLine("currItem: " + currItem.GetName());
 
-                displayables.Add(room.GetClickable().GetHitClickable());
-                clickables.Add(room.GetClickable());
+                currItemCB.SetClick(popStackAndPopUp);
+
+                displayables.Add(currItemCB.GetHitClickable());
+                clickables.Add(currItemCB);
             }
             else
             {
+                Console.WriteLine("currItemCB is null");
+
                 List<Key> keys = room.GetKeys(); //!
                 room.UpdateKeysList(keys);
                 Console.WriteLine("Keys: " + keys.Count());
@@ -257,6 +260,18 @@ namespace EscapeRoom
 
             clickables.Add(invIcon);
             displayables.Add(invIcon);
+
+
+            //void PopItem()
+            //{
+            //    Item helper = currItem.GetHelperItem();
+
+            //    if (selectedItem.GetName().Equals(helper.GetName()) || currItem.GetHelperItem() == null)
+            //    {
+            //        Console.WriteLine("Item popped");
+            //        room.GetItemStack().Pop();
+            //    }
+            //}
         }
         
         private void ShowInventory()

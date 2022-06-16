@@ -48,6 +48,9 @@ namespace EscapeRoom
         public static Bedroom2 bedroom2;
         public static Kitchen kitchen;
         public static Lab lab;
+        public static Attic attic;
+        public static Library library;
+        public static MusicRoom musicRoom;
         private List<Room> rooms;
 
         public static MouseState prevMouse;
@@ -105,6 +108,9 @@ namespace EscapeRoom
             bedroom2 = new Bedroom2(Content, spriteBatch, screenWidth, screenHeight);
             kitchen = new Kitchen(Content, spriteBatch, screenWidth, screenHeight);
             lab = new Lab(Content, spriteBatch, screenWidth, screenHeight);
+            attic = new Attic(Content, spriteBatch, screenWidth, screenHeight);
+            library = new Library(Content, spriteBatch, screenWidth, screenHeight);
+            musicRoom = new MusicRoom(Content, spriteBatch, screenWidth, screenHeight);
 
             rooms = new List<Room>();
             rooms.Add(lobby);
@@ -114,6 +120,9 @@ namespace EscapeRoom
             rooms.Add(bedroom2);
             rooms.Add(kitchen);
             rooms.Add(lab);
+            rooms.Add(attic);
+            rooms.Add(library);
+            rooms.Add(musicRoom);
 
             for (int i = 0; i < rooms.Count(); i++)
             {

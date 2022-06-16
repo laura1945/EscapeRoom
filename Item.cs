@@ -36,6 +36,8 @@ namespace EscapeRoom
         private Clickable clickable;
         private Item helperItem;
 
+        private bool isInvItem;
+
         public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
         {
             this.Content = Content;
@@ -45,6 +47,12 @@ namespace EscapeRoom
             this.name = name;
             this.itemImg = itemImg;
             this.details = details;
+            isInvItem = true;
+        }
+
+        public Item(string name)
+        {
+            this.name = name;
         }
 
         //modifiers
@@ -66,6 +74,11 @@ namespace EscapeRoom
         public void SetCondition() //additional conditions
         {
             condition = true;
+        }
+
+        public void SetNoInvItem()
+        {
+            isInvItem = false;
         }
 
         public void SetHelperItem(Item item)
@@ -97,6 +110,11 @@ namespace EscapeRoom
         public string GetDetails()
         {
             return details;
+        }
+
+        public bool IsInvItem()
+        {
+            return isInvItem;
         }
     }
 }

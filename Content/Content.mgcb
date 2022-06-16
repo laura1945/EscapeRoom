@@ -171,6 +171,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/BackArrow.png
 
+#begin Images/Sprites/BlandNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/BlandNote.png
+
 #begin Images/Sprites/boxes.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -182,6 +194,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/boxes.jpg
+
+#begin Images/Sprites/CagedNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/CagedNote.png
 
 #begin Images/Sprites/CancelButton.png
 /importer:TextureImporter
@@ -230,6 +254,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/GoToRoomBtt.png
+
+#begin Images/Sprites/HeatOatsNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/HeatOatsNote.png
 
 #begin Images/Sprites/hitbox.png
 /importer:TextureImporter
@@ -303,6 +339,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Key.png
 
+#begin Images/Sprites/KnowledgeNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/KnowledgeNote.png
+
 #begin Images/Sprites/LoreButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -338,6 +386,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/OkButton.png
+
+#begin Images/Sprites/OldToolNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/OldToolNote.png
 
 #begin Images/Sprites/Parchment.png
 /importer:TextureImporter
@@ -423,6 +483,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/QuakerOats.png
 
+#begin Images/Sprites/ReflectionNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/ReflectionNote.png
+
+#begin Images/Sprites/SacrificeNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/SacrificeNote.png
+
 #begin Images/Sprites/SettingsButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -471,6 +555,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/ThousandWordsNote.png
 
+#begin Images/Sprites/TimeRiddleNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/TimeRiddleNote.png
+
 #begin Images/Sprites/ViewItemsButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -482,6 +578,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/ViewItemsButton.png
+
+#begin Images/Sprites/WiltersNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/WiltersNote.png
 
 #begin Images/Sprites/XButton.png
 /importer:TextureImporter
