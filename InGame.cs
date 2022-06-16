@@ -213,12 +213,10 @@ namespace EscapeRoom
 
         public void StartNormal()
         {
-
-            Console.WriteLine("going back to normal");
-
             displayables.Clear();
             clickables.Clear();
             displayables.Add(room.GetBG());
+            
 
             Clickable currItem = room.GetClickable();
             Console.WriteLine("currItem: " + currItem);
@@ -233,6 +231,7 @@ namespace EscapeRoom
             else
             {
                 List<Key> keys = room.GetKeys(); //!
+                room.UpdateKeysList(keys);
                 Console.WriteLine("Keys: " + keys.Count());
 
                 for (int i = 0; i < keys.Count(); i++)

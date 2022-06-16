@@ -243,6 +243,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/hitbox.png
 
+#begin Images/Sprites/HungryNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/HungryNote.png
+
 #begin Images/Sprites/InstrButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -446,6 +458,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Spoon.png
+
+#begin Images/Sprites/ThousandWordsNote.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Sprites/ThousandWordsNote.png
 
 #begin Images/Sprites/ViewItemsButton.png
 /importer:TextureImporter

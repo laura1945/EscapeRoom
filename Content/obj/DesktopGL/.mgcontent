@@ -4,47 +4,51 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Attic.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Ballroom.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom1.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom2.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/DiningHall.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Kitchen.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lab.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Library.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lobby.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/MusicRoom.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/WoodBackground.jpeg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/BackArrow.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/boxes.jpg</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/CancelButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Cheese.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/FloorboardPryer.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/GoToRoomBtt.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/hitbox.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InstrButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InventoryLayout.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ItemPage.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Key.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/LoreButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Note.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/OkButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Parchment.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Pentacle.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/PlayButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Polaroid.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Potion.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/PryBarDesc.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/QuakerOats.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/SettingsButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/SheetMusic.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ViewItemsButton.png</File>
-    <File>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/XButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Attic.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Ballroom.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom1.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Bedroom2.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/DiningHall.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Kitchen.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lab.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Library.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/Lobby.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/MusicRoom.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Backgrounds/WoodBackground.jpeg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/BackArrow.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/boxes.jpg</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/CancelButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Cheese.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/FloorboardPryer.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/GoToRoomBtt.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/hitbox.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/HungryNote.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InstrButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/InventoryLayout.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ItemPage.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Key.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/LoreButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Note.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/OkButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Parchment.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Pentacle.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/PlayButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Polaroid.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Potion.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/PryBarDesc.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/QuakerOats.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/SettingsButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/SheetMusic.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ThousandWordsNote.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/ViewItemsButton.png</File>
+    <File>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/XButton.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

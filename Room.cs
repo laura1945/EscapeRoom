@@ -125,5 +125,22 @@ namespace EscapeRoom
             return null;
         }
 
+        public void UpdateKeysList(List<Key> potentialKeys)
+        {
+            List<Key> invKeys = Game1.inventory.keys;
+
+            for (int i = 0; i < potentialKeys.Count(); i++)
+            {
+                for (int j = 0; j < invKeys.Count(); j++)
+                {
+                    Console.WriteLine(potentialKeys[i].GetName());
+
+                    if (potentialKeys[i].GetName().Equals(invKeys[j].GetName()))
+                    {
+                        keys.Remove(potentialKeys[i]);
+                    }
+                }
+            }
+        }
     }
 }

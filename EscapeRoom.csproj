@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Ballroom.cs" />
     <Compile Include="Bedroom1.cs" />
+    <Compile Include="Bedroom2.cs" />
     <Compile Include="Clickable.cs" />
     <Compile Include="Collectable.cs" />
     <Compile Include="DiningHall.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="ItemStack.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Kitchen.cs" />
+    <Compile Include="Lab.cs" />
     <Compile Include="Lobby.cs" />
     <Compile Include="Lore.cs" />
     <Compile Include="Menu.cs" />
