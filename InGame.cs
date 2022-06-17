@@ -358,13 +358,14 @@ namespace EscapeRoom
             int col = 0;
             int row = 0;
             int leftMargin = 63;
+            int topMargin = 138;
             int boxDim = 70;
 
             //items
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
                 //reset hitbox location
-                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col*boxDim , Game1.inventory.itemsPage.GetHitbox().Top + 138, invItemsHBDim[0], invItemsHBDim[1]));
+                Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col*boxDim , Game1.inventory.itemsPage.GetHitbox().Top + topMargin + row*boxDim, invItemsHBDim[0], invItemsHBDim[1]));
                 col++;
 
                 if (col > 4)
