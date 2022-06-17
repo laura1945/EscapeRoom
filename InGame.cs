@@ -64,7 +64,7 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            room = Game1.lobby;
+            room = Game1.bedroom1;
             inGameState = NORMAL;
         }
         
@@ -240,9 +240,12 @@ namespace EscapeRoom
                 for (int i = 0; i < keys.Count(); i++)
                 {
                     Key key = keys[i];
-                    key.GetClickable().SetClick(CheckKeyPickup);
+                    Clickable keyCB = key.GetClickable();
 
-                    displayables.Add(keys[i].GetClickable());
+                    keyCB.SetClick(CheckKeyPickup);
+
+                    displayables.Add(keyCB);
+                    displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), key.GetName(), Game1.font, Color.White)); //testing
                     clickables.Add(keys[i].GetClickable());
 
                     void CheckKeyPickup()

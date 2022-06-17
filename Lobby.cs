@@ -23,7 +23,7 @@ namespace EscapeRoom
 
         private Rectangle tableClothHB;
 
-        private Item pryBar;
+        public Item pryBar;
 
         private string pryDetails;
 

@@ -48,9 +48,9 @@ namespace EscapeRoom
             blandNoteImg = Content.Load<Texture2D>("Images/Sprites/BlandNote");
 
             //Clickables
-            oats = new Clickable(100, 300, 100, 50, oatsImg);
-            heatNote = new Clickable(200, 300, 100, 50, heatNoteImg);
-            blandNote = new Clickable(300, 200, 100, 50, blandNoteImg);
+            oats = new Clickable(400, 40, 60, 80, oatsImg);
+            heatNote = new Clickable(623, 210, 115, 95, heatNoteImg);
+            blandNote = new Clickable(990, 325, 100, 135, blandNoteImg);
             //microwave = new Clickable(400, 250, 100, 70, hitboxImg);
 
             oats.SetHitBoxImg(hitboxImg);
@@ -62,31 +62,24 @@ namespace EscapeRoom
             oatsItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Quaker Oats", oatsImg, "A box of Quaker Oats.");
             heatNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on heating oats", heatNoteImg, "A note with instructions for preparing oatmeal, found behind the baking tray.");
             blandNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on taste", blandNoteImg, "A note critiquing the taste of Quaker oatmeal.");
-            //microwaveItem = new Item("Microwave");
-
-            //microwaveItem.SetNoInvItem();
-            //microwaveItem.SetHelperItem(oatsItem);
-
+            
             blandNoteItem.SetHelperItem(oatsItem);
 
             oatsItem.SetClickable(oats);
             heatNoteItem.SetClickable(heatNote);
             blandNoteItem.SetClickable(blandNote);
-           // microwaveItem.SetClickable(microwave);
 
             //stacks
             itemStack.Push(blandNoteItem);
-            //itemStack.Push(microwaveItem);
             itemStack.Push(heatNoteItem);
             itemStack.Push(oatsItem);
-
-            //keys
+            
             //keys
             ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
             diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningRoom);
 
-            ballroomKey.SetClickable(new Clickable(915, 525, 100, 40, keyImg));
-            diningKey.SetClickable(new Clickable(150, 525, 100, 40, keyImg));
+            ballroomKey.SetClickable(new Clickable(855, 87, 23, 40, hitboxImg));
+            diningKey.SetClickable(new Clickable(832, 95, 18, 33, hitboxImg));
 
             keys.Add(diningKey);
             keys.Add(ballroomKey);

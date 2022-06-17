@@ -38,7 +38,7 @@ namespace EscapeRoom
             sheetMusicImg = Content.Load<Texture2D>("Images/Sprites/SheetMusic");
 
             //Clickables
-            sheetMusic = new Clickable(100, 300, 100, 50, sheetMusicImg);
+            sheetMusic = new Clickable(190, 525, 100, 25, sheetMusicImg);
             sheetMusic.SetHitBoxImg(hitboxImg);
 
             //Items
@@ -53,8 +53,8 @@ namespace EscapeRoom
             bedroom1Key = new Key(Content, spriteBatch, screenWidth, screenHeight, bed1KeyDesc[0], keyImg, bed1KeyDesc[1], Game1.bedroom1);
             kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
 
-            bedroom1Key.SetClickable(new Clickable(200, 200, 100, 40, keyImg));
-            kitchenKey.SetClickable(new Clickable(190, 50, 100, 40, keyImg));
+            bedroom1Key.SetClickable(new Clickable(480, 375, 60, 30, hitboxImg));
+            kitchenKey.SetClickable(new Clickable(455, 40, 130, 100, hitboxImg));
 
             keys.Add(bedroom1Key);
             keys.Add(kitchenKey);

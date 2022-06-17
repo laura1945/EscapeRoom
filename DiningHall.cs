@@ -43,14 +43,14 @@ namespace EscapeRoom
             pictureNoteImg = Content.Load<Texture2D>("Images/Sprites/ThousandWordsNote");
 
             //Clickables
-            hungryNote = new Clickable(300, 300, 100, 50, hungryNoteImg);
-            pictureNote = new Clickable(100, 500, 100, 50, pictureNoteImg);
+            hungryNote = new Clickable(80, 90, 100, 50, hungryNoteImg);
+            pictureNote = new Clickable(50, 300, 120, 170, pictureNoteImg);
 
             hungryNote.SetHitBoxImg(hitboxImg);
             pictureNote.SetHitBoxImg(hitboxImg);
 
             //Items
-            hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about hunger", hungryNoteImg, "A handwritten note hidden within the statue.");
+            hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about hunger", hungryNoteImg, "A handwritten note hidden on the eagle.");
             pictureNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about pictures", pictureNoteImg, "A handwritten note found in the vending machine.");
 
             hungryNoteItem.SetClickable(hungryNote);
@@ -65,9 +65,9 @@ namespace EscapeRoom
             kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
             labKey = new Key(Content, spriteBatch, screenWidth, screenHeight, labKeyDesc[0], keyImg, labKeyDesc[1], Game1.lab);
 
-            bedroom2Key.SetClickable(new Clickable(200, 200, 100, 40, keyImg));
-            kitchenKey.SetClickable(new Clickable(190, 50, 100, 40, keyImg));
-            labKey.SetClickable(new Clickable(400, 350, 100, 40, keyImg));
+            bedroom2Key.SetClickable(new Clickable(533, 320, 40, 30, hitboxImg));
+            kitchenKey.SetClickable(new Clickable(495, 265, 30, 40, hitboxImg));
+            labKey.SetClickable(new Clickable(530, 268, 43, 40, hitboxImg));
 
             keys.Add(bedroom2Key);
             keys.Add(kitchenKey);
