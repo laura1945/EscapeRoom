@@ -68,6 +68,19 @@ namespace EscapeRoom
             diningKey.SetClickable(new Clickable(915, 525, 100, 40, keyImg));
 
             //keys.Add(atticKey);
+
+            //keys
+            //ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Ballroom Key", keyImg, "A key that leads to the ballroom.", Game1.ballroom);
+            //atticKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Attic Key", keyImg, "A key that leads to the attic.", Game1.attic);
+            //bedroom2Key = new Key(Content, spriteBatch, screenWidth, screenHeight, "Bedroom II Key", keyImg, "A key that leads to bedroom II.", Game1.attic);
+
+            //ballroomKey.SetClickable(new Clickable(915, 525, 100, 40, keyImg));
+            //atticKey.SetClickable(new Clickable(150, 525, 100, 40, keyImg));
+            //bedroom2Key.SetClickable(new Clickable(300, 540, 100, 40, keyImg));
+
+            //keys.Add(atticKey);
+            //keys.Add(ballroomKey);
+            //keys.Add(bedroom2Key);
         }
     }
 }
