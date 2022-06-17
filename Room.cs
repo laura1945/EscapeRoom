@@ -40,6 +40,17 @@ namespace EscapeRoom
 
         protected Clickable bg;
 
+        public string[] lobbyKeyDesc;
+        protected string[] ballKeyDesc;
+        protected string[] kitchenKeyDesc;
+        protected string[] diningKeyDesc;
+        protected string[] labKeyDesc;
+        protected string[] bed1KeyDesc;
+        protected string[] bed2KeyDesc;
+        protected string[] atticKeyDesc;
+        protected string[] libraryKeyDesc;
+        protected string[] musicKeyDesc;
+
         public Room(string name, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
         {
             Game1.test = 3; //testing
@@ -55,6 +66,17 @@ namespace EscapeRoom
 
             itemStack = new ItemStack();
             keys = new List<Key>();
+
+            lobbyKeyDesc = new string[] { "Lobby Key", "A key to the lobby." };
+            ballKeyDesc = new string[] { "Ballroom Key", "A key that leads to the ballroom." };
+            kitchenKeyDesc = new string[] { "Kitchen Key", "A key that leads to the kitchen." };
+            diningKeyDesc = new string[] { "Dining Hall Key", "A key that leads to the dining hall." };
+            labKeyDesc = new string[] { "Lab Key", "A key that leads to the lab." };
+            bed1KeyDesc = new string[] { "Bedroom I Key", "A key that leads to bedroom I." };
+            bed2KeyDesc = new string[] { "Bedroom II Key", "A key that leads to bedroom II." };
+            atticKeyDesc = new string[] { "Attic Key", "A key that leads to the attic." };
+            libraryKeyDesc = new string[] { "Library Key", "A key that leads to the library." };
+            musicKeyDesc = new string[] { "Music Room Key", "A key that leads to the music room." };
         }
         
         public void SetConnection(Room connectedRoom, string direction)

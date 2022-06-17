@@ -63,8 +63,8 @@ namespace EscapeRoom
             itemStack.Push(pryBar);
 
             //keys
-            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Ballroom Key", keyImg, "A key that leads to the ballroom.", Game1.ballroom);
-            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Dining Hall Key", keyImg, "A key that leads to the dining hall.", Game1.diningRoom);
+            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight,ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
+            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningRoom);
 
             ballroomKey.SetClickable(new Clickable(915, 525, 100, 40, keyImg));
             diningKey.SetClickable(new Clickable(150, 525, 100, 40, keyImg));

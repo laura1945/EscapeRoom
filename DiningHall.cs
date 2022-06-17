@@ -61,9 +61,9 @@ namespace EscapeRoom
             itemStack.Push(hungryNoteItem);
 
             //keys
-            bedroom2Key = new Key(Content, spriteBatch, screenWidth, screenHeight, "Bedroom II Key", keyImg, "A key that leads to bedroom II.", Game1.bedroom2);
-            kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Kitchen Key", keyImg, "A key that leads to the kitchen.", Game1.kitchen);
-            labKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Lab Key", keyImg, "A key that leads to the lab.", Game1.lab);
+            bedroom2Key = new Key(Content, spriteBatch, screenWidth, screenHeight, bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.bedroom2);
+            kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
+            labKey = new Key(Content, spriteBatch, screenWidth, screenHeight, labKeyDesc[0], keyImg, labKeyDesc[1], Game1.lab);
 
             bedroom2Key.SetClickable(new Clickable(200, 200, 100, 40, keyImg));
             kitchenKey.SetClickable(new Clickable(190, 50, 100, 40, keyImg));

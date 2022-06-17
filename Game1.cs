@@ -146,7 +146,7 @@ namespace EscapeRoom
             settings.LoadContent();
             lore.LoadContent();
 
-            lobbyKey = new Key(Content, spriteBatch, screenWidth, screenHeight, "Lobby Key", lobby.keyImg, "A key to the lobby.", lobby);
+            lobbyKey = new Key(Content, spriteBatch, screenWidth, screenHeight, lobby.lobbyKeyDesc[0], lobby.keyImg, lobby.lobbyKeyDesc[1], lobby);
 
             lobbyKey.SetClickable(new Clickable(50, 200, lobby.keyImg.Width / 12, lobby.keyImg.Height / 12, lobby.keyImg));
 
