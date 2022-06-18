@@ -390,6 +390,11 @@ namespace EscapeRoom
                 displayables.Add(collectables[i].GetClickable());
                 clickables.Add(collectables[i].GetClickable());
             }
+
+            if (selectedItem != null && selectedItem.IsCollectable())
+            {
+                displayables.Add(selectedHB);
+            }
         }
 
         protected void ShowItems()
@@ -430,6 +435,11 @@ namespace EscapeRoom
 
                 displayables.Add(Game1.inventory.items[i].GetClickable());
                 clickables.Add(Game1.inventory.items[i].GetClickable());
+            }
+
+            if (selectedItem != null && !selectedItem.IsCollectable())
+            {
+                displayables.Add(selectedHB);
             }
         }
     }

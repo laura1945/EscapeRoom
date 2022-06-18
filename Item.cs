@@ -23,7 +23,7 @@ namespace EscapeRoom
         private int screenWidth;
         private int screenHeight;
 
-        private bool collectable;
+        private bool isCollectable;
         private bool progress;
         private bool condition;
 
@@ -58,7 +58,7 @@ namespace EscapeRoom
         //modifiers
         public void SetCollectable() //item not part of stack
         {
-            collectable = true;
+            isCollectable = true;
         }
 
         public void SetClickable(Clickable clickable)
@@ -115,6 +115,11 @@ namespace EscapeRoom
         public bool IsInvItem()
         {
             return isInvItem;
+        }
+
+        public bool IsCollectable()
+        {
+            return isCollectable;
         }
     }
 }

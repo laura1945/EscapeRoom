@@ -69,6 +69,7 @@ namespace EscapeRoom
             //collectable
             polaroidItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Polaroid Photo", sheetMusicImg, "A memory of better times.");
             polaroidItem.SetClickable(polaroid);
+            polaroidItem.SetCollectable();
             collectable = polaroidItem;
         }
     }
