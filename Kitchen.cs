@@ -20,16 +20,17 @@ namespace EscapeRoom
         private Texture2D oatsImg;
         private Texture2D heatNoteImg;
         private Texture2D blandNoteImg;
+        private Texture2D cheeseImg;
 
         private Item oatsItem;
         private Item heatNoteItem;
         private Item blandNoteItem;
-        //private Item microwaveItem;
+        private Item cheeseItem;
 
         private Clickable oats;
         private Clickable heatNote;
         private Clickable blandNote;
-        //private Clickable microwave;
+        private Clickable cheese;
 
         private Key diningKey;
         private Key ballroomKey;
@@ -46,17 +47,17 @@ namespace EscapeRoom
             oatsImg = Content.Load<Texture2D>("Images/Sprites/QuakerOats");
             heatNoteImg = Content.Load<Texture2D>("Images/Sprites/HeatOatsNote");
             blandNoteImg = Content.Load<Texture2D>("Images/Sprites/BlandNote");
+            cheeseImg = Content.Load<Texture2D>("Images/Sprites/Cheese");
 
             //Clickables
             oats = new Clickable(400, 40, 60, 80, oatsImg);
             heatNote = new Clickable(623, 210, 115, 95, heatNoteImg);
             blandNote = new Clickable(990, 325, 100, 135, blandNoteImg);
-            //microwave = new Clickable(400, 250, 100, 70, hitboxImg);
+            cheese = new Clickable(400, 200, 100, 100, cheeseImg);
 
             oats.SetHitBoxImg(hitboxImg);
             heatNote.SetHitBoxImg(hitboxImg);
             blandNote.SetHitBoxImg(hitboxImg);
-            //microwave.SetHitBoxImg(hitboxImg);
 
             //Items
             oatsItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Quaker Oats", oatsImg, "A box of Quaker Oats.");
@@ -83,6 +84,12 @@ namespace EscapeRoom
 
             keys.Add(diningKey);
             keys.Add(ballroomKey);
+
+            //collectable
+            cheeseItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Cheese", cheeseImg, "A slice of swiss cheese found in a pot.");
+            cheeseItem.SetClickable(cheese);
+            cheeseItem.SetCollectable();
+            collectable = cheeseItem;
         }
     }
 }

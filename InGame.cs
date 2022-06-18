@@ -64,7 +64,7 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            room = Game1.ballroom;
+            room = Game1.attic;
             inGameState = NORMAL;
         }
         

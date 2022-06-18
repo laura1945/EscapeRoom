@@ -17,10 +17,26 @@ namespace EscapeRoom
 {
     public class Lab : Room
     {
+        private Texture2D potionImg;
+        private Item potionItem;
+        private Clickable potion;
+
         public Lab(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lab", Content, spriteBatch, screenWidth, screenHeight)
         {
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lab");
             base.LoadContent();
+        }
+
+        public override void LoadContent()
+        {
+            potionImg = Content.Load<Texture2D>("Images/Sprites/Potion");
+
+            potion = new Clickable(500, 300, 30, 60, potionImg);
+
+            potionItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Potion Bottle", potionImg, "A bottle of unknown liquid.");
+            potionItem.SetClickable(potion);
+            potionItem.SetCollectable();
+            collectable = potionItem;
         }
     }
 }
