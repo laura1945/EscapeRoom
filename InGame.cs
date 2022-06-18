@@ -64,7 +64,7 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            room = Game1.attic;
+            room = Game1.lobby;
             inGameState = NORMAL;
         }
         
@@ -314,6 +314,7 @@ namespace EscapeRoom
         {
             List<Key> keys = Game1.inventory.GetKeys();
             List<Item> collectables = Game1.inventory.GetCollectables();
+            List<Room> connections = room.GetConnections();
 
             //for collectables only for now
             int col = 0;
@@ -339,6 +340,7 @@ namespace EscapeRoom
             displayables.Add(XButton);
             displayables.Add(Game1.inventory.viewItemsBtt);
 
+            //Keys
             if (keys != null)
             {
                 Console.WriteLine("keys in inventory: " + keys.Count());
@@ -356,6 +358,7 @@ namespace EscapeRoom
                         if (count <= keys.Count() - 1)
                         {
                             int index = count;
+
                             //reset hitbox location
                             keys[index].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
                             
@@ -364,10 +367,17 @@ namespace EscapeRoom
 
                             keyCB.SetClick(KeyPopupInventory);
 
+                            Console.WriteLine("connections: " + connections.Count());
+                            //for (int c = 0; c < connections.Count(); c++)
+                            //{
+                            //    if (connections[i].GetName().Equals(keys[index].GetRoom().GetName()))
+                            //    {
                             displayables.Add(keys[index].GetClickable());
                             displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
 
                             clickables.Add(keyCB);
+                            //    }
+                            //}
 
                             void KeyPopupInventory()
                             {

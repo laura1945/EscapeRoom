@@ -28,6 +28,7 @@ namespace EscapeRoom
         protected Room front;
         protected Room right;
         protected Room left;
+        protected List<Room> connections;
 
         public ItemStack itemStack;
         protected List<Key> keys;
@@ -67,6 +68,7 @@ namespace EscapeRoom
 
             itemStack = new ItemStack();
             keys = new List<Key>();
+            connections = new List<Room>();
 
             lobbyKeyDesc = new string[] { "Lobby Key", "A key to the lobby." };
             ballKeyDesc = new string[] { "Ballroom Key", "A key that leads to the ballroom." };
@@ -100,6 +102,8 @@ namespace EscapeRoom
                     left = connectedRoom;
                     break;
             }
+
+            connections.Add(connectedRoom);
         }
 
         public virtual void LoadContent()
@@ -121,6 +125,11 @@ namespace EscapeRoom
         public List<Key> GetKeys()
         {
             return keys;
+        }
+
+        public List<Room> GetConnections()
+        {
+            return connections;
         }
 
         public virtual void UpdateRoom()

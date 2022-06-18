@@ -43,7 +43,7 @@ namespace EscapeRoom
 
         public static Lobby lobby;
         public static Ballroom ballroom;
-        public static DiningHall diningRoom;
+        public static DiningHall diningHall;
         public static Bedroom1 bedroom1;
         public static Bedroom2 bedroom2;
         public static Kitchen kitchen;
@@ -103,7 +103,7 @@ namespace EscapeRoom
 
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
-            diningRoom = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
+            diningHall = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
             bedroom1 = new Bedroom1(Content, spriteBatch, screenWidth, screenHeight);
             bedroom2 = new Bedroom2(Content, spriteBatch, screenWidth, screenHeight);
             kitchen = new Kitchen(Content, spriteBatch, screenWidth, screenHeight);
@@ -115,7 +115,7 @@ namespace EscapeRoom
             rooms = new List<Room>();
             rooms.Add(lobby);
             rooms.Add(ballroom);
-            rooms.Add(diningRoom);
+            rooms.Add(diningHall);
             rooms.Add(bedroom1);
             rooms.Add(bedroom2);
             rooms.Add(kitchen);
@@ -135,11 +135,39 @@ namespace EscapeRoom
             settings = new Settings(Content, spriteBatch, screenWidth, screenHeight, "Settings");
             lore = new Lore(Content, spriteBatch, screenWidth, screenHeight, "Back story");
 
+            //room connections
             lobby.SetConnection(ballroom, "right");
-            lobby.SetConnection(diningRoom, "left");
+            lobby.SetConnection(diningHall, "left");
+
             ballroom.SetConnection(bedroom1, "front");
             ballroom.SetConnection(kitchen, "left");
+            ballroom.SetConnection(lobby, "back");
 
+            kitchen.SetConnection(ballroom, "right");
+            kitchen.SetConnection(diningHall, "left");
+
+            diningHall.SetConnection(kitchen, "right");
+            diningHall.SetConnection(lab, "left");
+            diningHall.SetConnection(lobby, "back");
+            diningHall.SetConnection(bedroom2, "front");
+
+            lab.SetConnection(diningHall, "right");
+            attic.SetConnection(bedroom1, "left");
+
+            bedroom1.SetConnection(attic, "right");
+            bedroom1.SetConnection(bedroom2, "left");
+            bedroom1.SetConnection(ballroom, "back");
+
+            bedroom2.SetConnection(bedroom1, "right");
+            bedroom2.SetConnection(diningHall, "back");
+            bedroom2.SetConnection(library, "front");
+
+            library.SetConnection(bedroom2, "back");
+            library.SetConnection(musicRoom, "front");
+
+            musicRoom.SetConnection(library, "back");
+
+            //game state load content
             menu.LoadContent();
             inGame.LoadContent();
             instructions.LoadContent();

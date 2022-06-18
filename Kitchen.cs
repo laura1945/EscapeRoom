@@ -77,7 +77,7 @@ namespace EscapeRoom
             
             //keys
             ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
-            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningRoom);
+            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
 
             ballroomKey.SetClickable(new Clickable(855, 87, 23, 40, hitboxImg));
             diningKey.SetClickable(new Clickable(832, 95, 18, 33, hitboxImg));
