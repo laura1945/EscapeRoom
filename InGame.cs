@@ -333,80 +333,109 @@ namespace EscapeRoom
             displayables.Add(Game1.inventory.viewItemsBtt);
 
             //Keys
+            //if (keys != null)
+            //{
+            //    Console.WriteLine("keys in inventory: " + keys.Count());
+
+            //    int leftMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Left + 125;
+            //    int topMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Top + 245;
+            //    int count = 0;
+
+            //    //columns
+            //    for (int i = 0; i < 3; i++)
+            //    {
+            //        //rows
+            //        for (int j = 0; j < 3; j++)
+            //        {
+            //            if (count <= keys.Count() - 1)
+            //            {
+            //                int index = count;
+
+            //                //reset hitbox location
+            //                keys[index].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+
+            //                Clickable keyCB = keys[index].GetClickable();
+            //                Rectangle hitbox = keyCB.GetHitbox();
+
+            //                keyCB.SetClick(KeyPopupInventory);
+
+            //                Console.WriteLine("connections: " + connections.Count());
+
+            //                displayables.Add(keys[index].GetClickable());
+            //                displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
+
+            //                clickables.Add(keyCB);
+
+            //                void KeyPopupInventory()
+            //                {
+            //                    KeyPopup(keys[index]);
+            //                }
+
+            //                count++;
+            //            }
+            //        }
+            //    }
+
+
+            //}
+
             if (keys != null)
             {
-                Console.WriteLine("keys in inventory: " + keys.Count());
-
-                int leftMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Left + 125;
-                int topMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Top + 245;
-                int count = 0;
-
-                //columns
-                for (int i = 0; i < 3; i++)
-                {
-                    //rows
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (count <= keys.Count() - 1)
-                        {
-                            int index = count;
-
-                            //reset hitbox location
-                            keys[index].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
-                            
-                            Clickable keyCB = keys[index].GetClickable();
-                            Rectangle hitbox = keyCB.GetHitbox();
-
-                            keyCB.SetClick(KeyPopupInventory);
-
-                            Console.WriteLine("connections: " + connections.Count());
-                            //for (int c = 0; c < connections.Count(); c++)
-                            //{
-                            //    if (connections[i].GetName().Equals(keys[index].GetRoom().GetName()))
-                            //    {
-                            displayables.Add(keys[index].GetClickable());
-                            displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
-
-                            clickables.Add(keyCB);
-                            //    }
-                            //}
-
-                            void KeyPopupInventory()
-                            {
-                                KeyPopup(keys[index]);
-                            }
-
-                            count++;
-                        }
-                    }
-                }
-
-                //int col = 0;
-                //int row = 0;
-                //int leftMargin = 63;
-                //int topMargin = 138;
-                //int boxDim = 70;
-
-                ////items
-                //for (int i = 0; i < Game1.inventory.items.Count(); i++)
-                //{
-                //    //reset hitbox location
-                //    Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.itemsPage.GetHitbox().Top + topMargin + row * boxDim, invItemsHBDim[0], invItemsHBDim[1]));
-                //    col++;
-
-                //    if (col > 4)
-                //    {
-                //        col = 0;
-                //        row++;
-                //    }
-
-                //    displayables.Add(Game1.inventory.items[i].GetClickable());
-                //    clickables.Add(Game1.inventory.items[i].GetClickable());
-                //}
+                ShowKeys();
             }
 
             DisplayCollectables();
-            
+        }
+
+        private void ShowKeys()
+        {
+            List<Key> keys = Game1.inventory.GetKeys();
+            List<Room> connections = room.GetConnections();
+
+            int col = 0;
+            int row = 0;
+            int leftMargin = 63;
+            int topMargin = 300;
+            int boxDim = 70;
+
+            for (int i = 0; i < keys.Count(); i++)
+            {
+                Clickable keyCB = keys[i].GetClickable();
+                Rectangle hitbox = keyCB.GetHitbox();
+                int index = i;
+
+                //reset hitbox location
+                keyCB.SetHitbox(new Rectangle(Game1.inventory.invLayout.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.invLayout.GetHitbox().Top + topMargin + row * boxDim, invItemsHBDim[0], invItemsHBDim[1]));
+                col++;
+
+                if (col > 2)
+                {
+                    col = 0;
+                    row++;
+                }
+
+                keyCB.SetClick(KeyPopupInventory);
+
+                displayables.Add(keyCB);
+                displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetName(), Game1.labelFont, Color.Red));
+
+                for (int c = 0; c < connections.Count(); c++)
+                {
+                    if (connections[c].GetName().Equals(keys[i].GetRoom().GetName()))
+                    {
+                        clickables.Add(keyCB);
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+                void KeyPopupInventory()
+                {
+                    KeyPopup(keys[index]);
+                }
+            }
         }
 
         private void DisplayCollectables()
