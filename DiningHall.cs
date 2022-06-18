@@ -33,7 +33,7 @@ namespace EscapeRoom
         private Key labKey;
         private Key bedroom2Key;
 
-        public DiningHall(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
+        public DiningHall(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Dining Hall", Content, spriteBatch, screenWidth, screenHeight)
         {
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/DiningHall");
             base.LoadContent();

@@ -41,6 +41,7 @@ namespace EscapeRoom
         private Texture2D XBttImg;
         private Texture2D goRoomBttImg;
         private Texture2D cancelBttImg;
+        private Texture2D greyBoxImg;
 
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
@@ -59,6 +60,7 @@ namespace EscapeRoom
         private Clickable selectedHB;
         private Clickable goToRoomBtt;
         private Clickable cancelBtt;
+        private Clickable keyErrorMsg;
 
         //private Key key;
 
@@ -78,6 +80,7 @@ namespace EscapeRoom
             XBttImg = Content.Load<Texture2D>("Images/Sprites/XButton");
             goRoomBttImg = Content.Load<Texture2D>("Images/Sprites/GoToRoomBtt");
             cancelBttImg = Content.Load<Texture2D>("Images/Sprites/CancelButton");
+            greyBoxImg = Content.Load<Texture2D>("Images/Sprites/GreyBox");
 
             popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
 
@@ -92,6 +95,7 @@ namespace EscapeRoom
             //key popup clickables
             goToRoomBtt = new Clickable(popupRec.Right - goRoomBttImg.Width, popupRec.Bottom - goRoomBttImg.Height, goRoomBttImg.Width, goRoomBttImg.Height, goRoomBttImg);
             cancelBtt = new Clickable(popupRec.Left, popupRec.Bottom - goRoomBttImg.Height, cancelBttImg.Width, cancelBttImg.Height, cancelBttImg);
+            keyErrorMsg = new Clickable(popupRec.X, popupRec.Y + 20, "You can only go to rooms directly connected to the room you're currently in.", Game1.font, Color.White);
 
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
             XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
@@ -106,8 +110,6 @@ namespace EscapeRoom
 
         private void KeyPopup(Key newKey)
         {
-            //Game1.inventory.AddKey(newKey);
-            //Console.WriteLine("key popup");
             displayables.Clear();
             clickables.Clear();
 
@@ -312,9 +314,6 @@ namespace EscapeRoom
         
         private void ShowInventory()
         {
-            List<Key> keys = Game1.inventory.GetKeys();
-            List<Room> connections = room.GetConnections();
-            
             clickables.Clear();
 
             //remove certain displayables
@@ -379,10 +378,9 @@ namespace EscapeRoom
 
             //}
 
-            if (keys != null)
-            {
-                ShowKeys();
-            }
+            
+            ShowKeys();
+            
 
             DisplayCollectables();
         }
@@ -390,52 +388,73 @@ namespace EscapeRoom
         private void ShowKeys()
         {
             List<Key> keys = Game1.inventory.GetKeys();
-            List<Room> connections = room.GetConnections();
 
             int col = 0;
             int row = 0;
-            int leftMargin = 63;
-            int topMargin = 300;
-            int boxDim = 70;
-
-            for (int i = 0; i < keys.Count(); i++)
+            int leftMargin = Game1.inventory.itemsPage.GetHitbox().Left + 125;
+            int topMargin = Game1.inventory.itemsPage.GetHitbox().Top + 245;
+            
+            if (keys != null)
             {
-                Clickable keyCB = keys[i].GetClickable();
-                Rectangle hitbox = keyCB.GetHitbox();
-                int index = i;
-
-                //reset hitbox location
-                keyCB.SetHitbox(new Rectangle(Game1.inventory.invLayout.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.invLayout.GetHitbox().Top + topMargin + row * boxDim, invItemsHBDim[0], invItemsHBDim[1]));
-                col++;
-
-                if (col > 2)
+                for (int i = 0; i < keys.Count(); i++)
                 {
-                    col = 0;
-                    row++;
-                }
+                    Clickable keyCB = keys[i].GetClickable();
+                    
+                    int index = i;
 
-                keyCB.SetClick(KeyPopupInventory);
+                    //reset hitbox location
+                    keyCB.SetHitbox(new Rectangle(leftMargin + col * invItemsHBDim[0], topMargin + row * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+                    col++;
 
-                displayables.Add(keyCB);
-                displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetName(), Game1.labelFont, Color.Red));
-
-                for (int c = 0; c < connections.Count(); c++)
-                {
-                    if (connections[c].GetName().Equals(keys[i].GetRoom().GetName()))
+                    if (col > 2)
                     {
-                        clickables.Add(keyCB);
+                        col = 0;
+                        row++;
+                    }
+
+                    Rectangle hitbox = keyCB.GetHitbox();
+
+                    displayables.Add(keyCB);
+                    displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetName(), Game1.labelFont, Color.Red));
+
+                    clickables.Add(keyCB);
+
+                    //key is valid if room it leads to is adjacent to current room OR leads to current room
+                    if (room.IsAdjacent(keys[index].GetRoom()) || room.GetName().Equals(keys[index].GetRoom().GetName()))
+                    {
+                        keyCB.SetClick(KeyPopupInventory);
                     }
                     else
                     {
+                        displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), keyCB.GetHitbox().Width, keyCB.GetHitbox().Height, greyBoxImg));
+                        keyCB.SetClick(DisplayKeyError);
+                    }
 
+                    void KeyPopupInventory()
+                    {
+                        KeyPopup(keys[index]);
                     }
                 }
-
-                void KeyPopupInventory()
-                {
-                    KeyPopup(keys[index]);
-                }
             }
+        }
+
+        private void DisplayKeyError()
+        {
+            displayables.Clear();
+            clickables.Clear();
+
+            //room images
+            displayables.Add(room.GetBG());
+
+            //inventory icon
+            displayables.Add(invIcon);
+
+            //popup
+            clickables.Add(okButton);
+
+            displayables.Add(popupBGDisp);
+            displayables.Add(okButton);
+            displayables.Add(keyErrorMsg);
         }
 
         private void DisplayCollectables()

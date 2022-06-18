@@ -132,6 +132,19 @@ namespace EscapeRoom
             return connections;
         }
 
+        public bool IsAdjacent(Room checkRoom)
+        {
+            for (int i = 0; i < connections.Count(); i++)
+            {
+                if (connections[i].GetName().Equals(checkRoom.GetName()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public virtual void UpdateRoom()
         {
 

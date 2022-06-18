@@ -72,7 +72,8 @@ namespace EscapeRoom
         public void SetHitbox(Rectangle newBox)
         {
             hitboxRec = newBox;
-            //hitboxCB = new Clickable(hitboxRec.X, hitboxRec.Y, hitboxRec.Width, hitboxRec.Height);
+            location.X = newBox.X;
+            location.Y = newBox.Y;
         }
 
         public void SetDimensions(double scaleFactor)
