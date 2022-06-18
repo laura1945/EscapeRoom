@@ -31,6 +31,7 @@ namespace EscapeRoom
 
         public ItemStack itemStack;
         protected List<Key> keys;
+        public Item collectable;
 
         protected Texture2D roomImg;
         protected Texture2D hitboxImg;
@@ -155,6 +156,11 @@ namespace EscapeRoom
             }
 
             return null;
+        }
+
+        public void RemoveCollectable()
+        {
+            collectable = null;
         }
 
         public void UpdateKeysList(List<Key> potentialKeys)

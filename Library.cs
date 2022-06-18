@@ -38,12 +38,12 @@ namespace EscapeRoom
         public override void LoadContent()
         {
             //Images
-            sacrificeNoteImg = Content.Load<Texture2D>("Images/Sprites/ReflectionNote");
+            sacrificeNoteImg = Content.Load<Texture2D>("Images/Sprites/SacrificeNote");
             knowledgeNoteImg = Content.Load<Texture2D>("Images/Sprites/knowledgeNote");
 
             //Clickables
-            sacrificeNote = new Clickable(100, 300, 100, 50, sacrificeNoteImg);
-            knowledgeNote = new Clickable(400, 300, 100, 50, knowledgeNoteImg);
+            sacrificeNote = new Clickable(630, 520, 100, 70, sacrificeNoteImg);
+            knowledgeNote = new Clickable(370, 400, 200, 40, knowledgeNoteImg);
 
             sacrificeNote.SetHitBoxImg(hitboxImg);
             knowledgeNote.SetHitBoxImg(hitboxImg);
@@ -62,7 +62,7 @@ namespace EscapeRoom
             //keys
             musicKey = new Key(Content, spriteBatch, screenWidth, screenHeight, musicKeyDesc[0], keyImg, musicKeyDesc[1], Game1.musicRoom);
 
-            musicKey.SetClickable(new Clickable(400, 525, 100, 40, keyImg));
+            musicKey.SetClickable(new Clickable(810, 550, 90, 30, hitboxImg));
 
             keys.Add(musicKey);
         }

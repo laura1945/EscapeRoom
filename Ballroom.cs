@@ -18,10 +18,13 @@ namespace EscapeRoom
     public class Ballroom : Room
     {
         private Texture2D sheetMusicImg;
+        private Texture2D polaroidImg;
 
         private Item sheetMusicItem;
+        private Item polaroidItem;
 
         private Clickable sheetMusic;
+        private Clickable polaroid;
 
         private Key bedroom1Key;
         private Key kitchenKey;
@@ -36,14 +39,18 @@ namespace EscapeRoom
         {
             //Images
             sheetMusicImg = Content.Load<Texture2D>("Images/Sprites/SheetMusic");
+            polaroidImg = Content.Load<Texture2D>("Images/Sprites/Polaroid");
 
             //Clickables
             sheetMusic = new Clickable(190, 525, 100, 25, sheetMusicImg);
+            polaroid = new Clickable(500, 300, 100, 50, polaroidImg);
+
             sheetMusic.SetHitBoxImg(hitboxImg);
+            polaroid.SetHitBoxImg(hitboxImg);
 
             //Items
             sheetMusicItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Piano Sheet Music", sheetMusicImg, "A piano version of a German song.");
-            
+
             sheetMusicItem.SetClickable(sheetMusic);
 
             //stacks
@@ -58,6 +65,11 @@ namespace EscapeRoom
 
             keys.Add(bedroom1Key);
             keys.Add(kitchenKey);
+
+            //collectable
+            polaroidItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Polaroid Photo", sheetMusicImg, "A memory of better times.");
+            polaroidItem.SetClickable(polaroid);
+            collectable = polaroidItem;
         }
     }
 }

@@ -29,6 +29,7 @@ namespace EscapeRoom
         private int prevGameState;
 
         private Item selectedItem;
+        private Item addedItem;
 
         //Popup
         private Texture2D popupItemImg;
@@ -64,7 +65,7 @@ namespace EscapeRoom
 
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
-            room = Game1.bedroom1;
+            room = Game1.ballroom;
             inGameState = NORMAL;
         }
         
@@ -151,48 +152,59 @@ namespace EscapeRoom
         private void popStackAndPopUp()
         {
             Item addedItem = room.GetItemStack().Top();
+            this.addedItem = addedItem;
 
             if (selectedItem == addedItem.GetHelperItem() || addedItem.GetHelperItem() == null)
             {
                 room.GetItemStack().Pop();
                 Game1.inventory.AddItem(addedItem);
 
-                popupItemImg = addedItem.GetClickable().GetImg();
-                popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
-                popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
-                popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
-                popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
+                //popupItemImg = addedItem.GetClickable().GetImg();
+                //popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Y - popupRec.Height / 2), popupItemImg.Width, popupItemImg.Height);
+                //popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
+                //popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+                //popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
 
-                addedItem.GetClickable().SetClick(SelectItem);
+                addedItem.GetClickable().SetClick(PassSelectAddedItem);
 
-                void SelectItem()
+                void PassSelectAddedItem()
                 {
-                    displayables.Remove(selectedHB);
-
-                    if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
-                    {
-                        selectedItem = addedItem;
-                        Console.WriteLine("selected item: " + selectedItem.GetName());
-                        selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
-                        displayables.Add(selectedHB);
-                    }
-                    else //only run if selectItem = addedItem
-                    {
-                        Console.WriteLine("Deselected: " + selectedItem.GetName());
-                        selectedItem = null;
-                    }
+                    SelectItem(addedItem);
                 }
 
                 ShowPopup();
             }
         }
 
+        private void SelectItem(Item addedItem)
+        {
+            displayables.Remove(selectedHB);
+
+            if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
+            {
+                selectedItem = addedItem;
+                Console.WriteLine("selected item: " + selectedItem.GetName());
+                selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
+                displayables.Add(selectedHB);
+            }
+            else //only run if selectItem = addedItem
+            {
+                Console.WriteLine("Deselected: " + selectedItem.GetName());
+                selectedItem = null;
+            }
+        }
 
         private void ShowPopup()
         {
             Console.WriteLine("going to popup");
             displayables.Clear();
             clickables.Clear();
+
+            popupItemImg = addedItem.GetClickable().GetImg();
+            popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Height / 3), popupItemImg.Width, popupItemImg.Height);
+            popupName = new Clickable(popupRec.X, popupRec.Y + 20, addedItem.GetName(), Game1.font, Color.White);
+            popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
+            popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, addedItem.GetDetails(), Game1.font, Color.White);
 
             //room images
             displayables.Add(room.GetBG());
@@ -215,7 +227,33 @@ namespace EscapeRoom
         {
             displayables.Clear();
             clickables.Clear();
+
             displayables.Add(room.GetBG());
+            
+            //collectables
+            if (room.collectable != null)
+            {
+                Clickable collectable = room.collectable.GetClickable();
+
+                collectable.SetClick(AddCollectableToInv);
+
+                displayables.Add(collectable);
+                clickables.Add(collectable);
+
+                void AddCollectableToInv()
+                {
+                    Game1.inventory.AddCollectable(room.collectable);
+                    addedItem = room.collectable;
+                    collectable.SetClick(PassSelectAddedItem);
+                    ShowPopup();
+                    room.RemoveCollectable();
+
+                    void PassSelectAddedItem()
+                    {
+                        SelectItem(addedItem);
+                    }
+                }
+            }
 
             Clickable currItemCB = room.GetClickable();
             Item currItem = room.GetItem();
@@ -263,23 +301,19 @@ namespace EscapeRoom
 
             clickables.Add(invIcon);
             displayables.Add(invIcon);
-
-
-            //void PopItem()
-            //{
-            //    Item helper = currItem.GetHelperItem();
-
-            //    if (selectedItem.GetName().Equals(helper.GetName()) || currItem.GetHelperItem() == null)
-            //    {
-            //        Console.WriteLine("Item popped");
-            //        room.GetItemStack().Pop();
-            //    }
-            //}
         }
         
         private void ShowInventory()
         {
             List<Key> keys = Game1.inventory.GetKeys();
+            List<Item> collectables = Game1.inventory.GetCollectables();
+
+            //for collectables only for now
+            int col = 0;
+            int leftMargin = 65;
+            int topMargin = 480;
+            int boxDim = 70;
+
             Console.WriteLine("inventory");
             clickables.Clear();
 
@@ -320,7 +354,6 @@ namespace EscapeRoom
                             
                             Clickable keyCB = keys[index].GetClickable();
                             Rectangle hitbox = keyCB.GetHitbox();
-                            
 
                             keyCB.SetClick(KeyPopupInventory);
 
@@ -338,6 +371,17 @@ namespace EscapeRoom
                         }
                     }
                 }
+            }
+
+            //collectables
+            for (int i = 0; i < collectables.Count(); i++)
+            {
+                //reset hitbox location
+                collectables[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.itemsPage.GetHitbox().Top + topMargin, invItemsHBDim[0], invItemsHBDim[1]));
+                col++;
+
+                displayables.Add(collectables[i].GetClickable());
+                clickables.Add(collectables[i].GetClickable());
             }
         }
 
@@ -381,10 +425,10 @@ namespace EscapeRoom
                 clickables.Add(Game1.inventory.items[i].GetClickable());
             }
 
-            if (selectedItem != null)
-            {
-                displayables.Add(selectedHB);
-            }
+            //if (selectedItem != null)
+            //{
+            //    displayables.Add(selectedHB);
+            //}
         }
     }
 }

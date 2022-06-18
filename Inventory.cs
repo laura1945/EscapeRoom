@@ -62,6 +62,11 @@ namespace EscapeRoom
             return keys;
         }
 
+        public List<Item> GetCollectables()
+        {
+            return collectables;
+        }
+
         //modifiers
         public void AddItem(Item newItem)
         {
@@ -72,6 +77,11 @@ namespace EscapeRoom
         public void AddKey(Key key)
         {
             keys.Add(key);
+        }
+
+        public void AddCollectable(Item collectable)
+        {
+            collectables.Add(collectable);
         }
     }
 }

@@ -43,8 +43,8 @@ namespace EscapeRoom
             cagedNoteImg = Content.Load<Texture2D>("Images/Sprites/cagedNote");
 
             //Clickables
-            wilterNote = new Clickable(100, 300, 100, 50, wilterNoteImg);
-            cagedNote = new Clickable(400, 300, 100, 50, cagedNoteImg);
+            wilterNote = new Clickable(810, 588, 62, 30, wilterNoteImg);
+            cagedNote = new Clickable(105, 405, 60, 60, cagedNoteImg);
 
             wilterNote.SetHitBoxImg(hitboxImg);
             cagedNote.SetHitBoxImg(hitboxImg);
@@ -65,9 +65,9 @@ namespace EscapeRoom
             diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningRoom);
             libraryKey = new Key(Content, spriteBatch, screenWidth, screenHeight, libraryKeyDesc[0], keyImg, libraryKeyDesc[1], Game1.library);
 
-            bedroom1Key.SetClickable(new Clickable(100, 525, 100, 40, keyImg));
-            diningKey.SetClickable(new Clickable(400, 525, 100, 40, keyImg));
-            libraryKey.SetClickable(new Clickable(200, 525, 100, 40, keyImg));
+            bedroom1Key.SetClickable(new Clickable(115, 470, 130, 40, hitboxImg));
+            diningKey.SetClickable(new Clickable(70, 115, 120, 170, hitboxImg));
+            libraryKey.SetClickable(new Clickable(643, 420, 50, 80, hitboxImg));
 
             keys.Add(bedroom1Key);
             keys.Add(diningKey);
