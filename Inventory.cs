@@ -46,8 +46,6 @@ namespace EscapeRoom
 
             //Clickable
             viewItemsBtt = new Clickable(invLayout.GetHitbox().Left + 50, invLayout.GetHitbox().Top + invLayout.GetHeight()/4 + 10, viewItemsBttImg.Width, viewItemsBttImg.Height, viewItemsBttImg);
-
-            
         }
 
         //accessors

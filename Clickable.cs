@@ -31,6 +31,7 @@ namespace EscapeRoom
 
         public delegate void clickAction(); //declaring a type called clickAction
         private clickAction clickFunc; //clickAction is an instance of clickAction
+        private clickAction rightClickFunc;
 
         public Clickable(int X, int Y, int width, int height) //pass image as parameter
         {
@@ -99,6 +100,11 @@ namespace EscapeRoom
         public void SetClick(clickAction clickAction)
         {
             clickFunc = clickAction;
+        }
+
+        public void SetRightClick(clickAction action)
+        {
+            rightClickFunc = action;
         }
 
         public void SetHitBoxImg(Texture2D hitBoxImg)
@@ -171,8 +177,16 @@ namespace EscapeRoom
         //Modifiers
         public virtual void Click()
         {
-            Console.WriteLine("Clickable.Click()");
+            //Console.WriteLine("Clickable.Click()");
             clickFunc();
+        }
+
+        public virtual void RightClick()
+        {
+            if (rightClickFunc != null)
+            {
+                rightClickFunc();
+            }
         }
     }
 }

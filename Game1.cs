@@ -193,9 +193,14 @@ namespace EscapeRoom
 
             for (int i = 0; i < gameState.clickables.Count(); i++)
             {
-                if (Game1.CheckHit(gameState.clickables[i].GetHitbox()))
+                if (CheckHit(gameState.clickables[i].GetHitbox()))
                 {
                     gameState.clickables[i].Click();
+                    break;
+                }
+                else if (CheckRightClick(gameState.clickables[i].GetHitbox()))
+                {
+                    gameState.clickables[i].RightClick();
                     break;
                 }
             }
@@ -224,6 +229,16 @@ namespace EscapeRoom
         public static bool CheckHit(Rectangle hitbox)
         {
             if (hitbox.Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed && prevMouse.LeftButton!= ButtonState.Pressed)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool CheckRightClick(Rectangle hitbox)
+        {
+            if (hitbox.Contains(mouse.Position) && mouse.RightButton == ButtonState.Pressed && prevMouse.RightButton != ButtonState.Pressed)
             {
                 return true;
             }
