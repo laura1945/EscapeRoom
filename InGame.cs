@@ -313,16 +313,8 @@ namespace EscapeRoom
         private void ShowInventory()
         {
             List<Key> keys = Game1.inventory.GetKeys();
-            List<Item> collectables = Game1.inventory.GetCollectables();
             List<Room> connections = room.GetConnections();
-
-            //for collectables only for now
-            int col = 0;
-            int leftMargin = 65;
-            int topMargin = 480;
-            int boxDim = 70;
-
-            Console.WriteLine("inventory");
+            
             clickables.Clear();
 
             //remove certain displayables
@@ -388,9 +380,44 @@ namespace EscapeRoom
                         }
                     }
                 }
+
+                //int col = 0;
+                //int row = 0;
+                //int leftMargin = 63;
+                //int topMargin = 138;
+                //int boxDim = 70;
+
+                ////items
+                //for (int i = 0; i < Game1.inventory.items.Count(); i++)
+                //{
+                //    //reset hitbox location
+                //    Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.itemsPage.GetHitbox().Top + topMargin + row * boxDim, invItemsHBDim[0], invItemsHBDim[1]));
+                //    col++;
+
+                //    if (col > 4)
+                //    {
+                //        col = 0;
+                //        row++;
+                //    }
+
+                //    displayables.Add(Game1.inventory.items[i].GetClickable());
+                //    clickables.Add(Game1.inventory.items[i].GetClickable());
+                //}
             }
 
-            //collectables
+            DisplayCollectables();
+            
+        }
+
+        private void DisplayCollectables()
+        {
+            List<Item> collectables = Game1.inventory.GetCollectables();
+
+            int col = 0;
+            int leftMargin = 65;
+            int topMargin = 480;
+            int boxDim = 70;
+
             for (int i = 0; i < collectables.Count(); i++)
             {
                 //reset hitbox location
