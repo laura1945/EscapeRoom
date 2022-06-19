@@ -33,7 +33,7 @@ namespace EscapeRoom
         private clickAction clickFunc; //clickAction is an instance of clickAction
         private clickAction rightClickFunc;
 
-        public Clickable(int X, int Y, int width, int height) //pass image as parameter
+        public Clickable(int X, int Y, int width, int height) 
         {
             location = new Vector2(X, Y);
             dimensions = new Vector2(width, height);
