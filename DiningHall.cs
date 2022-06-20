@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: DiningHall.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class manages the data in dining hall
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,28 +24,36 @@ namespace EscapeRoom
 {
     public class DiningHall : Room
     {
+        //images of items
         private Texture2D hungryNoteImg;
         private Texture2D pictureNoteImg;
         private Texture2D spoonImg;
 
+        //items in the room
         private Item hungryNoteItem;
         private Item pictureNoteItem;
         private Item spoonItem;
 
+        //clickables associated with items
         private Clickable hungryNote;
         private Clickable pictureNote;
         private Clickable spoon;
 
+        //keys in room
         private Key kitchenKey;
         private Key labKey;
         private Key bedroom2Key;
 
         public DiningHall(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Dining Hall", Content, spriteBatch, screenWidth, screenHeight)
         {
+            //load dining hall image and general room content
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/DiningHall");
             base.LoadContent();
         }
 
+        //Pre: none
+        //Post: none
+        //Desc: load dining hall room's data
         public override void LoadContent()
         {
             //Images
@@ -62,7 +77,7 @@ namespace EscapeRoom
             hungryNoteItem.SetClickable(hungryNote);
             pictureNoteItem.SetClickable(pictureNote);
 
-            //stacks
+            //add items to stack
             itemStack.Push(pictureNoteItem);
             itemStack.Push(hungryNoteItem);
 
@@ -79,7 +94,7 @@ namespace EscapeRoom
             keys.Add(kitchenKey);
             keys.Add(labKey);
 
-            //collectable
+            //create spoon collectable
             spoonItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Silver Spoon", spoonImg, "A silver spoon hidden within the statue.");
             spoonItem.SetClickable(spoon);
             spoonItem.SetCollectable();

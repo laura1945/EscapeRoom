@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: Bedroom2.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class manages the data in bedroom 2
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,25 +24,33 @@ namespace EscapeRoom
 {
     public class Bedroom2 : Room
     {
+        //stores images of items
         private Texture2D wilterNoteImg;
         private Texture2D cagedNoteImg; 
 
+        //items
         private Item wilterNoteItem;
         private Item cagedNoteItem;
 
+        //clickables associated with items
         private Clickable wilterNote;
         private Clickable cagedNote;
 
+        //keys in this room
         private Key bedroom1Key;
         private Key diningKey;
         private Key libraryKey;
 
         public Bedroom2(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Bedroom II", Content, spriteBatch, screenWidth, screenHeight)
         {
+            //load bedroom 2 image and general room content
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/bedroom_2");
             base.LoadContent();
         }
 
+        //Pre: none
+        //Post: none
+        //Description: load items in bedroom 2
         public override void LoadContent()
         {
             //Images
@@ -56,7 +71,7 @@ namespace EscapeRoom
             wilterNoteItem.SetClickable(wilterNote);
             cagedNoteItem.SetClickable(cagedNote);
 
-            //stacks
+            //add items to stack
             itemStack.Push(cagedNoteItem);
             itemStack.Push(wilterNoteItem);
 

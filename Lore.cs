@@ -31,15 +31,5 @@ namespace EscapeRoom
         {
             base.LoadContent();
         }
-
-        public override void Update()
-        {
-
-        }
-
-        public override void Draw()
-        {
-
-        }
     }
 }

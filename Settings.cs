@@ -26,7 +26,7 @@ namespace EscapeRoom
             buttons = new List<Clickable>();
 
             muteButton = new Toggle(300, 300, 50, 50);
-            muteButton.SetText("Mute", statFont);
+            muteButton.SetText("Mute");
             muteButton.SetOffText("Unmute");
 
             muteButton.SetOnState(false);
@@ -37,16 +37,6 @@ namespace EscapeRoom
         public override void LoadContent()
         {
             base.LoadContent();
-        }
-
-        public override void Update()
-        {
-            
-        }
-
-        public override void Draw()
-        {
-
         }
     }
 }

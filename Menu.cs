@@ -100,33 +100,5 @@ namespace EscapeRoom
         {
             Game1.gameState = Game1.lore;
         }
-
-        public override void Update()
-        {
-            //if (Game1.CheckHit(playBttRec))
-            //{
-            //    Game1.gameState = Game1.inGame;
-            //}
-            //else if (Game1.CheckHit(instrBttRec))
-            //{
-            //    Game1.gameState = Game1.instructions;
-            //}
-            //else if (Game1.CheckHit(settingsBttRec))
-            //{
-            //    Game1.gameState = Game1.settings;
-            //}
-            //else if (Game1.CheckHit(loreBttRec))
-            //{
-            //    Game1.gameState = Game1.lore;
-            //}
-        }
-
-        public override void Draw()
-        {
-            //Game1.spriteBatch.Draw(playBttImg, playBttRec, Color.White);
-            //Game1.spriteBatch.Draw(instrBttImg, instrBttRec, Color.White);
-            //Game1.spriteBatch.Draw(settingsBttImg, settingsBttRec, Color.White);
-            //Game1.spriteBatch.Draw(loreBttImg, loreBttRec, Color.White);
-        }
     }
 }

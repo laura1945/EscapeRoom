@@ -346,6 +346,9 @@ namespace EscapeRoom
             base.Draw(gameTime);
         }
 
+        //Pre: none
+        //Post: none
+        //Description: saves in-game data
         private void SaveGame()
         {
             //store lists from inventory
@@ -391,12 +394,18 @@ namespace EscapeRoom
             }
         }
 
+        //Pre: items is a list of existing items
+        //Post: none
+        //Description: writes out all items to file
         private void WriteItemList(List<Item> items)
         {
+            //run for number of items
             for (int i = 0; i < items.Count(); i++)
             {
+                //write item name
                 outFile.Write(items[i].GetName());
 
+                //separate items by comma
                 if (i < items.Count() - 1)
                 {
                     outFile.Write(splitChar);
@@ -404,12 +413,18 @@ namespace EscapeRoom
             }
         }
 
+        //Pre: keys is a list of existing items
+        //Post: none
+        //Description: writes out all keys to file
         private void WriteKeyList(List<Key> keys)
         {
+            //run for number of keys
             for (int i = 0; i < keys.Count(); i++)
             {
+                //write key name
                 outFile.Write(keys[i].GetName());
 
+                //separate keys by comma
                 if (i < keys.Count() - 1)
                 {
                     outFile.Write(splitChar);

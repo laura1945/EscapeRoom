@@ -29,16 +29,5 @@ namespace EscapeRoom
 
 
         }
-
-        public override void Update()
-        {
-            base.Update();
-        }
-
-        public override void Draw()
-        {
-            base.Draw();
-            
-        }
     }
 }

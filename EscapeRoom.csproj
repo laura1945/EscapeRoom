@@ -62,7 +62,6 @@
     <Compile Include="Bedroom1.cs" />
     <Compile Include="Bedroom2.cs" />
     <Compile Include="Clickable.cs" />
-    <Compile Include="Collectable.cs" />
     <Compile Include="DiningHall.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameState.cs" />
