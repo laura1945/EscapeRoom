@@ -46,6 +46,7 @@ namespace EscapeRoom
             polaroid = new Clickable(500, 300, 100, 50, polaroidImg);
 
             sheetMusic.SetHitBoxImg(hitboxImg);
+            polaroid.SetHitBoxImg(hitboxImg);
 
             //Items
             sheetMusicItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Piano Sheet Music", sheetMusicImg, "A piano version of a German song.");

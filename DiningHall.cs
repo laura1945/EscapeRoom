@@ -53,6 +53,7 @@ namespace EscapeRoom
 
             hungryNote.SetHitBoxImg(hitboxImg);
             pictureNote.SetHitBoxImg(hitboxImg);
+            spoon.SetHitBoxImg(hitboxImg);
 
             //Items
             hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about hunger", hungryNoteImg, "A handwritten note hidden on the eagle.");

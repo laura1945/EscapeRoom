@@ -32,6 +32,7 @@ namespace EscapeRoom
             potionImg = Content.Load<Texture2D>("Images/Sprites/Potion");
 
             potion = new Clickable(500, 300, 30, 60, potionImg);
+            potion.SetHitBoxImg(hitboxImg);
 
             potionItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Potion Bottle", potionImg, "A bottle of unknown liquid.");
             potionItem.SetClickable(potion);

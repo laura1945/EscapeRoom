@@ -50,11 +50,6 @@ namespace EscapeRoom
         public virtual void LoadContent()
         {
             backBttImg = Content.Load<Texture2D>("Images/Sprites/BackArrow");
-
-            //backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
-
-            //clickables.Add(backBtt);
-            //displayables.Add(backBtt);
         }
 
         public virtual void Update()

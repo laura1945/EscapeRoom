@@ -1,4 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿// Author: Laura Zhan
+// File Name: InGame.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class manages the logic in a game
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -19,37 +26,36 @@ namespace EscapeRoom
 {
     public class InGame : GameState
     {
+        //stores current room player is in
         private Room room;
-        private Lobby lobby;
 
-        public const int NORMAL = 0;
-        public const int INVENTORY = 1;
-        public const int POPUP = 2;
-        public int inGameState;
-        private int prevGameState;
-
+        //tracks selected item in inventory
         private Item selectedItem;
 
-        //Popup
+        //stores images displayed on an item's popup
         private Texture2D popupItemImg;
-        private string name;
-        private string details;
-
         private Texture2D okButtonImg;
         private Texture2D popupBG;
+
+        //stores images shown in inventory
         private Texture2D invIconImg;
         private Texture2D XBttImg;
-        private Texture2D goRoomBttImg;
-        private Texture2D cancelBttImg;
         private Texture2D greyBoxImg;
 
+        //stores images on key popup
+        private Texture2D goRoomBttImg;
+        private Texture2D cancelBttImg;
+
+        //locations of popup and its content
         private Rectangle popupRec;
         private Rectangle popupItemImgRec;
-
         private Vector2 nameLoc;
         private Vector2 detailsLoc;
+
+        //dimensions of items in inventory
         private int[] invItemsHBDim = new int[] { 65, 63 };
 
+        //clickables that will be linked to their associated items
         private Clickable okButton;
         private Clickable popupBGDisp;
         private Clickable popupName;
@@ -62,18 +68,21 @@ namespace EscapeRoom
         private Clickable cancelBtt;
         private Clickable keyErrorMsg;
 
-        //private Key key;
-
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
+            //sets room to be lobby
             room = Game1.lobby;
-            inGameState = NORMAL;
         }
         
+        //Pre: none
+        //Post: none
+        //Description: Loads images and other variables used in game
         public override void LoadContent()
         {
+            //load parent class's content (GameState)
             base.LoadContent();
 
+            //load images
             okButtonImg = Content.Load<Texture2D>("Images/Sprites/OkButton");
             popupBG = Content.Load<Texture2D>("Images/Backgrounds/WoodBackground");
             invIconImg = Content.Load<Texture2D>("Images/Sprites/Boxes");
@@ -82,6 +91,7 @@ namespace EscapeRoom
             cancelBttImg = Content.Load<Texture2D>("Images/Sprites/CancelButton");
             greyBoxImg = Content.Load<Texture2D>("Images/Sprites/GreyBox");
 
+            //load locations
             popupRec = new Rectangle((screenWidth - popupBG.Width)/2, (screenHeight - popupBG.Height) / 2, popupBG.Width, popupBG.Height);
 
             nameLoc = new Vector2(popupRec.X, popupRec.Y + 20);
@@ -97,9 +107,11 @@ namespace EscapeRoom
             cancelBtt = new Clickable(popupRec.Left, popupRec.Bottom - goRoomBttImg.Height, cancelBttImg.Width, cancelBttImg.Height, cancelBttImg);
             keyErrorMsg = new Clickable(popupRec.X, popupRec.Y + 20, "You can only go to rooms directly connected to the room you're currently in.", Game1.font, Color.White);
 
+            //inventory icon and x button in inventory
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);
             XButton = new Clickable(Game1.inventory.invLayout.GetHitbox().Right - XBttImg.Width/10, Game1.inventory.invLayout.GetHitbox().Top, XBttImg.Width / 10, XBttImg.Height / 10, XBttImg);
 
+            //associate each button with an action when clicked on
             okButton.SetClick(StartNormal);
             invIcon.SetClick(ShowInventory);
             XButton.SetClick(StartNormal);
@@ -108,89 +120,136 @@ namespace EscapeRoom
             cancelBtt.SetClick(StartNormal);
         }
 
+        //Pre: newKey is an existing key
+        //Post: none
+        //Description: shows a popup displaying key's info 
         private void KeyPopup(Key newKey)
         {
+            //clear list of displayables and clickables
             displayables.Clear();
             clickables.Clear();
 
-            //room images
+            //add background room image
             displayables.Add(room.GetBG());
 
-            //inventory icon
+            //add displayables to list
             displayables.Add(invIcon);
+            displayables.Add(popupBGDisp);
 
-            //popup
+            //add clickables to list
             clickables.Add(goToRoomBtt);
             clickables.Add(cancelBtt);
 
-            displayables.Add(popupBGDisp);
-
+            //store clickable of key
             Clickable keyClickable = newKey.GetClickable();
 
+            //update key info
             popupItemImg = keyClickable.GetImg();
             popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 8, popupRec.Top + (popupRec.Y - popupRec.Height / 8), popupItemImg.Width, popupItemImg.Height);
             popupName = new Clickable(popupRec.X, popupRec.Y + 20, newKey.GetName(), Game1.font, Color.White);
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width / 8, popupItemImgRec.Height / 8, popupItemImg);
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, newKey.GetDetails(), Game1.font, Color.White);
 
+            //change to room associated with key if user clicks go to room button
             goToRoomBtt.SetClick(ChangeRoom);
 
+            //add displayables 
             displayables.Add(popupName);
             displayables.Add(popupItem);
             displayables.Add(popupDetails);
             displayables.Add(goToRoomBtt);
             displayables.Add(cancelBtt);
 
+            //Pre: none
+            //Post: none
+            //Description: change rooms
             void ChangeRoom()
             {
+                //store room associated with key
                 Room newRoom = newKey.GetRoom();
+
+                //change room
                 room = newKey.GetRoom();
 
+                //resume normal ingame status
                 StartNormal();
             }
         }
 
+        //Pre: none
+        //Post: none
+        //Description: add item to inventory and show popup 
         private void popStackAndPopUp()
         {
+            //store top item in stack
             Item addedItem = room.GetItemStack().Top();
 
+            //run if item is able to be picked up, which can happen if the associated helper item is selected in inventory OR there's no helper item
             if (selectedItem == addedItem.GetHelperItem() || addedItem.GetHelperItem() == null)
             {
+                //remove item from stack in room
                 room.GetItemStack().Pop();
+
+                //add item to inventory
                 Game1.inventory.AddItem(addedItem);
 
+                //set left click of item in inventory to select an item
                 addedItem.GetClickable().SetClick(PassSelectAddedItem);
+
+                //set right click of item in inventory to show popup
                 addedItem.GetClickable().SetRightClick(PassShowPopAddedItem);
 
+                //Pre: none
+                //Post: none
+                //Description: pass SelectItem function the newly added item
                 void PassSelectAddedItem()
                 {
                     SelectItem(addedItem);
                 }
 
+                //Pre: none
+                //Post: none
+                //Description: pass ShowPopup the added item
                 void PassShowPopAddedItem()
                 {
                     ShowPopup(addedItem);
                 }
 
+                //display popup automatically when user picks up an item
                 ShowPopup(addedItem);
             }
         }
 
-        private void SelectItem(Item addedItem)
+        //Pre: addedItem is an existing item
+        //Post: none
+        //Description: select or deselect an item in inventory
+        private void SelectItem(Item item)
         {
+            Item temp = selectedItem;
+
             displayables.Remove(selectedHB);
 
-            if (selectedItem == null || !selectedItem.GetName().Equals(addedItem.GetName()))
+            if (selectedItem == null || !selectedItem.GetName().Equals(item.GetName()))
             {
-                selectedItem = addedItem;
+                selectedItem = item;
                 Console.WriteLine("selected item: " + selectedItem.GetName());
                 selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
                 displayables.Add(selectedHB);
+
+                if (selectedItem.IsCollectable())
+                {
+                    ShowInventory();
+                }
             }
             else //only run if selectItem = addedItem
             {
                 Console.WriteLine("Deselected: " + selectedItem.GetName());
                 selectedItem = null;
+
+                if (temp.IsCollectable())
+                {
+                    ShowInventory();
+                }
             }
         }
 
@@ -315,121 +374,108 @@ namespace EscapeRoom
         private void ShowInventory()
         {
             clickables.Clear();
+            displayables.Clear();
 
             //remove certain displayables
             displayables.Remove(backBtt);
 
-            for (int i = 0; i < Game1.inventory.items.Count(); i++)
-            {
-                displayables.Remove(Game1.inventory.items[i].GetClickable());
-            }
-
+            //add clickables
             clickables.Add(XButton);
             clickables.Add(Game1.inventory.viewItemsBtt);
 
+            //add displayables
+            displayables.Add(room.GetBG());
             displayables.Add(Game1.inventory.invLayout);
             displayables.Add(XButton);
             displayables.Add(Game1.inventory.viewItemsBtt);
 
-            //Keys
-            //if (keys != null)
-            //{
-            //    Console.WriteLine("keys in inventory: " + keys.Count());
+            //check if selected item is empty
+            if (selectedItem != null)
+            {
+                Clickable currSelected = new Clickable(Game1.inventory.invLayout.X() + 245, Game1.inventory.invLayout.Y() + 90, invItemsHBDim[0], invItemsHBDim[1], selectedItem.GetClickable().GetImg());
 
-            //    int leftMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Left + 125;
-            //    int topMostKeyPos = Game1.inventory.itemsPage.GetHitbox().Top + 245;
-            //    int count = 0;
-
-            //    //columns
-            //    for (int i = 0; i < 3; i++)
-            //    {
-            //        //rows
-            //        for (int j = 0; j < 3; j++)
-            //        {
-            //            if (count <= keys.Count() - 1)
-            //            {
-            //                int index = count;
-
-            //                //reset hitbox location
-            //                keys[index].GetClickable().SetHitbox(new Rectangle(leftMostKeyPos + j * invItemsHBDim[0], topMostKeyPos + i * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
-
-            //                Clickable keyCB = keys[index].GetClickable();
-            //                Rectangle hitbox = keyCB.GetHitbox();
-
-            //                keyCB.SetClick(KeyPopupInventory);
-
-            //                Console.WriteLine("connections: " + connections.Count());
-
-            //                displayables.Add(keys[index].GetClickable());
-            //                displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[index].GetName(), Game1.labelFont, Color.Red));
-
-            //                clickables.Add(keyCB);
-
-            //                void KeyPopupInventory()
-            //                {
-            //                    KeyPopup(keys[index]);
-            //                }
-
-            //                count++;
-            //            }
-            //        }
-            //    }
-
-
-            //}
-
+                //add selected item image to show user what's currently selected
+                displayables.Add(currSelected);
+            }
             
+            //call function that manages keys in inventory
             ShowKeys();
-            
 
+            //call function that manages collectables in inventory
             DisplayCollectables();
         }
 
+        //Pre: none
+        //Post: none
+        //Description: show keys in inventory
         private void ShowKeys()
         {
+            //store list of keys
             List<Key> keys = Game1.inventory.GetKeys();
 
+            //UI information
             int col = 0;
             int row = 0;
+            int numCol = 2;
             int leftMargin = Game1.inventory.itemsPage.GetHitbox().Left + 125;
             int topMargin = Game1.inventory.itemsPage.GetHitbox().Top + 245;
             
+            //run if list isn't empty
             if (keys != null)
             {
+                //run for number of keys in list
                 for (int i = 0; i < keys.Count(); i++)
                 {
+                    //store clickable of current key
                     Clickable keyCB = keys[i].GetClickable();
                     
+                    //temporary copy of index so it won't get overwritten
                     int index = i;
 
-                    //reset hitbox location
+                    //reset hitbox location of key
                     keyCB.SetHitbox(new Rectangle(leftMargin + col * invItemsHBDim[0], topMargin + row * invItemsHBDim[1], invItemsHBDim[0], invItemsHBDim[1]));
+
+                    //update column number
                     col++;
 
-                    if (col > 2)
+                    //check if column number is greater than number of columns
+                    if (col > numCol)
                     {
+                        //reset column to 0
                         col = 0;
+
+                        //add one to row number
                         row++;
                     }
 
+                    //store hitbox of key
                     Rectangle hitbox = keyCB.GetHitbox();
 
+                    //add displayables
                     displayables.Add(keyCB);
                     displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetName(), Game1.labelFont, Color.Red));
 
+                    //add clickables
                     clickables.Add(keyCB);
 
-                    //key is valid if room it leads to is adjacent to current room OR leads to current room
+                    //check if key can be picked up: key is valid if room it leads to is adjacent to current room OR leads to current room
                     if (room.IsAdjacent(keys[index].GetRoom()) || room.GetName().Equals(keys[index].GetRoom().GetName()))
                     {
+                        //set function associated when clicked on key to be KeyPopupInventory
                         keyCB.SetClick(KeyPopupInventory);
                     }
                     else
                     {
+                        //grey out key in inventory
                         displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), keyCB.GetHitbox().Width, keyCB.GetHitbox().Height, greyBoxImg));
+
+                        //set click to show error message
                         keyCB.SetClick(DisplayKeyError);
                     }
 
+                    //Pre: none
+                    //Post: none
+                    //Description: call KeyPopup and pass it the appropriate key
                     void KeyPopupInventory()
                     {
                         KeyPopup(keys[index]);
@@ -438,92 +484,110 @@ namespace EscapeRoom
             }
         }
 
+        //Pre: none
+        //Post: none
+        //Description: display error popup for key
         private void DisplayKeyError()
         {
+            //clear list of displayables and clickables
             displayables.Clear();
             clickables.Clear();
 
-            //room images
+            //add displayables
             displayables.Add(room.GetBG());
-
-            //inventory icon
             displayables.Add(invIcon);
-
-            //popup
-            clickables.Add(okButton);
-
             displayables.Add(popupBGDisp);
             displayables.Add(okButton);
             displayables.Add(keyErrorMsg);
+
+            //add clickables
+            clickables.Add(okButton);
         }
 
+        //Pre: none
+        //Post: none
+        //Description: display collectables in inventory
         private void DisplayCollectables()
         {
+            displayables.Remove(selectedHB);
+
+            //store list of collectables
             List<Item> collectables = Game1.inventory.GetCollectables();
 
-            int col = 0;
-            int leftMargin = 65;
-            int topMargin = 480;
+            //UI display stuff
+            int leftMargin = 60;
+            int topMargin = 490;
             int boxDim = 70;
 
+            //run for number of collectables
             for (int i = 0; i < collectables.Count(); i++)
             {
                 //reset hitbox location
-                collectables[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col * boxDim, Game1.inventory.itemsPage.GetHitbox().Top + topMargin, invItemsHBDim[0], invItemsHBDim[1]));
-                col++;
+                collectables[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + i * boxDim, Game1.inventory.itemsPage.GetHitbox().Top + topMargin, invItemsHBDim[0], invItemsHBDim[1]));
 
+                //add displayables and clickables
                 displayables.Add(collectables[i].GetClickable());
                 clickables.Add(collectables[i].GetClickable());
             }
 
+            //check if selected item is empty and if it's a collectable
             if (selectedItem != null && selectedItem.IsCollectable())
             {
+                //add yellow tint to selected clickable
                 displayables.Add(selectedHB);
             }
         }
 
+        //Pre: none
+        //Post: none
+        //Description: show items page of inventory
         protected void ShowItems()
         {
-            Console.WriteLine("Items page");
-
+            //clear clickables and remove certain displayables
             clickables.Clear();
-
             displayables.Remove(selectedHB);
             
+            //add clickables
             clickables.Add(XButton);
             clickables.Add(backBtt);
 
+            //add displayables
             displayables.Add(Game1.inventory.itemsPage);
             displayables.Add(XButton);
             displayables.Add(backBtt);
 
-            Console.WriteLine("number of items: " + Game1.inventory.items.Count());
-
+            //UI stuff
             int col = 0;
             int row = 0;
+            int colNum = 4;
             int leftMargin = 63;
             int topMargin = 138;
             int boxDim = 70;
 
-            //items
+            //run for number of items
             for (int i = 0; i < Game1.inventory.items.Count(); i++)
             {
                 //reset hitbox location
                 Game1.inventory.items[i].GetClickable().SetHitbox(new Rectangle(Game1.inventory.itemsPage.GetHitbox().Left + leftMargin + col*boxDim , Game1.inventory.itemsPage.GetHitbox().Top + topMargin + row*boxDim, invItemsHBDim[0], invItemsHBDim[1]));
                 col++;
 
-                if (col > 4)
+                //run if column is greater than number of columns
+                if (col > colNum)
                 {
+                    //reset column and increase row number
                     col = 0;
                     row++;
                 }
 
+                //add item to displayables and clickables
                 displayables.Add(Game1.inventory.items[i].GetClickable());
                 clickables.Add(Game1.inventory.items[i].GetClickable());
             }
 
+            //run if selected item is collectable
             if (selectedItem != null && !selectedItem.IsCollectable())
             {
+                //add yellow tint over selected collectable
                 displayables.Add(selectedHB);
             }
         }

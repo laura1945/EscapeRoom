@@ -18,10 +18,28 @@ namespace EscapeRoom
 {
     public class MusicRoom : Room
     {
+        private List<Item> spots;
+        private Item spoonSpot;
+        private Item potionSpot;
+        private Item letterSpot;
+        private Item polaroidSpot;
+        private Item cheeseSpot;
+
         public MusicRoom(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Music Room", Content, spriteBatch, screenWidth, screenHeight)
         {
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/MusicRoom");
+            spots = new List<Item>();
+
             base.LoadContent();
+        }
+
+        public override void LoadContent()
+        {
+            cheeseSpot = new Item("Cheese");
+
+            cheeseSpot.SetClickable(new Clickable(500, 500, 30, 30, Game1.kitchen.cheeseImg));
+
+            cheeseSpot.SetHelperItem(Game1.kitchen.cheeseItem);
         }
     }
 }

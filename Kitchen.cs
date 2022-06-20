@@ -20,12 +20,12 @@ namespace EscapeRoom
         private Texture2D oatsImg;
         private Texture2D heatNoteImg;
         private Texture2D blandNoteImg;
-        private Texture2D cheeseImg;
+        public Texture2D cheeseImg;
 
         private Item oatsItem;
         private Item heatNoteItem;
         private Item blandNoteItem;
-        private Item cheeseItem;
+        public Item cheeseItem;
 
         private Clickable oats;
         private Clickable heatNote;
@@ -58,6 +58,7 @@ namespace EscapeRoom
             oats.SetHitBoxImg(hitboxImg);
             heatNote.SetHitBoxImg(hitboxImg);
             blandNote.SetHitBoxImg(hitboxImg);
+            cheese.SetHitBoxImg(hitboxImg);
 
             //Items
             oatsItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Quaker Oats", oatsImg, "A box of Quaker Oats.");

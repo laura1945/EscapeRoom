@@ -32,6 +32,7 @@ namespace EscapeRoom
             letterImg = Content.Load<Texture2D>("Images/Sprites/Letter");
 
             letter = new Clickable(500, 300, 30, 60, letterImg);
+            letter.SetHitBoxImg(hitboxImg);
 
             letterItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Letter", letterImg, "A sincere letter found on the desk.");
             letterItem.SetClickable(letter);

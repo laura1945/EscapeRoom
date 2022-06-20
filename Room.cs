@@ -55,8 +55,6 @@ namespace EscapeRoom
 
         public Room(string name, ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight)
         {
-            Game1.test = 3; //testing
-
             hitboxImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             keyImg = Content.Load<Texture2D>("Images/Sprites/Key");
 

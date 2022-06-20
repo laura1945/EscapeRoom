@@ -1,4 +1,18 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: Game1.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This is the main class of the game that adds Clickables and Displayables on the screen
+
+/*Course Concepts:
+- Lists used to store keys, collectables, and room connections
+- OOP: each room is an object with its own data, items and clickables are objects, game states are objects.
+- Stacks used to control only one item is interactable at a time in a room
+- Linked structure is used to manage each room's connection to other rooms 
+*/
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -19,9 +33,11 @@ namespace EscapeRoom
     /// </summary>
     public class Game1 : Game
     {
+        //used to draw images and strings
         private GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
 
+        //game states
         public static GameState gameState;
         public static Menu menu;
         public static InGame inGame;
@@ -29,18 +45,21 @@ namespace EscapeRoom
         public static Settings settings;
         public static Lore lore;
 
+        //font types
         public static SpriteFont font;
         public static SpriteFont labelFont;
 
+        //instance of inventory to store user's collected items
         public static Inventory inventory;
+
+        //key to lobby
         private Key lobbyKey;
 
+        //screen width and height
         public static int screenWidth = 1183;
         public static int screenHeight = 666;
 
-        bool newClick;
-        public static bool newKey;
-
+        //The different room types
         public static Lobby lobby;
         public static Ballroom ballroom;
         public static DiningHall diningHall;
@@ -53,13 +72,9 @@ namespace EscapeRoom
         public static MusicRoom musicRoom;
         private List<Room> rooms;
 
+        //stores previous and current state of mouse
         public static MouseState prevMouse;
         public static MouseState mouse;
-
-        KeyboardState prevKb;
-        KeyboardState kb;
-
-        public static int test = 2; //testing global variable (in Room)
 
         public Game1()
         {
@@ -76,8 +91,9 @@ namespace EscapeRoom
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            this.IsMouseVisible = true;
 
+            //makes mouse visible on screen
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -92,15 +108,20 @@ namespace EscapeRoom
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //set screen dimensions
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
             graphics.ApplyChanges();
 
+            //load fonts
             font = Content.Load<SpriteFont>("Fonts/StatFont");
             labelFont = Content.Load<SpriteFont>("Fonts/LabelFont");
 
+            //create instance of Inventory
             inventory = new Inventory(Content, spriteBatch, screenWidth, screenHeight);
 
+            //create instances of different rooms
             lobby = new Lobby(Content, spriteBatch, screenWidth, screenHeight);
             ballroom = new Ballroom(Content, spriteBatch, screenWidth, screenHeight);
             diningHall = new DiningHall(Content, spriteBatch, screenWidth, screenHeight);
@@ -112,6 +133,7 @@ namespace EscapeRoom
             library = new Library(Content, spriteBatch, screenWidth, screenHeight);
             musicRoom = new MusicRoom(Content, spriteBatch, screenWidth, screenHeight);
 
+            //add rooms to the list of rooms
             rooms = new List<Room>();
             rooms.Add(lobby);
             rooms.Add(ballroom);
@@ -124,18 +146,21 @@ namespace EscapeRoom
             rooms.Add(library);
             rooms.Add(musicRoom);
 
+            //run for the number of rooms in the list
             for (int i = 0; i < rooms.Count(); i++)
             {
+                //load each room's data
                 rooms[i].LoadContent();
             }
 
+            //initialize each game state
             menu = new Menu(Content, spriteBatch, screenWidth, screenHeight);
             inGame = new InGame(Content, spriteBatch, screenWidth, screenHeight);
             instructions = new Instructions(Content, spriteBatch, screenWidth, screenHeight, "Instructions");
             settings = new Settings(Content, spriteBatch, screenWidth, screenHeight, "Settings");
             lore = new Lore(Content, spriteBatch, screenWidth, screenHeight, "Back story");
 
-            //room connections
+            //Set room connections
             lobby.SetConnection(ballroom, "right");
             lobby.SetConnection(diningHall, "left");
 
@@ -167,19 +192,23 @@ namespace EscapeRoom
 
             musicRoom.SetConnection(library, "back");
 
-            //game state load content
+            //load each game state's content
             menu.LoadContent();
             inGame.LoadContent();
             instructions.LoadContent();
             settings.LoadContent();
             lore.LoadContent();
 
+            //initialize lobby key 
             lobbyKey = new Key(Content, spriteBatch, screenWidth, screenHeight, lobby.lobbyKeyDesc[0], lobby.keyImg, lobby.lobbyKeyDesc[1], lobby);
 
+            //associate key item with a clickable
             lobbyKey.SetClickable(new Clickable(50, 200, lobby.keyImg.Width / 12, lobby.keyImg.Height / 12, lobby.keyImg));
 
+            //add key to inventory
             inventory.AddKey(lobbyKey);
 
+            //set gamestate to menu
             gameState = menu;
         }
 
@@ -203,31 +232,27 @@ namespace EscapeRoom
                 Exit();
 
             // TODO: Add your update logic here
+
+            //track previous mouse state and retrieve new mouse state
             prevMouse = mouse;
             mouse = Mouse.GetState();
-            prevKb = kb;
-            kb = Keyboard.GetState();
 
-            newClick = CheckClick(mouse.LeftButton, prevMouse.LeftButton);
-            newKey = CheckKey(Keys.Space);
-
+            //store the current gamestate's clickables
             List<Clickable> clickables = gameState.clickables;
-            //Console.WriteLine(clickables.Count());
 
-            if (gameState != inGame && gameState != menu)
-            {
-                gameState.Update();
-            }
-
+            //run for number of clickables
             for (int i = 0; i < gameState.clickables.Count(); i++)
             {
+                //check if user left or right clicked on a clickable
                 if (CheckHit(gameState.clickables[i].GetHitbox()))
                 {
+                    //run associated function with left click on that clickable
                     gameState.clickables[i].Click();
                     break;
                 }
                 else if (CheckRightClick(gameState.clickables[i].GetHitbox()))
                 {
+                    //run associated function with right click on that clickable
                     gameState.clickables[i].RightClick();
                     break;
                 }
@@ -236,51 +261,35 @@ namespace EscapeRoom
             base.Update(gameTime);
         }
 
-        //private void UpdateInstr()
-        //{
-        //    if (CheckClick(mouse.LeftButton, mouse.RightButton, backBttRec))
-        //    {
-        //        gameState = menu;
-        //    }
-        //}
-
-        public static bool CheckClick(ButtonState state, ButtonState prevState)
-        {
-            if (state == ButtonState.Pressed && prevState != ButtonState.Pressed)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
+        //Pre: hitbox is a rectangle that represents the hitbox of a button/clickable
+        //Post: returns true if left clicked on, false otherwise
+        //Description: checks if user left clicked on something
         public static bool CheckHit(Rectangle hitbox)
         {
+            //checks if user left clicked on something and previous mouse state is not pressed
             if (hitbox.Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed && prevMouse.LeftButton!= ButtonState.Pressed)
             {
+                //return true
                 return true;
             }
 
+            //return false (if not clicked on)
             return false;
         }
 
+        //Pre: hitbox is a rectangle that represents the hitbox of a button/clickable
+        //Post: returns true if right clicked on, false otherwise
+        //Description: checks if user right clicked on something
         public static bool CheckRightClick(Rectangle hitbox)
         {
+            //checks if user right clicked on something and previous mouse state is not pressed
             if (hitbox.Contains(mouse.Position) && mouse.RightButton == ButtonState.Pressed && prevMouse.RightButton != ButtonState.Pressed)
             {
+                //return true
                 return true;
             }
 
-            return false;
-        }
-
-        public bool CheckKey(Keys key)
-        {
-            if (kb.IsKeyDown(key) && !prevKb.IsKeyDown(key))
-            {
-                return true;
-            }
-
+            //return false
             return false;
         }
 
@@ -293,50 +302,41 @@ namespace EscapeRoom
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+
+            //begins a new sprite and text batch
             spriteBatch.Begin();
 
-            gameState.Draw();
-
+            //store list of things to display from a game state
             List<Clickable> show = gameState.displayables;
-            //Console.WriteLine(show.Count());
-            //Console.WriteLine(show[0].GetImg());
 
+            //run for the number of displayables in show list
             for (int i = 0; i < show.Count(); i++)
             {
+                //store durrent displayable
                 Clickable curr = show[i];
 
+                //run if displayable is not empty
                 if (curr != null)
                 {
+                    //checks if displayable's image is empty
                     if (curr.GetImg() != null)
                     {
+                        //draw image
                         spriteBatch.Draw(curr.GetImg(), curr.GetHitbox(), Color.White);
                     }
-                    else
-                    {
-                        //Console.WriteLine("Image null");
-                    }
 
+                    //checks if displayable's text is empty
                     if (curr.GetText() != null)
                     {
+                        //draw text
                         spriteBatch.DrawString(curr.GetFont(), curr.GetText(), curr.GetLoc(), curr.GetColour());
                     }
-                    else
-                    {
-                        //Console.WriteLine("Text null");
-                    }
                 }
-                
             }
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
-        //private void DrawInstr()
-        //{
-        //    spriteBatch.DrawString(statFont, "INSTRUCTIONS", testLoc, Color.White);
-        //    spriteBatch.Draw(backBttImg, backBttRec, Color.White);
-        //}
     }
 }
