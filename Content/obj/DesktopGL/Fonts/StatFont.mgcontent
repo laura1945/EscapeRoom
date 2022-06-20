@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</SourceFile>
+  <SourceFile>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/StatFont.spritefont</SourceFile>
   <SourceTime>2018-10-08T06:35:14-04:00</SourceTime>
-  <DestFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/StatFont.xnb</DestFile>
-  <DestTime>2022-06-15T20:02:11.2486079-04:00</DestTime>
+  <DestFile>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/StatFont.xnb</DestFile>
+  <DestTime>2022-06-20T09:44:14.5410863-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-10-11T14:37:00-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

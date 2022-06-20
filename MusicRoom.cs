@@ -39,6 +39,8 @@ namespace EscapeRoom
 
             cheeseSpot.SetClickable(new Clickable(500, 500, 30, 30, Game1.kitchen.cheeseImg));
 
+            cheeseSpot.GetClickable().SetHitBoxImg(hitboxImg);
+
             cheeseSpot.SetHelperItem(Game1.kitchen.cheeseItem);
         }
     }

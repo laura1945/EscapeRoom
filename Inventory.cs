@@ -26,7 +26,7 @@ namespace EscapeRoom
         public Clickable itemsPage;
 
         public List<Item> items;
-        private List<Item> collectables;
+        public List<Item> collectables;
         public List<Key> keys;
 
         public Inventory(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)

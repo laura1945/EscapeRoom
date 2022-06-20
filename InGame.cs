@@ -27,7 +27,7 @@ namespace EscapeRoom
     public class InGame : GameState
     {
         //stores current room player is in
-        private Room room;
+        public Room room;
 
         //tracks selected item in inventory
         private Item selectedItem;
@@ -105,7 +105,7 @@ namespace EscapeRoom
             //key popup clickables
             goToRoomBtt = new Clickable(popupRec.Right - goRoomBttImg.Width, popupRec.Bottom - goRoomBttImg.Height, goRoomBttImg.Width, goRoomBttImg.Height, goRoomBttImg);
             cancelBtt = new Clickable(popupRec.Left, popupRec.Bottom - goRoomBttImg.Height, cancelBttImg.Width, cancelBttImg.Height, cancelBttImg);
-            keyErrorMsg = new Clickable(popupRec.X, popupRec.Y + 20, "You can only go to rooms directly connected to the room you're currently in.", Game1.font, Color.White);
+            keyErrorMsg = new Clickable(popupRec.X, popupRec.Y + 20, "You can only go to rooms directly connected to the room \nyou're currently in.", Game1.font, Color.White);
 
             //inventory icon and x button in inventory
             invIcon = new Clickable(screenWidth - invIconImg.Width/10, screenHeight - invIconImg.Height / 10, invIconImg.Width / 10, invIconImg.Height / 10, invIconImg);

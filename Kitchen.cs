@@ -62,7 +62,7 @@ namespace EscapeRoom
 
             //Items
             oatsItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Quaker Oats", oatsImg, "A box of Quaker Oats.");
-            heatNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on heating oats", heatNoteImg, "A note with instructions for preparing oatmeal, found behind the baking tray.");
+            heatNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on heating oats", heatNoteImg, "A note with instructions for preparing oatmeal, \nfound behind the baking tray.");
             blandNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on taste", blandNoteImg, "A note critiquing the taste of Quaker oatmeal.");
             
             blandNoteItem.SetHelperItem(oatsItem);

@@ -7,9 +7,10 @@
 
 /*Course Concepts:
 - Lists used to store keys, collectables, and room connections
-- OOP: each room is an object with its own data, items and clickables are objects, game states are objects.
+- OOP: each room is an object with its own data, items and clickables are objects, game states are objects, and there's inheritance, such as Key is a child of Item
 - Stacks used to control only one item is interactable at a time in a room
 - Linked structure is used to manage each room's connection to other rooms 
+- File IO used to save game data such as items, collectables, and keys in inventory
 */
 
 using System;
@@ -36,6 +37,12 @@ namespace EscapeRoom
         //used to draw images and strings
         private GraphicsDeviceManager graphics;
         public static SpriteBatch spriteBatch;
+
+        //Initializes variables for reading and writing to files
+        private static StreamReader inFile = null;
+        private static StreamWriter outFile = null;
+        private static string statsFileName = "stats.txt";
+        private static char splitChar = ',';
 
         //game states
         public static GameState gameState;
@@ -337,6 +344,77 @@ namespace EscapeRoom
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void SaveGame()
+        {
+            //store lists from inventory
+            List<Item> items = inventory.items;
+            List<Item> collectables = inventory.collectables;
+            List<Key> keys = inventory.keys;
+
+            //attempt the following actions
+            try
+            {
+                //Opens and overwrites existing file or creates it if it doesn't already exist
+                outFile = File.CreateText(statsFileName);
+
+                //write data
+
+                //current room
+                outFile.WriteLine(inGame.room);
+
+                //save inventory
+                WriteItemList(items);
+                outFile.WriteLine();
+                WriteItemList(collectables);
+                outFile.WriteLine();
+                WriteKeyList(keys);
+            }
+            catch (IndexOutOfRangeException re)
+            {
+                //outputs out of range error
+                Console.WriteLine("ERROR: " + re.Message);
+            }
+            catch (Exception e)
+            {
+                //outputs general error message
+                Console.WriteLine("ERROR: " + e.Message);
+            }
+            finally
+            {
+                //close file if it's not empty
+                if (outFile != null)
+                {
+                    outFile.Close();
+                }
+            }
+        }
+
+        private void WriteItemList(List<Item> items)
+        {
+            for (int i = 0; i < items.Count(); i++)
+            {
+                outFile.Write(items[i].GetName());
+
+                if (i < items.Count() - 1)
+                {
+                    outFile.Write(splitChar);
+                }
+            }
+        }
+
+        private void WriteKeyList(List<Key> keys)
+        {
+            for (int i = 0; i < keys.Count(); i++)
+            {
+                outFile.Write(keys[i].GetName());
+
+                if (i < keys.Count() - 1)
+                {
+                    outFile.Write(splitChar);
+                }
+            }
         }
     }
 }
