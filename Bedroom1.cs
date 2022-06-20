@@ -65,8 +65,8 @@ namespace EscapeRoom
             oldToolNote.SetHitBoxImg(hitboxImg);
 
             //Items
-            reflectNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on reflection", reflectNoteImg, "A note found under the carpet.");
-            oldToolItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on reusability", oldToolImg, "A hint found behind the mirror.");
+            reflectNoteItem = new Item("Note on reflection", reflectNoteImg, "A note found under the carpet.");
+            oldToolItem = new Item("Note on reusability", oldToolImg, "A hint found behind the mirror.");
 
             reflectNoteItem.SetClickable(reflectNote);
             oldToolItem.SetClickable(oldToolNote);
@@ -76,9 +76,9 @@ namespace EscapeRoom
             itemStack.Push(reflectNoteItem);
 
             //create keys
-            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
-            atticKey = new Key(Content, spriteBatch, screenWidth, screenHeight, atticKeyDesc[0], keyImg, atticKeyDesc[1], Game1.attic);
-            bedroom2Key = new Key(Content, spriteBatch, screenWidth, screenHeight, bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.attic);
+            ballroomKey = new Key(ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
+            atticKey = new Key(atticKeyDesc[0], keyImg, atticKeyDesc[1], Game1.attic);
+            bedroom2Key = new Key(bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.attic);
 
             atticKey.SetClickable(new Clickable(455, 535, 65, 50, hitboxImg));
             ballroomKey.SetClickable(new Clickable(605, 605, 70, 40, hitboxImg));

@@ -49,8 +49,8 @@ namespace EscapeRoom
             knowledgeNote.SetHitBoxImg(hitboxImg);
 
             //Items
-            sacrificeNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on sacrifice", sacrificeNoteImg, "A poetic entry found within a pile of logs.");
-            knowledgeNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on knowledge", knowledgeNoteImg, "A confession found on the fireplace.");
+            sacrificeNoteItem = new Item("Note on sacrifice", sacrificeNoteImg, "A poetic entry found within a pile of logs.");
+            knowledgeNoteItem = new Item("Note on knowledge", knowledgeNoteImg, "A confession found on the fireplace.");
 
             sacrificeNoteItem.SetClickable(sacrificeNote);
             knowledgeNoteItem.SetClickable(knowledgeNote);
@@ -60,7 +60,7 @@ namespace EscapeRoom
             itemStack.Push(sacrificeNoteItem);
 
             //keys
-            musicKey = new Key(Content, spriteBatch, screenWidth, screenHeight, musicKeyDesc[0], keyImg, musicKeyDesc[1], Game1.musicRoom);
+            musicKey = new Key(musicKeyDesc[0], keyImg, musicKeyDesc[1], Game1.musicRoom);
 
             musicKey.SetClickable(new Clickable(810, 550, 90, 30, hitboxImg));
 

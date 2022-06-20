@@ -51,7 +51,7 @@ namespace EscapeRoom
             letter.SetHitBoxImg(hitboxImg);
 
             //create letter item
-            letterItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Letter", letterImg, "A sincere letter found on the desk.");
+            letterItem = new Item("Letter", letterImg, "A sincere letter found on the desk.");
             letterItem.SetClickable(letter);
             letterItem.SetCollectable();
 

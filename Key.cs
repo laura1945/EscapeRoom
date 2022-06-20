@@ -19,7 +19,7 @@ namespace EscapeRoom
     {
         private Room room;
 
-        public Key(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details, Room room) : base(Content, spriteBatch, screenWidth, screenHeight, name, itemImg, details)
+        public Key(string name, Texture2D itemImg, string details, Room room) : base(name, itemImg, details)
         {
             this.room = room;
         }

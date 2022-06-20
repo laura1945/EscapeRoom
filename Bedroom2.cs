@@ -65,8 +65,8 @@ namespace EscapeRoom
             cagedNote.SetHitBoxImg(hitboxImg);
 
             //Items
-            wilterNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on passion", wilterNoteImg, "A diary entry found within the book.");
-            cagedNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on escape", cagedNoteImg, "A note that hints at the location of three escapes.");
+            wilterNoteItem = new Item("Note on passion", wilterNoteImg, "A diary entry found within the book.");
+            cagedNoteItem = new Item("Note on escape", cagedNoteImg, "A note that hints at the location of three escapes.");
 
             wilterNoteItem.SetClickable(wilterNote);
             cagedNoteItem.SetClickable(cagedNote);
@@ -76,9 +76,9 @@ namespace EscapeRoom
             itemStack.Push(wilterNoteItem);
 
             //keys
-            bedroom1Key = new Key(Content, spriteBatch, screenWidth, screenHeight, bed1KeyDesc[0], keyImg, bed1KeyDesc[1], Game1.bedroom1);
-            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
-            libraryKey = new Key(Content, spriteBatch, screenWidth, screenHeight, libraryKeyDesc[0], keyImg, libraryKeyDesc[1], Game1.library);
+            bedroom1Key = new Key(bed1KeyDesc[0], keyImg, bed1KeyDesc[1], Game1.bedroom1);
+            diningKey = new Key(diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
+            libraryKey = new Key(libraryKeyDesc[0], keyImg, libraryKeyDesc[1], Game1.library);
 
             bedroom1Key.SetClickable(new Clickable(115, 470, 130, 40, hitboxImg));
             diningKey.SetClickable(new Clickable(70, 115, 120, 170, hitboxImg));

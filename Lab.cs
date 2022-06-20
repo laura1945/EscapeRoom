@@ -34,7 +34,7 @@ namespace EscapeRoom
             potion = new Clickable(500, 300, 30, 60, potionImg);
             potion.SetHitBoxImg(hitboxImg);
 
-            potionItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Potion Bottle", potionImg, "A bottle of unknown liquid.");
+            potionItem = new Item("Potion Bottle", potionImg, "A bottle of unknown liquid.");
             potionItem.SetClickable(potion);
             potionItem.SetCollectable();
             collectable = potionItem;

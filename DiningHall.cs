@@ -71,8 +71,8 @@ namespace EscapeRoom
             spoon.SetHitBoxImg(hitboxImg);
 
             //Items
-            hungryNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about hunger", hungryNoteImg, "A handwritten note hidden on the eagle.");
-            pictureNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note about pictures", pictureNoteImg, "A handwritten note found in the vending machine.");
+            hungryNoteItem = new Item("Note about hunger", hungryNoteImg, "A handwritten note hidden on the eagle.");
+            pictureNoteItem = new Item("Note about pictures", pictureNoteImg, "A handwritten note found in the vending machine.");
 
             hungryNoteItem.SetClickable(hungryNote);
             pictureNoteItem.SetClickable(pictureNote);
@@ -82,9 +82,9 @@ namespace EscapeRoom
             itemStack.Push(hungryNoteItem);
 
             //keys
-            bedroom2Key = new Key(Content, spriteBatch, screenWidth, screenHeight, bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.bedroom2);
-            kitchenKey = new Key(Content, spriteBatch, screenWidth, screenHeight, kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
-            labKey = new Key(Content, spriteBatch, screenWidth, screenHeight, labKeyDesc[0], keyImg, labKeyDesc[1], Game1.lab);
+            bedroom2Key = new Key(bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.bedroom2);
+            kitchenKey = new Key(kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
+            labKey = new Key(labKeyDesc[0], keyImg, labKeyDesc[1], Game1.lab);
 
             bedroom2Key.SetClickable(new Clickable(533, 320, 40, 30, hitboxImg));
             kitchenKey.SetClickable(new Clickable(495, 265, 30, 40, hitboxImg));
@@ -95,7 +95,7 @@ namespace EscapeRoom
             keys.Add(labKey);
 
             //create spoon collectable
-            spoonItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Silver Spoon", spoonImg, "A silver spoon hidden within the statue.");
+            spoonItem = new Item("Silver Spoon", spoonImg, "A silver spoon hidden within the statue.");
             spoonItem.SetClickable(spoon);
             spoonItem.SetCollectable();
             collectable = spoonItem;

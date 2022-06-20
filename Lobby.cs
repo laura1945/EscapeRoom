@@ -50,7 +50,7 @@ namespace EscapeRoom
             pryDetails = "A floorboard pry bar was found beneath the table cloth.";
 
             //Items
-            pryBar = new Item(Content, spriteBatch, screenWidth, screenHeight, "Floorboard Pry Bar", pryImg, pryDetails);
+            pryBar = new Item("Floorboard Pry Bar", pryImg, pryDetails);
 
             //clickables
             pryClickable = new Clickable(500, 410, 120, 90, pryImg);
@@ -63,8 +63,8 @@ namespace EscapeRoom
             itemStack.Push(pryBar);
 
             //keys
-            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight,ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
-            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
+            ballroomKey = new Key(ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
+            diningKey = new Key(diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
 
             ballroomKey.SetClickable(new Clickable(915, 525, 100, 40, keyImg));
             diningKey.SetClickable(new Clickable(150, 525, 100, 40, keyImg));

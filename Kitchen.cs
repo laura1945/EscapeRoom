@@ -61,9 +61,9 @@ namespace EscapeRoom
             cheese.SetHitBoxImg(hitboxImg);
 
             //Items
-            oatsItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Quaker Oats", oatsImg, "A box of Quaker Oats.");
-            heatNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on heating oats", heatNoteImg, "A note with instructions for preparing oatmeal, \nfound behind the baking tray.");
-            blandNoteItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Note on taste", blandNoteImg, "A note critiquing the taste of Quaker oatmeal.");
+            oatsItem = new Item("Quaker Oats", oatsImg, "A box of Quaker Oats.");
+            heatNoteItem = new Item("Note on heating oats", heatNoteImg, "A note with instructions for preparing oatmeal, \nfound behind the baking tray.");
+            blandNoteItem = new Item("Note on taste", blandNoteImg, "A note critiquing the taste of Quaker oatmeal.");
             
             blandNoteItem.SetHelperItem(oatsItem);
 
@@ -77,8 +77,8 @@ namespace EscapeRoom
             itemStack.Push(oatsItem);
             
             //keys
-            ballroomKey = new Key(Content, spriteBatch, screenWidth, screenHeight, ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
-            diningKey = new Key(Content, spriteBatch, screenWidth, screenHeight, diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
+            ballroomKey = new Key(ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
+            diningKey = new Key(diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
 
             ballroomKey.SetClickable(new Clickable(855, 87, 23, 40, hitboxImg));
             diningKey.SetClickable(new Clickable(832, 95, 18, 33, hitboxImg));
@@ -87,7 +87,7 @@ namespace EscapeRoom
             keys.Add(ballroomKey);
 
             //collectable
-            cheeseItem = new Item(Content, spriteBatch, screenWidth, screenHeight, "Cheese", cheeseImg, "A slice of swiss cheese found in a pot.");
+            cheeseItem = new Item("Cheese", cheeseImg, "A slice of swiss cheese found in a pot.");
             cheeseItem.SetClickable(cheese);
             cheeseItem.SetCollectable();
             collectable = cheeseItem;

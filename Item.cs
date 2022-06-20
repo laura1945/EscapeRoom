@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: Item.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class is the general item players collect
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,15 +24,14 @@ namespace EscapeRoom
 {
     public class Item
     {
-        private ContentManager Content;
-        private SpriteBatch spriteBatch;
+        //variables
+        //private ContentManager Content;
+        //private SpriteBatch spriteBatch;
 
-        private int screenWidth;
-        private int screenHeight;
+        //private int screenWidth;
+        //private int screenHeight;
 
         private bool isCollectable;
-        private bool progress;
-        private bool condition;
 
         private string name;
         private string details;
@@ -38,12 +44,12 @@ namespace EscapeRoom
 
         private bool isInvItem;
 
-        public Item(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight, string name, Texture2D itemImg, string details)
+        public Item(string name, Texture2D itemImg, string details)
         {
-            this.Content = Content;
-            this.spriteBatch = spriteBatch;
-            this.screenWidth = screenWidth;
-            this.screenHeight = screenHeight;
+            //this.Content = Content;
+            //this.spriteBatch = spriteBatch;
+            //this.screenWidth = screenWidth;
+            //this.screenHeight = screenHeight;
             this.name = name;
             this.itemImg = itemImg;
             this.details = details;
@@ -64,16 +70,6 @@ namespace EscapeRoom
         public void SetClickable(Clickable clickable)
         {
             this.clickable = clickable;
-        }
-
-        public void SetProgress() //item that directly progresses room state (part of stack of items)
-        {
-            progress = true;
-        }
-
-        public void SetCondition() //additional conditions
-        {
-            condition = true;
         }
 
         public void SetNoInvItem()
