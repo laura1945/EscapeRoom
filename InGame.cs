@@ -225,17 +225,23 @@ namespace EscapeRoom
         //Description: select or deselect an item in inventory
         private void SelectItem(Item item)
         {
+            //temporary storage of selectedItem
             Item temp = selectedItem;
 
+            //remove yellow tint
             displayables.Remove(selectedHB);
 
+            //check if selected item isn't empty and isn't already selected
             if (selectedItem == null || !selectedItem.GetName().Equals(item.GetName()))
             {
+                //set selected item
                 selectedItem = item;
-                Console.WriteLine("selected item: " + selectedItem.GetName());
+
+                //reset location of yellow tint, add to displayables
                 selectedHB = new Clickable(selectedItem.GetClickable().GetHitbox().X, selectedItem.GetClickable().GetHitbox().Y, selectedItem.GetClickable().GetHitbox().Width, selectedItem.GetClickable().GetHitbox().Height, selectedItem.GetClickable().GetHitboxImg());
                 displayables.Add(selectedHB);
 
+                //refresh inventory UI if selected item is a collectable
                 if (selectedItem.IsCollectable())
                 {
                     ShowInventory();
@@ -243,9 +249,10 @@ namespace EscapeRoom
             }
             else //only run if selectItem = addedItem
             {
-                Console.WriteLine("Deselected: " + selectedItem.GetName());
+                //deselect item
                 selectedItem = null;
 
+                //refresh inventory UI if selected item is a collectable
                 if (temp.IsCollectable())
                 {
                     ShowInventory();
@@ -253,69 +260,92 @@ namespace EscapeRoom
             }
         }
 
+        //Pre: item is an existing item 
+        //Post: none
+        //Description: show popup for regular item
         private void ShowPopup(Item item)
         {
-            Console.WriteLine("going to popup");
+            //clear displayables and clickables
             displayables.Clear();
             clickables.Clear();
 
+            //reset item info on popup
             popupItemImg = item.GetClickable().GetImg();
             popupItemImgRec = new Rectangle(popupRec.X + popupItemImg.Width / 2, popupRec.Top + (popupRec.Height / 3), popupItemImg.Width, popupItemImg.Height);
             popupName = new Clickable(popupRec.X, popupRec.Y + 20, item.GetName(), Game1.font, Color.White);
             popupItem = new Clickable(popupItemImgRec.X, popupItemImgRec.Y, popupItemImgRec.Width, popupItemImgRec.Height, popupItemImg);
             popupDetails = new Clickable(popupRec.X, popupRec.Y + 40, item.GetDetails(), Game1.font, Color.White);
 
-            //room images
+            //add displayables
             displayables.Add(room.GetBG());
-
-            //inventory icon
             displayables.Add(invIcon);
-
-            //popup
-            clickables.Add(okButton);
-
             displayables.Add(popupBGDisp);
-
             displayables.Add(popupName);
             displayables.Add(popupItem);
             displayables.Add(popupDetails);
             displayables.Add(okButton);
+
+            //add clickables
+            clickables.Add(okButton);
         }
 
+        //Pre: none
+        //Post: none
+        //Description: run normal state of in game
         public void StartNormal()
         {
+            //clear displayables and clickables
             displayables.Clear();
             clickables.Clear();
 
+            //add room background image 
             displayables.Add(room.GetBG());
             
-            //collectables
+            //run if room has a collectable
             if (room.collectable != null)
             {
+                //store collectable of room
                 Clickable collectable = room.collectable.GetClickable();
 
+                //set click to be added to inventory
                 collectable.SetClick(AddCollectableToInv);
 
+                //add collectable to displayables and clickables list
                 displayables.Add(collectable);
                 clickables.Add(collectable);
 
+                //Pre: none
+                //Post: none
+                //Description: add collectable to inventory
                 void AddCollectableToInv()
                 {
+                    //store new instance of collectable so it doesn't get overwritten later
                     Item addedCollect = room.collectable;
 
+                    //add to inventory
                     Game1.inventory.AddCollectable(room.collectable);
 
+                    //set left and right click functions of collectable when clicked on
                     collectable.SetClick(PassSelectAddedCollect);
                     collectable.SetRightClick(PassShowPopAddedCollect);
 
+                    //show popup 
                     ShowPopup(addedCollect);
+
+                    //remove collectable from room
                     room.RemoveCollectable();
 
+                    //Pre: none
+                    //Post: none
+                    //Description: pass SelectItem the collectable to be selected
                     void PassSelectAddedCollect()
                     {
                         SelectItem(addedCollect);
                     }
 
+                    //Pre: none
+                    //Post: none
+                    //Description: pass ShowPopup the collectable
                     void PassShowPopAddedCollect()
                     {
                         ShowPopup(addedCollect);
@@ -323,56 +353,75 @@ namespace EscapeRoom
                 }
             }
 
+            //store item and clickable at top of itemStack in room
             Clickable currItemCB = room.GetClickable();
             Item currItem = room.GetItem();
 
+            //check if item clickable is empty
             if (currItemCB != null)
             {
-                Console.WriteLine("currItem: " + currItem.GetName());
-
+                //set left click on item to popStackAndPopUp
                 currItemCB.SetClick(popStackAndPopUp);
 
+                //add item to displayables and clickables list
                 displayables.Add(currItemCB.GetHitClickable());
                 clickables.Add(currItemCB);
             }
             else
             {
-                Console.WriteLine("currItemCB is null");
+                //store keys in room
+                List<Key> keys = room.GetKeys(); 
 
-                List<Key> keys = room.GetKeys(); //!
+                //update list of keys in room
                 room.UpdateKeysList(keys);
-                Console.WriteLine("Keys: " + keys.Count());
 
+                //run for number of keys
                 for (int i = 0; i < keys.Count(); i++)
                 {
+                    //store current key and its clickable
                     Key key = keys[i];
                     Clickable keyCB = key.GetClickable();
 
+                    //call CheckKeyPickup on left click of key
                     keyCB.SetClick(CheckKeyPickup);
 
+                    //add key and info to displayables and clickables list
                     displayables.Add(keyCB);
-                    displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), key.GetName(), Game1.font, Color.White)); //testing
+                    displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), key.GetName(), Game1.font, Color.White)); 
                     clickables.Add(keys[i].GetClickable());
 
+                    //Pre: none
+                    //Post: none
+                    //Description: checks if key can be picked up, and adds it if it can be
                     void CheckKeyPickup()
                     {
+                        //runs if key's helper item is selected in inventoy OR there's no associated helper item
                         if (selectedItem == key.GetHelperItem() || key.GetHelperItem() == null)
                         {
-                            Console.WriteLine("key name: " + key.GetName());
+                            //add key to inventory
                             Game1.inventory.AddKey(key);
+
+                            //show popup for key
                             KeyPopup(key);
+
+                            //remove key from list of keys in room
                             keys.Remove(key);
                         }
                     }
                 }
             }
 
+            //add inventory icon to clickables and displayables
             clickables.Add(invIcon);
             displayables.Add(invIcon);
         }
         
+        //Pre: none
+        //Post: none
+        //Description: show main inventory page
         private void ShowInventory()
         {
+            //clear clickables and displayables
             clickables.Clear();
             displayables.Clear();
 
