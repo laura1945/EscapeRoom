@@ -27,7 +27,7 @@ namespace EscapeRoom
     public class InGame : GameState
     {
         //for testing purposes
-        private bool showHitbox = false;
+        private bool showHitbox = true;
 
         //stores current room player is in
         public Room room;
@@ -74,7 +74,7 @@ namespace EscapeRoom
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             //sets room to be lobby
-            room = Game1.lobby;
+            room = Game1.diningHall;
         }
         
         //Pre: none

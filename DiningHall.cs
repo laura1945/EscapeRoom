@@ -64,7 +64,7 @@ namespace EscapeRoom
             //Clickables
             hungryNote = new Clickable(80, 90, 100, 50, hungryNoteImg);
             pictureNote = new Clickable(50, 300, 120, 170, pictureNoteImg);
-            spoon = new Clickable(1000, 80, 40, 70, spoonImg);
+            spoon = new Clickable(1020, 100, 40, 20, spoonImg);
 
             hungryNote.SetHitBoxImg(hitboxImg);
             pictureNote.SetHitBoxImg(hitboxImg);
