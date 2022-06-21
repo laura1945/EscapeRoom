@@ -76,7 +76,7 @@ namespace EscapeRoom
 
             //keys
             musicKey = new Key(musicKeyDesc[0], keyImg, musicKeyDesc[1], Game1.musicRoom);
-            musicKey.SetClickable(new Clickable(810, 550, 90, 30, hitboxImg));
+            musicKey.SetClickable(new Clickable(810, 550, 90, 30, keyImg));
             keys.Add(musicKey);
         }
     }

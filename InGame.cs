@@ -74,7 +74,7 @@ namespace EscapeRoom
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             //sets room to be lobby
-            room = Game1.diningHall;
+            room = Game1.lobby;
         }
         
         //Pre: none
@@ -520,7 +520,7 @@ namespace EscapeRoom
 
                     //add displayables
                     displayables.Add(keyCB);
-                    displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetName(), Game1.labelFont, Color.Red));
+                    displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetRoom().GetName(), Game1.labelFont, Color.Red));
 
                     //add clickables
                     clickables.Add(keyCB);

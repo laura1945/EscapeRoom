@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</SourceFile>
+  <SourceFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Images/Sprites/Spoon.png</SourceFile>
   <SourceTime>2022-06-18T11:31:54.2643786-04:00</SourceTime>
-  <DestFile>D:/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Images/Sprites/Spoon.xnb</DestFile>
-  <DestTime>2022-06-20T09:44:18.9910912-04:00</DestTime>
+  <DestFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Images/Sprites/Spoon.xnb</DestFile>
+  <DestTime>2022-06-20T22:48:47.5814679-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-11T14:37:00-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

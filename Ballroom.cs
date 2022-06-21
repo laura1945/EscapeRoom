@@ -75,8 +75,8 @@ namespace EscapeRoom
             bedroom1Key = new Key(bed1KeyDesc[0], keyImg, bed1KeyDesc[1], Game1.bedroom1);
             kitchenKey = new Key(kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
 
-            bedroom1Key.SetClickable(new Clickable(480, 375, 60, 30, hitboxImg));
-            kitchenKey.SetClickable(new Clickable(455, 40, 130, 100, hitboxImg));
+            bedroom1Key.SetClickable(new Clickable(480, 375, 60, 30, keyImg));
+            kitchenKey.SetClickable(new Clickable(455, 40, 130, 100, keyImg));
 
             //add keys to list of keys in ballroom
             keys.Add(bedroom1Key);

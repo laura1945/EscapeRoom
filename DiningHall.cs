@@ -86,9 +86,9 @@ namespace EscapeRoom
             kitchenKey = new Key(kitchenKeyDesc[0], keyImg, kitchenKeyDesc[1], Game1.kitchen);
             labKey = new Key(labKeyDesc[0], keyImg, labKeyDesc[1], Game1.lab);
 
-            bedroom2Key.SetClickable(new Clickable(533, 320, 40, 30, hitboxImg));
-            kitchenKey.SetClickable(new Clickable(495, 265, 30, 40, hitboxImg));
-            labKey.SetClickable(new Clickable(530, 268, 43, 40, hitboxImg));
+            bedroom2Key.SetClickable(new Clickable(533, 320, 40, 30, keyImg));
+            kitchenKey.SetClickable(new Clickable(495, 265, 30, 40, keyImg));
+            labKey.SetClickable(new Clickable(530, 268, 43, 40, keyImg));
 
             keys.Add(bedroom2Key);
             keys.Add(kitchenKey);

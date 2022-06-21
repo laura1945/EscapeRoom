@@ -80,9 +80,9 @@ namespace EscapeRoom
             diningKey = new Key(diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
             libraryKey = new Key(libraryKeyDesc[0], keyImg, libraryKeyDesc[1], Game1.library);
 
-            bedroom1Key.SetClickable(new Clickable(115, 470, 130, 40, hitboxImg));
-            diningKey.SetClickable(new Clickable(70, 115, 120, 170, hitboxImg));
-            libraryKey.SetClickable(new Clickable(643, 420, 50, 80, hitboxImg));
+            bedroom1Key.SetClickable(new Clickable(115, 470, 130, 40, keyImg));
+            diningKey.SetClickable(new Clickable(70, 115, 120, 170, keyImg));
+            libraryKey.SetClickable(new Clickable(643, 420, 50, 80, keyImg));
 
             keys.Add(bedroom1Key);
             keys.Add(diningKey);

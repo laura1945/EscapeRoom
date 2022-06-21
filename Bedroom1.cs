@@ -80,9 +80,9 @@ namespace EscapeRoom
             atticKey = new Key(atticKeyDesc[0], keyImg, atticKeyDesc[1], Game1.attic);
             bedroom2Key = new Key(bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.attic);
 
-            atticKey.SetClickable(new Clickable(455, 535, 65, 50, hitboxImg));
-            ballroomKey.SetClickable(new Clickable(605, 605, 70, 40, hitboxImg));
-            bedroom2Key.SetClickable(new Clickable(800, 455, 70, 50, hitboxImg));
+            atticKey.SetClickable(new Clickable(455, 535, 65, 50, keyImg));
+            ballroomKey.SetClickable(new Clickable(605, 605, 70, 40, keyImg));
+            bedroom2Key.SetClickable(new Clickable(800, 455, 70, 50, keyImg));
 
             //set associated helper item (must have it selected in order to pick up key)
             atticKey.SetHelperItem(Game1.lobby.pryBar);
