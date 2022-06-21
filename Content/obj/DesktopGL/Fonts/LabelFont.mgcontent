@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Fonts/LabelFont.spritefont</SourceFile>
-  <SourceTime>2022-06-15T08:53:20.2826492-04:00</SourceTime>
+  <SourceTime>2022-06-20T22:48:49.6621382-04:00</SourceTime>
   <DestFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Fonts/LabelFont.xnb</DestFile>
-  <DestTime>2022-06-20T22:48:46.0898184-04:00</DestTime>
+  <DestTime>2022-06-20T22:58:03.3677903-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-10-11T14:37:00-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

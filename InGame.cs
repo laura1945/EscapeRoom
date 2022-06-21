@@ -520,7 +520,7 @@ namespace EscapeRoom
 
                     //add displayables
                     displayables.Add(keyCB);
-                    displayables.Add(new Clickable(hitbox.X + 3, hitbox.Y, keys[i].GetRoom().GetName(), Game1.labelFont, Color.Red));
+                    displayables.Add(new Clickable(hitbox.X + 3, hitbox.Bottom - 15, keys[i].GetRoom().GetName(), Game1.labelFont, Color.Red));
 
                     //add clickables
                     clickables.Add(keyCB);

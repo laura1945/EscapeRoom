@@ -78,7 +78,7 @@ namespace EscapeRoom
             //create keys
             ballroomKey = new Key(ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
             atticKey = new Key(atticKeyDesc[0], keyImg, atticKeyDesc[1], Game1.attic);
-            bedroom2Key = new Key(bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.attic);
+            bedroom2Key = new Key(bed2KeyDesc[0], keyImg, bed2KeyDesc[1], Game1.bedroom2);
 
             atticKey.SetClickable(new Clickable(455, 535, 65, 50, keyImg));
             ballroomKey.SetClickable(new Clickable(605, 605, 70, 40, keyImg));
