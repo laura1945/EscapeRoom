@@ -33,7 +33,7 @@ namespace EscapeRoom
             //set story 
             storyText = "On June 20, 2022, Laura Zhan accepted her fate. She realized that she couldn't finish this project, so the final level in this game is to complete this code. \nGood luck and have fun!"; 
 
-            story = new Clickable(100, 200, storyText, Game1.font, Color.White);
+            story = new Clickable(50, 200, storyText, Game1.font, Color.White);
         }
 
         //Pre: none

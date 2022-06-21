@@ -43,7 +43,7 @@ namespace EscapeRoom
             
             //initialize back button and title clickables
             backBtt = new Clickable(10, screenHeight - backBttImg.Height / 4, backBttImg.Width / 4, backBttImg.Height / 4, backBttImg);
-            title = new Clickable(100, 100, titleTxt, Game1.font, Color.White);
+            title = new Clickable(50, 50, titleTxt, Game1.font, Color.White);
 
             //set left click of back button to go back to menu page
             backBtt.SetClick(ReturnToMenu);
