@@ -27,7 +27,7 @@ namespace EscapeRoom
     public class InGame : GameState
     {
         //for testing purposes
-        private bool showHitbox = true;
+        private bool showHitbox = false;
 
         //stores current room player is in
         public Room room;

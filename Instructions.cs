@@ -46,7 +46,7 @@ namespace EscapeRoom
         {
             string line;
             int counter = 0;
-            int lineGap = 10;
+            int lineGap = 20;
 
             try
             {

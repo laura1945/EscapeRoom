@@ -83,6 +83,8 @@ namespace EscapeRoom
         public static MouseState prevMouse;
         public static MouseState mouse;
 
+        Song bgMusic;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -124,6 +126,12 @@ namespace EscapeRoom
             //load fonts
             font = Content.Load<SpriteFont>("Fonts/StatFont");
             labelFont = Content.Load<SpriteFont>("Fonts/LabelFont");
+
+            //load music
+            bgMusic = Content.Load<Song>("Audio/Music/LostDreams");
+
+            MediaPlayer.IsRepeating = true; //set music to loop 
+            MediaPlayer.Play(bgMusic);
 
             //create instance of Inventory
             inventory = new Inventory(Content, spriteBatch, screenWidth, screenHeight);

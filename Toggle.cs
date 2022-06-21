@@ -29,12 +29,21 @@ namespace EscapeRoom
 
         //representations for off state
         private Texture2D offImg;
+        private Texture2D onImg;
         private string offText;
 
         public Toggle(int X, int Y, int width, int length) : base(X, Y, width, length)
         {
             //set default state to be on
             on = true;
+        }
+
+        public Toggle(int X, int Y, int width, int length, Texture2D onImg, Texture2D offImg) : base(X, Y, width, length)
+        {
+            //set default state to be on
+            on = true;
+            this.offImg = offImg;
+            this.onImg = onImg;
         }
 
         //Pre: none
@@ -53,7 +62,7 @@ namespace EscapeRoom
             //return on image if button is on, return off image otherwise
             if (on)
             {
-                return base.GetImg();
+                return onImg;
             }
 
             return offImg;
@@ -87,6 +96,11 @@ namespace EscapeRoom
         public void SetOffText(string text)
         {
             offText = text;
+        }
+
+        public void SetOffImg(Texture2D offImg)
+        {
+            this.offImg = offImg;
         }
 
         //Pre: none

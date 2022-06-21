@@ -1,3 +1,20 @@
-testing
+How to play:
+The play starts in the Lobby of the mansion. You must click around and find objects that will provide useful hints 
+or be used to unlock other items. The goal is to escape the house, or reach the music room and program the rest 
+of this game to escape. 
 
-hello instructions
+Types of objects:
+Items: regular items 
+Keys: these unlock a new room
+Collectable: separate from regular items, they will be used in the future
+
+Commands:
+--> pick up objects in room with left click
+--> select items and collectables in inventory with left click
+--> right click items and collectables to see more info about them
+
+Other notes:
+- To use an item to unlock another object, select it in your inventory
+- You may have an item selected and pick up objects in the room that don't need it to be selected,
+  but if an object requires a specific item to be selected, then the object is only interactable if that
+  particular item is selected.

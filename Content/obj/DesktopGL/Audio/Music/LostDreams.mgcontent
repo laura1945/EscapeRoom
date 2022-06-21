@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/Content/Audio/Music/LostDreams.mp3</SourceFile>
+  <SourceTime>2022-06-20T23:25:08.3816716-04:00</SourceTime>
+  <DestFile>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Audio/Music/LostDreams.xnb</DestFile>
+  <DestTime>2022-06-20T23:26:39.4339694-04:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2018-10-11T14:37:00-04:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2018-10-11T14:37:00-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>A:/School/ICS4/Assignments/EscapeRoom/EscapeRoom/bin/Debug/Content/Audio/Music/LostDreams.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>
