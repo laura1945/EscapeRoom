@@ -27,7 +27,7 @@ namespace EscapeRoom
     public class InGame : GameState
     {
         //for testing purposes
-        private bool showHitbox;
+        private bool showHitbox = false;
 
         //stores current room player is in
         public Room room;
@@ -74,9 +74,7 @@ namespace EscapeRoom
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             //sets room to be lobby
-            room = Game1.attic;
-
-            showHitbox = false;
+            room = Game1.lobby;
         }
         
         //Pre: none
@@ -318,8 +316,8 @@ namespace EscapeRoom
                 //add collectable to clickables list
                 clickables.Add(collectable);
 
-                //show hitbox if the testing settting is turned on
-                if (showHitbox)
+                //show hitbox if the testing settting is turned on (or if item is potion because I like how it looks sitting on the table)
+                if (showHitbox || room.collectable.GetName().Equals("Potion Bottle"))
                 {
                     displayables.Add(collectable);
                 }
@@ -374,12 +372,12 @@ namespace EscapeRoom
                 currItemCB.SetClick(popStackAndPopUp);
 
                 //add item to clickables list
-                displayables.Add(currItemCB.GetHitClickable());
+                clickables.Add(currItemCB);
 
                 //show hitbox if the testing settting is turned on
                 if (showHitbox)
                 {
-                    clickables.Add(currItemCB);
+                    displayables.Add(currItemCB.GetHitClickable());
                 }
             }
             else

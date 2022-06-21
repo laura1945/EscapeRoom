@@ -58,7 +58,7 @@ namespace EscapeRoom
 
             //Clickables
             sheetMusic = new Clickable(190, 525, 100, 25, sheetMusicImg);
-            polaroid = new Clickable(500, 300, 100, 50, polaroidImg);
+            polaroid = new Clickable(1000, 20, 100, 50, polaroidImg);
 
             sheetMusic.SetHitBoxImg(hitboxImg);
             polaroid.SetHitBoxImg(hitboxImg);
@@ -83,7 +83,7 @@ namespace EscapeRoom
             keys.Add(kitchenKey);
 
             //create polaroid collectable
-            polaroidItem = new Item("Polaroid Photo", sheetMusicImg, "A memory of better times.");
+            polaroidItem = new Item("Polaroid Photo", sheetMusicImg, "A memory of better times, found behind the curtains.");
             polaroidItem.SetClickable(polaroid);
             polaroidItem.SetCollectable();
 

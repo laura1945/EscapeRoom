@@ -68,7 +68,7 @@ namespace EscapeRoom
             oats = new Clickable(400, 40, 60, 80, oatsImg);
             heatNote = new Clickable(623, 210, 115, 95, heatNoteImg);
             blandNote = new Clickable(990, 325, 100, 135, blandNoteImg);
-            cheese = new Clickable(400, 200, 100, 100, cheeseImg);
+            cheese = new Clickable(480, 330, 30, 30, cheeseImg);
 
             oats.SetHitBoxImg(hitboxImg);
             heatNote.SetHitBoxImg(hitboxImg);
