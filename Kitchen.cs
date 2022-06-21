@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: Kitchen.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class manages the data in the kitchen
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,30 +24,38 @@ namespace EscapeRoom
 {
     public class Kitchen : Room
     {
+        //images of items
         private Texture2D oatsImg;
         private Texture2D heatNoteImg;
         private Texture2D blandNoteImg;
         public Texture2D cheeseImg;
 
+        //items in kitchen
         private Item oatsItem;
         private Item heatNoteItem;
         private Item blandNoteItem;
         public Item cheeseItem;
 
+        //clickables associated with items
         private Clickable oats;
         private Clickable heatNote;
         private Clickable blandNote;
         private Clickable cheese;
 
+        //keys in the room
         private Key diningKey;
         private Key ballroomKey;
 
         public Kitchen(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Kitchen", Content, spriteBatch, screenWidth, screenHeight)
         {
+            //load kitchen image and load general room content
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/kitchen");
             base.LoadContent();
         }
 
+        //Pre: none
+        //Post: none
+        //Desc: load kitchen data
         public override void LoadContent()
         {
             //Images
@@ -71,7 +86,7 @@ namespace EscapeRoom
             heatNoteItem.SetClickable(heatNote);
             blandNoteItem.SetClickable(blandNote);
 
-            //stacks
+            //add items to stack
             itemStack.Push(blandNoteItem);
             itemStack.Push(heatNoteItem);
             itemStack.Push(oatsItem);
@@ -86,7 +101,7 @@ namespace EscapeRoom
             keys.Add(diningKey);
             keys.Add(ballroomKey);
 
-            //collectable
+            //create cheese collectable
             cheeseItem = new Item("Cheese", cheeseImg, "A slice of swiss cheese found in a pot.");
             cheeseItem.SetClickable(cheese);
             cheeseItem.SetCollectable();

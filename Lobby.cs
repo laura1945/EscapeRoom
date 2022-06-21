@@ -1,4 +1,11 @@
-﻿using System;
+﻿// Author: Laura Zhan
+// File Name: Lobby.cs
+// Project Name: EscapeRoom
+// Creation Date: May 18, 2022
+// Modified Date: June 20, 2022
+// Description: This class manages the data in the lobby
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections;
@@ -17,52 +24,48 @@ namespace EscapeRoom
 {
     public class Lobby : Room
     {
+        //images of item
         private Texture2D clothHBImg;
         private Texture2D pryImg;
-        private Texture2D pryDescImg;
 
-        private Rectangle tableClothHB;
-
+        //item in room
         public Item pryBar;
 
-        private string pryDetails;
-
+        //clickable associated with pry item
         private Clickable pryClickable;
+
+        //keys lobby
         private Key ballroomKey;
         private Key diningKey;
 
         public Lobby(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base("Lobby", Content, spriteBatch, screenWidth, screenHeight)
         {
+            //load lobby image and general room content
             roomImg = Content.Load<Texture2D>("Images/Backgrounds/Lobby");
             base.LoadContent();
         }
 
+        //Pre: none
+        //Post: none
+        //Desc: load data for lobby room
         public override void LoadContent()
         {
             //Images
             clothHBImg = Content.Load<Texture2D>("Images/Sprites/hitbox");
             pryImg = Content.Load<Texture2D>("Images/Sprites/FloorboardPry");
 
-            //Rectangles
-            //tableClothHB = new Rectangle(500, 410, 120, 90);
-
-            //Details
-            pryDetails = "A floorboard pry bar was found beneath the table cloth.";
-
             //Items
-            pryBar = new Item("Floorboard Pry Bar", pryImg, pryDetails);
+            pryBar = new Item("Floorboard Pry Bar", pryImg, "A floorboard pry bar was found beneath the table cloth.");
 
             //clickables
             pryClickable = new Clickable(500, 410, 120, 90, pryImg);
-
             pryClickable.SetHitBoxImg(clothHBImg);
-
             pryBar.SetClickable(pryClickable);
 
-            //Stacks
+            //add item to stack
             itemStack.Push(pryBar);
 
-            //keys
+            //load keys and set their data
             ballroomKey = new Key(ballKeyDesc[0], keyImg, ballKeyDesc[1], Game1.ballroom);
             diningKey = new Key(diningKeyDesc[0], keyImg, diningKeyDesc[1], Game1.diningHall);
 
@@ -76,15 +79,5 @@ namespace EscapeRoom
             keys.Add(ballroomKey);
             
         }
-
-        //public override void UpdateRoom()
-        //{
-        //    base.UpdateRoom();
-        //}
-
-        //public override void DrawRoom()
-        //{
-        //    base.DrawRoom();
-        //}
     }
 }

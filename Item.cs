@@ -24,95 +24,105 @@ namespace EscapeRoom
 {
     public class Item
     {
-        //variables
-        //private ContentManager Content;
-        //private SpriteBatch spriteBatch;
-
-        //private int screenWidth;
-        //private int screenHeight;
-
+        //tells if item is a collectable
         private bool isCollectable;
 
+        //name and details of item
         private string name;
         private string details;
 
+        //image of item
         private Texture2D itemImg;
-        private Texture2D itemDescImg;
 
+        //clickable associated with item
         private Clickable clickable;
-        private Item helperItem;
 
-        private bool isInvItem;
+        //item that user must have selected to pick up item
+        private Item helperItem;
 
         public Item(string name, Texture2D itemImg, string details)
         {
-            //this.Content = Content;
-            //this.spriteBatch = spriteBatch;
-            //this.screenWidth = screenWidth;
-            //this.screenHeight = screenHeight;
+            //set item data
             this.name = name;
             this.itemImg = itemImg;
             this.details = details;
-            isInvItem = true;
         }
 
+        //Pre: name is an existing string
+        //Post: none
+        //Desc: set item name
         public Item(string name)
         {
             this.name = name;
         }
 
-        //modifiers
-        public void SetCollectable() //item not part of stack
+        //Pre: none
+        //Post: none
+        //Desc: identify item as a collectable
+        public void SetCollectable()
         {
             isCollectable = true;
         }
 
+        //Pre: clickable is an existing clickable
+        //Post: none
+        //Desc: associate a clickable with the item
         public void SetClickable(Clickable clickable)
         {
             this.clickable = clickable;
         }
 
-        public void SetNoInvItem()
-        {
-            isInvItem = false;
-        }
-
+        //Pre: item is an existing item
+        //Post: none
+        //Desc: set an item that user must have selected in order to pick up this item
         public void SetHelperItem(Item item)
         {
             helperItem = item;
         }
 
+        //Pre: details is initialized string
+        //Post: none
+        //Desc: set details of item
         public void SetDetails(string details)
         {
             this.details = details;
         }
 
-        //accessors
+        //Pre: none
+        //Post: returns a string name
+        //Desc: returns name of item
         public string GetName()
         {
             return name;
         }
 
+        //Pre: none
+        //Post: returns clickable
+        //Desc: returns clickable of item
         public Clickable GetClickable()
         {
             return clickable;
         }
 
+        //Pre: none
+        //Post: returns helper item
+        //Desc: returns helper item of item
         public Item GetHelperItem()
         {
             return helperItem;
         }
 
+        //Pre: none
+        //Post: returns details 
+        //Desc: returns details of item
         public string GetDetails()
         {
             return details;
         }
 
-        public bool IsInvItem()
-        {
-            return isInvItem;
-        }
-
+        //Pre: none
+        //Post: returns true if item is a collectable
+        //Desc: returns true if item is a collectable
         public bool IsCollectable()
         {
             return isCollectable;

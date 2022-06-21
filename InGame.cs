@@ -26,6 +26,9 @@ namespace EscapeRoom
 {
     public class InGame : GameState
     {
+        //for testing purposes
+        private bool showHitbox;
+
         //stores current room player is in
         public Room room;
 
@@ -71,7 +74,9 @@ namespace EscapeRoom
         public InGame(ContentManager Content, SpriteBatch spriteBatch, int screenWidth, int screenHeight) : base(Content, spriteBatch, screenWidth, screenHeight)
         {
             //sets room to be lobby
-            room = Game1.lobby;
+            room = Game1.attic;
+
+            showHitbox = false;
         }
         
         //Pre: none
@@ -310,9 +315,14 @@ namespace EscapeRoom
                 //set click to be added to inventory
                 collectable.SetClick(AddCollectableToInv);
 
-                //add collectable to displayables and clickables list
-                displayables.Add(collectable);
+                //add collectable to clickables list
                 clickables.Add(collectable);
+
+                //show hitbox if the testing settting is turned on
+                if (showHitbox)
+                {
+                    displayables.Add(collectable);
+                }
 
                 //Pre: none
                 //Post: none
@@ -363,9 +373,14 @@ namespace EscapeRoom
                 //set left click on item to popStackAndPopUp
                 currItemCB.SetClick(popStackAndPopUp);
 
-                //add item to displayables and clickables list
+                //add item to clickables list
                 displayables.Add(currItemCB.GetHitClickable());
-                clickables.Add(currItemCB);
+
+                //show hitbox if the testing settting is turned on
+                if (showHitbox)
+                {
+                    clickables.Add(currItemCB);
+                }
             }
             else
             {
@@ -385,10 +400,15 @@ namespace EscapeRoom
                     //call CheckKeyPickup on left click of key
                     keyCB.SetClick(CheckKeyPickup);
 
-                    //add key and info to displayables and clickables list
-                    displayables.Add(keyCB);
-                    displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), key.GetName(), Game1.font, Color.White)); 
+                    //add key and info to clickables list 
                     clickables.Add(keys[i].GetClickable());
+
+                    //show hitbox if the testing settting is turned on
+                    if (showHitbox)
+                    {
+                        displayables.Add(keyCB);
+                        displayables.Add(new Clickable(keyCB.X(), keyCB.Y(), key.GetName(), Game1.font, Color.White));
+                    }
 
                     //Pre: none
                     //Post: none
@@ -466,7 +486,7 @@ namespace EscapeRoom
             int col = 0;
             int row = 0;
             int numCol = 2;
-            int leftMargin = Game1.inventory.itemsPage.GetHitbox().Left + 125;
+            int leftMargin = Game1.inventory.itemsPage.GetHitbox().Left + 128;
             int topMargin = Game1.inventory.itemsPage.GetHitbox().Top + 245;
             
             //run if list isn't empty

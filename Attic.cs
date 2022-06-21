@@ -48,7 +48,6 @@ namespace EscapeRoom
 
             //initialize letter clickable and assign it a hitbox image
             letter = new Clickable(500, 300, 30, 60, letterImg);
-            letter.SetHitBoxImg(hitboxImg);
 
             //create letter item
             letterItem = new Item("Letter", letterImg, "A sincere letter found on the desk.");
